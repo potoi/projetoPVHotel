@@ -8,6 +8,6 @@ package fichario;
  *
  * @author Victor
  */
-public class PessoaFisica {
+public class PessoaFisicaFichario {
     
 }
