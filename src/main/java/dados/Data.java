@@ -26,18 +26,18 @@ import model.Veiculo;
  */
 public class Data {
 
-    public static ArrayList<Cliente> arrayCli = new ArrayList<>();
-    public static ArrayList<Conta> arrayCon = new ArrayList<>();
-    public static ArrayList<Endereco> arrayEnd = new ArrayList<>();
-    public static ArrayList<Equipamento> arrayEqui = new ArrayList<>();
-    public static ArrayList<Fatura> arrayFatu = new ArrayList<>();
-    public static ArrayList<Funcionario> arrayFunc = new ArrayList<>();
-    public static ArrayList<Item> arrayItem = new ArrayList<>();
-    public static ArrayList<Municipio> arrayMuni = new ArrayList<>();
-    public static ArrayList<Parcela> arrayParc = new ArrayList<>();
-    public static ArrayList<PessoaFisica> arrayPessF = new ArrayList<>();
-    public static ArrayList<PessoaJuridica> arrayPessJ = new ArrayList<>();
-    public static ArrayList<Produto> arrayProd = new ArrayList<>();
-    public static ArrayList<Servico> arrayServ = new ArrayList<>();
-    public static ArrayList<Veiculo> arrayVeic = new ArrayList<>();
+    public  ArrayList<Cliente> arrayCli = new ArrayList<>();
+    public  ArrayList<Conta> arrayCon = new ArrayList<>();
+    public  ArrayList<Endereco> arrayEnd = new ArrayList<>();
+    public  ArrayList<Equipamento> arrayEqui = new ArrayList<>();
+    public  ArrayList<Fatura> arrayFatu = new ArrayList<>();
+    public  ArrayList<Funcionario> arrayFunc = new ArrayList<>();
+    public  ArrayList<Item> arrayItem = new ArrayList<>();
+    public  ArrayList<Municipio> arrayMuni = new ArrayList<>();
+    public  ArrayList<Parcela> arrayParc = new ArrayList<>();
+    public  ArrayList<PessoaFisica> arrayPessF = new ArrayList<>();
+    public  ArrayList<PessoaJuridica> arrayPessJ = new ArrayList<>();
+    public  ArrayList<Produto> arrayProd = new ArrayList<>();
+    public  ArrayList<Servico> arrayServ = new ArrayList<>();
+    public  ArrayList<Veiculo> arrayVeic = new ArrayList<>();
 }

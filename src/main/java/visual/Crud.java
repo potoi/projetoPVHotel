@@ -3,20 +3,57 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package visual;
+
 import model.*;
 import fichario.*;
-import static util.Utilidades.*;
+
 import dados.Data;
+import java.awt.Color;
+import static java.awt.Color.RED;
+import java.lang.reflect.Field;
+import javax.swing.table.DefaultTableModel;
+import util.Utilidades;
+
 /**
  *
  * @author Victor
  */
 public class Crud extends javax.swing.JFrame {
 
+    DefaultTableModel dtm;
+
     /**
      * Creates new form Crud
      */
     public Crud() {
+        dtm = new DefaultTableModel(0, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        initComponents();
+    }
+
+    public Crud(Object a[]) {
+
+        dtm = new DefaultTableModel(a, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        initComponents();
+    }
+
+    public Crud(String a[][], String b[]) {
+        dtm = new DefaultTableModel(0, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        preencheTabela(a, b);
         initComponents();
     }
 
@@ -29,93 +66,28 @@ public class Crud extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        jTextField2.setText("jTextField2");
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 40, -1, -1));
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 12, -1, -1));
-
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 12, -1, -1));
-
-        jTextField3.setText("jTextField3");
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
-
-        jTextField4.setText("jTextField4");
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 40, -1, -1));
-
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 12, -1, -1));
-
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 12, -1, -1));
-
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 108, -1, -1));
-
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 108, -1, -1));
-
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 108, -1, -1));
-
-        jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, -1, -1));
-
-        jTextField5.setText("jTextField5");
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 142, -1, -1));
-
-        jTextField6.setText("jTextField6");
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 142, -1, -1));
-
-        jTextField7.setText("jTextField7");
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 142, -1, -1));
-
-        jTextField8.setText("jTextField8");
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 142, -1, -1));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,46 +95,111 @@ public class Crud extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
 
         jButton2.setText("jButton2");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
         jButton3.setText("jButton3");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
-        ));
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+
+        jTable2.setModel(dtm);
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 390, 230));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 650, 220));
+        getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 60, 50));
+        getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 40, 40));
+
+        jMenu1.setText("Cliente");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Veiculo");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("jMenu3");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("jMenu4");
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("jMenu5");
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("jMenu6");
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("jMenu7");
+        jMenuBar1.add(jMenu7);
+
+        jMenu8.setText("jMenu8");
+        jMenuBar1.add(jMenu8);
+
+        jMenu9.setText("jMenu9");
+        jMenuBar1.add(jMenu9);
+
+        jMenu10.setText("jMenu10");
+        jMenuBar1.add(jMenu10);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cliente testeCliente= new Cliente(4,"Victor",null,null,null,"teste","teste","teste");
-        Data.arrayCli.add(testeCliente);
+        Cliente testeCliente = new Cliente(4, "Victor", null, null, null, "teste", "teste", "teste");
+        ClienteFichario cliFichario = new ClienteFichario();
+
+
+        //String[8][Data.arrayCli.size()] array = {};
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Veiculo testeVeiculo = new Veiculo("a", "Victor", RED, "teste", "teste");
+        VeiculoFichario veiFichario = new VeiculoFichario();
+        String[] dadoString = veiFichario.fieldsToString(testeVeiculo);
+        dtm.insertRow(0, dadoString);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        jPopupMenu1.isVisible();
+        System.out.println("asdfsadfsdafsdf");
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-        
-        
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Crud().setVisible(true);
@@ -170,29 +207,36 @@ public class Crud extends javax.swing.JFrame {
         });
     }
 
+    private void preencheTabela(String a[][], String b[]) {
+
+        for (String n : b) {
+            dtm.addColumn(n);
+        }
+        for (String[] n2 : a) { 
+             dtm.insertRow(0, n2); 
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
