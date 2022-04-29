@@ -10,7 +10,7 @@ import model.Veiculo;
  *
  * @author Victor
  */
-public class VeiculoFichario {
+public class VeiculoFichario extends Fichario {
     
     
         public String[] fieldsToString(Veiculo b) {
@@ -29,6 +29,7 @@ public class VeiculoFichario {
        String[] a = {"Marca","Modelo","Cor","Placa","Vaga Ocupada"};
        return a;
       }
+
       public String[][] getDataString(ArrayList<Veiculo> data){
           String[][] stringTotal;
           int quantCampos = 5;

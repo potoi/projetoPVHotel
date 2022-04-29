@@ -10,4 +10,5 @@ package fichario;
  */
 public class PessoaFisicaFichario {
     
+    
 }

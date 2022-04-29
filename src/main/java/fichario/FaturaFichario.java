@@ -4,10 +4,13 @@
  */
 package fichario;
 
+import java.util.ArrayList;
+import model.Fatura;
+
 /**
  *
  * @author Victor
  */
 public class FaturaFichario {
-    
+
 }

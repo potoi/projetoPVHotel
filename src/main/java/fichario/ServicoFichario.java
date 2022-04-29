@@ -9,5 +9,6 @@ package fichario;
  * @author Victor
  */
 public class ServicoFichario {
+
     
 }

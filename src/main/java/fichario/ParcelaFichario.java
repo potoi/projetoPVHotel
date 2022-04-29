@@ -4,10 +4,14 @@
  */
 package fichario;
 
+import java.util.ArrayList;
+import model.Parcela;
+
 /**
  *
  * @author Victor
  */
 public class ParcelaFichario {
+
     
 }

@@ -4,10 +4,13 @@
  */
 package fichario;
 
+import java.util.ArrayList;
+import model.Equipamento;
+
 /**
  *
  * @author Victor
  */
 public class EquipamentoFichario {
-    
+
 }

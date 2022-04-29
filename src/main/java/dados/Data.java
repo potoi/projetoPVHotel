@@ -26,9 +26,9 @@ import model.Veiculo;
  */
 public class Data {
 
-    public  ArrayList<Cliente> arrayCli = new ArrayList<>();
-    public  ArrayList<Conta> arrayCon = new ArrayList<>();
-    public  ArrayList<Endereco> arrayEnd = new ArrayList<>();
+    public  ArrayList<Cliente> arrayClie = new ArrayList<>();
+    public  ArrayList<Conta> arrayCont = new ArrayList<>();
+    public  ArrayList<Endereco> arrayEnde = new ArrayList<>();
     public  ArrayList<Equipamento> arrayEqui = new ArrayList<>();
     public  ArrayList<Fatura> arrayFatu = new ArrayList<>();
     public  ArrayList<Funcionario> arrayFunc = new ArrayList<>();

@@ -11,7 +11,7 @@ import model.Cliente;
  *
  * @author Victor
  */
-public class ClienteFichario {
+public class ClienteFichario extends Fichario {
 
 
     public String[] getColumnName() {

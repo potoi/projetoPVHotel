@@ -17,6 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Data dados = new Data();
   
     public TelaPrincipal() {
+        dadosExemplos();
         initComponents();
     }
 
@@ -74,18 +75,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         VeiculoFichario veiFichario = new VeiculoFichario();
-        Veiculo testeVeiculo = new Veiculo("a", "Victor", RED, "teste", "teste");
-        dados.arrayVeic.add(testeVeiculo);
-        dados.arrayVeic.add(testeVeiculo);
-        dados.arrayVeic.add(testeVeiculo);
-        Crud crud = new Crud(veiFichario.getDataString(dados.arrayVeic),veiFichario.getColumnName());
+        Crud crud = new Crud(3,dados);
         crud.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        Crud crud = new Crud();
-        crud.setVisible(true);
+        CrudMunicipio crudMunicipio = new CrudMunicipio(dados);
+        
+        crudMunicipio.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -127,4 +126,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
+
+    private void dadosExemplos() {
+        
+        
+        Veiculo testeVeiculo = new Veiculo("a", "Victor", RED, "teste", "teste");
+        dados.arrayVeic.add(testeVeiculo);
+        dados.arrayVeic.add(testeVeiculo);
+        dados.arrayVeic.add(testeVeiculo);
+        
+        Municipio testeMunicipio = new Municipio ("nomeMunicipio","Minas Gerais","Brasil");
+        dados.arrayMuni.add(testeMunicipio);
+        dados.arrayMuni.add(testeMunicipio);
+        dados.arrayMuni.add(testeMunicipio);
+        Endereco testeEndereco = new Endereco ("nomeLogradouro","25","Bairro Prado",testeMunicipio,"Ao lado da praça","3597000");
+        dados.arrayEnde.add(testeEndereco);
+        dados.arrayEnde.add(testeEndereco);
+        dados.arrayEnde.add(testeEndereco);
+    }
 }

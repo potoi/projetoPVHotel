@@ -4,10 +4,15 @@
  */
 package fichario;
 
+import java.util.ArrayList;
+import model.Conta;
+
 /**
  *
  * @author Victor
  */
 public class ContaFichario {
+    
+
     
 }
