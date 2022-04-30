@@ -16,9 +16,9 @@ public class Item {
         this.preco = preco;
     }
     
-    private int identificador;
-    private String descricao;
-    private double preco;
+    protected int identificador;
+    protected String descricao;
+    protected double preco;
 
     public int getIdentificador() {
         return identificador;

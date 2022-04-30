@@ -36,7 +36,7 @@ public class CrudConta extends javax.swing.JFrame {
         };
         initComponents();
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.setTitle("Tabela: Município");
+        this.setTitle("Tabela: Conta");
         preencheTabela(ficharioAtual.getDataString(arrayAtual), ficharioAtual.getColumnName());
     }
 
@@ -289,7 +289,7 @@ public class CrudConta extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowVeiculoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudConta crud = new CrudConta(dados);
+        CrudMunicipio crud = new CrudMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
 
@@ -426,7 +426,7 @@ public class CrudConta extends javax.swing.JFrame {
     private void removeItem() {
 
         if ((jTable.getSelectedRow()) > -1) {
-            ficharioAtual.remove(jTable.getSelectedRow(), arrayAtual);
+            
             dtm.removeRow(jTable.getSelectedRow());
 
         }

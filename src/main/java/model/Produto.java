@@ -10,7 +10,13 @@ import java.time.LocalDate;
  *
  * @author Victor
  */
-public class Produto {
+public class Produto extends Item {
+
+    public Produto(String marca, LocalDate validade, int identificador, String descricao, double preco) {
+        super(identificador, descricao, preco);
+        this.marca = marca;
+        this.validade = validade;
+    }
     
     private String marca;
     private LocalDate validade;

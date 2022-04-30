@@ -12,11 +12,13 @@ import model.Conta;
  * @author Victor
  */
 public class ContaFichario {
-    
-    
-    
-        public String[] getColumnName() {
-        String[] a = {"Marca", "Modelo", "Cor", "Placa", "Vaga Ocupada"};
+
+    public ContaFichario() {
+       
+    }
+
+    public String[] getColumnName() {
+        String[] a = {"Nome do Cliente", "Data Abertura", "Data Fechamento", "Total", "Quarto", "Quantidade Items"};
         return a;
     }
 
@@ -26,17 +28,21 @@ public class ContaFichario {
         int i = 0;
         stringTotal = new String[data.size()][quantCampos];
         for (Conta c : data) {
-            stringTotal[i][0] = Integer.toString(c.getId());
-            stringTotal[i][1] = c.getNome();
-            stringTotal[i][2] = c.getEnderecoResidencial().getMunicipio().getNome();
-            stringTotal[i][3] = c.getEnderecoComercial().getMunicipio().getNome();
-            stringTotal[i][4] = c.getVeiculos()[0].getModelo();
-            stringTotal[i][5] = c.getTelefoneCelular();
+            stringTotal[i][0] = c.getCliente().getNome();
+            stringTotal[i][1] = Integer.toString(c.getDataAbertura().
+                    getDayOfMonth()) + Integer.toString(c.getDataAbertura().
+                            getMonthValue()) + Integer.toString(c.getDataAbertura().getYear());
+
+            stringTotal[i][2] = Integer.toString(c.getDataFechamento().
+                    getDayOfMonth()) + Integer.toString(c.getDataFechamento().
+                            getMonthValue()) + Integer.toString(c.getDataFechamento().getYear());
+            stringTotal[i][3] = Double.toString(c.getTotal());
+            stringTotal[i][4] = Integer.toString(c.getQuarto());
+            stringTotal[i][5] = Integer.toString(c.getItens().length);
             i++;
 
         }
         return stringTotal;
     }
 
-    
 }

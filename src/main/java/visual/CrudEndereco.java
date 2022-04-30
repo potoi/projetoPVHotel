@@ -27,7 +27,8 @@ public class CrudEndereco extends javax.swing.JFrame {
     private Data dados;
 
     public CrudEndereco(Data dados) {
-        ficharioAtual = new EnderecoFichario();
+        EnderecoFichario fichario= new EnderecoFichario();
+        ficharioAtual = fichario;
         this.dados = dados;
 
         dtm = new DefaultTableModel(0, 0) {

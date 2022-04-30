@@ -360,6 +360,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
         jInternalFrame1.setJMenuBar(jMenuBarPrincipal1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(750, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable.setModel(dtm);

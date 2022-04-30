@@ -5,6 +5,15 @@
 package visual;
 
 import dados.Data;
+import fichario.ContaFichario;
+import fichario.MunicipioFichario;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import model.Conta;
+import model.Item;
+import model.Servico;
 
 /**
  *
@@ -15,12 +24,23 @@ public class CrudAddConta extends javax.swing.JFrame {
     /**
      * Creates new form CrudAddMunicipio
      */
-        Data dados;
-       public CrudAddConta(Data dados) {
-       this.dados= dados;
+    private int indexCliente;
+    private Data dados;
+    private ArrayList<Servico> arrayServico;
+    double totalServ;
+    double totalProd;
+
+    public CrudAddConta(Data dados) {
+        this.dados = dados;
+        totalServ = 0;
+        totalProd = 0;
+        this.setTitle("Tela Adicionar Conta");
         initComponents();
     }
+
     public CrudAddConta() {
+        totalServ = 0;
+        totalProd = 0;
         initComponents();
     }
 
@@ -33,21 +53,177 @@ public class CrudAddConta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextAtributo1 = new javax.swing.JTextField();
+        jTextAtributo3 = new javax.swing.JTextField();
+        jButtonAddAtributo1 = new javax.swing.JButton();
+        jTextAtributo6 = new javax.swing.JTextField();
+        jButtonGravar = new javax.swing.JButton();
+        jTextAtributo2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButtonVoltar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabelServico = new javax.swing.JLabel();
+        jBotaoTelaServicos = new javax.swing.JButton();
+        jBotaoTelaProdutos = new javax.swing.JButton();
+        jLabelTotal = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelTitulo.setText("Endereço");
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 9, -1, -1));
+
+        jLabel1.setText("Cadastro:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 9, -1, -1));
+
+        jTextAtributo1.setMinimumSize(new java.awt.Dimension(65, 25));
+        jTextAtributo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextAtributo1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 46, 150, 25));
+
+        jTextAtributo3.setMinimumSize(new java.awt.Dimension(65, 25));
+        getContentPane().add(jTextAtributo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 129, 150, -1));
+
+        jButtonAddAtributo1.setText("Selecionar Cliente");
+        jButtonAddAtributo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddAtributo1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAddAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 181, -1, -1));
+
+        jTextAtributo6.setText("Cliente");
+        jTextAtributo6.setEnabled(false);
+        getContentPane().add(jTextAtributo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 181, 150, -1));
+
+        jButtonGravar.setText("Gravar");
+        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonGravar, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 332, 150, 36));
+        getContentPane().add(jTextAtributo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 89, 150, -1));
+
+        jLabel2.setText("Data Abertura");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 50, -1, -1));
+
+        jLabel3.setText("Data Fechamento");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, -1, -1));
+
+        jLabel4.setText("Quarto");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 132, -1, -1));
+
+        jLabel5.setText("Cliente");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 184, -1, -1));
+
+        jButtonVoltar.setText("<<<");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, -1));
+
+        jLabel9.setText("Qtd:0");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+
+        jLabelServico.setText("Qtd:0");
+        getContentPane().add(jLabelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
+
+        jBotaoTelaServicos.setText("Adicionar Serviços");
+        jBotaoTelaServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoTelaServicosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBotaoTelaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 130, 39));
+
+        jBotaoTelaProdutos.setText("Adicionar Produtos");
+        getContentPane().add(jBotaoTelaProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 311, 138, 39));
+
+        jLabelTotal.setText("Total:  0");
+        getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAtributo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextAtributo1ActionPerformed
+
+    private void jButtonAddAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddAtributo1ActionPerformed
+        String[] possibilidades;
+        ContaFichario contFichario = new ContaFichario();
+        String[][] stringToda;
+        stringToda = contFichario.getDataString(dados.arrayCont);
+        possibilidades = new String[stringToda.length];
+        int i = 0;
+        for (String s[] : stringToda) {
+            possibilidades[i] = s[0] + " " + s[1];
+            i++;
+        }
+        JComboBox cb = new JComboBox(possibilidades);
+        int input;
+        input = JOptionPane.showConfirmDialog(this, cb, "Selecione o Cliente",
+                JOptionPane.DEFAULT_OPTION);
+        if (input == JOptionPane.OK_OPTION) {
+            String str = (String) cb.getSelectedItem();
+            indexCliente = cb.getSelectedIndex();
+            jTextAtributo6.setText(str);
+        }
+    }//GEN-LAST:event_jButtonAddAtributo1ActionPerformed
+
+    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        Conta conta = new Conta();
+        Item[] item = null;
+
+        try {
+
+            conta.setDataAbertura(LocalDate.MAX);
+            conta.setDataFechamento(LocalDate.MIN);
+            conta.setQuarto(Integer.parseInt(jTextAtributo3.getText()));
+            conta.setItens(item);
+
+            JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
+                    JOptionPane.DEFAULT_OPTION);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
+                    JOptionPane.DEFAULT_OPTION);
+
+        }
+
+    }//GEN-LAST:event_jButtonGravarActionPerformed
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        CrudConta crud = new CrudConta(dados);
+        crud.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jBotaoTelaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaServicosActionPerformed
+
+        TelaAddServicos tela = new TelaAddServicos(this, true, dados.arrayItem,arrayServico);
+        totalServ = 0;
+        arrayServico = tela.showDialog();
+
+        jLabelServico.setText("Qtd:" + Integer.toString(arrayServico.size()));
+        for (Servico serv : arrayServico) {
+            totalServ += serv.getPreco();
+        }
+        jLabelTotal.setText("Total  :" + Double.toString(totalServ + totalProd));
+        tela.dispose();
+
+
+    }//GEN-LAST:event_jBotaoTelaServicosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,6 +252,8 @@ public class CrudAddConta extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -86,5 +264,23 @@ public class CrudAddConta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBotaoTelaProdutos;
+    private javax.swing.JButton jBotaoTelaServicos;
+    private javax.swing.JButton jButtonAddAtributo1;
+    private javax.swing.JButton jButtonGravar;
+    private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelServico;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelTotal;
+    private javax.swing.JTextField jTextAtributo1;
+    private javax.swing.JTextField jTextAtributo2;
+    private javax.swing.JTextField jTextAtributo3;
+    private javax.swing.JTextField jTextAtributo6;
     // End of variables declaration//GEN-END:variables
 }
