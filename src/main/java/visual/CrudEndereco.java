@@ -447,7 +447,7 @@ public class CrudEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowVeiculoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudEndereco crud = new CrudEndereco(dados);
+        CrudMunicipio crud = new CrudMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
 

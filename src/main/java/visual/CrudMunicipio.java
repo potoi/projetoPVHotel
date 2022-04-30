@@ -98,19 +98,19 @@ public class CrudMunicipio extends javax.swing.JFrame {
                 jTextAlterAtributo1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextAlterAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 70, -1));
+        jPanel1.add(jTextAlterAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 140, -1));
 
         jLabel2.setText("Estado");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jTextAlterAtributo2.setText("jTextField2");
-        jPanel1.add(jTextAlterAtributo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 46, 70, -1));
+        jPanel1.add(jTextAlterAtributo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 46, 140, -1));
 
         jLabel3.setText("Páis");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jTextAlterAtributo3.setText("jTextField3");
-        jPanel1.add(jTextAlterAtributo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 86, -1, -1));
+        jPanel1.add(jTextAlterAtributo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 86, 140, -1));
         jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 237, 34, 25));
 
         jBotaoAlterPane.setText("Gravar");
@@ -119,7 +119,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
                 jBotaoAlterPaneActionPerformed(evt);
             }
         });
-        jPanel1.add(jBotaoAlterPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 151, -1, -1));
+        jPanel1.add(jBotaoAlterPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -464,7 +464,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
             indexMuni= jTable.getSelectedRow();
             Municipio muni = dados.arrayMuni.get(jTable.getSelectedRow());
             JDialog jd = new JDialog(this);
-            jd.setSize(500, 400);
+            jd.setSize(400, 250);
             jd.add(jPanel1);
             jd.setVisible(true);
             
