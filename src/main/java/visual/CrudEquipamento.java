@@ -99,11 +99,6 @@ public class CrudEquipamento extends javax.swing.JFrame {
         getContentPane().add(jButtonRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
 
         jButtonAlter.setText("Alterar");
-        jButtonAlter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButtonAlter, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
 
         jMenu10.setText("Mostrar");
@@ -414,10 +409,6 @@ public class CrudEquipamento extends javax.swing.JFrame {
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
-
-    private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
-       
-    }//GEN-LAST:event_jButtonAlterActionPerformed
 
     private void preencheTabela(String a[][], String b[]) {
         dtm.setRowCount(0);

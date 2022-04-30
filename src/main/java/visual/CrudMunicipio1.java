@@ -17,15 +17,15 @@ import javax.swing.JOptionPane;
  *
  * @author Victor
  */
-public class CrudMunicipio extends javax.swing.JFrame {
+public class CrudMunicipio1 extends javax.swing.JFrame {
 
-    private int indexMuni;
     private DefaultTableModel dtm;
     private ArrayList<Municipio> arrayAtual;
     private MunicipioFichario ficharioAtual;
     private Data dados;
+    private int indexMuni;
 
-    public CrudMunicipio(Data dados) {
+    public CrudMunicipio1(Data dados) {
         ficharioAtual = new MunicipioFichario();
         this.arrayAtual = dados.arrayMuni;
         this.dados = dados;
@@ -576,7 +576,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowVeiculoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudMunicipio crud = new CrudMunicipio(dados);
+        CrudMunicipio1 crud = new CrudMunicipio1(dados);
         crud.setVisible(true);
         this.dispose();
 
@@ -699,13 +699,13 @@ public class CrudMunicipio extends javax.swing.JFrame {
 
     private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
         if (jTable.getSelectedRow() > -1) {
-            indexMuni = jTable.getSelectedRow();
+            indexMuni= jTable.getSelectedRow();
             Municipio muni = dados.arrayMuni.get(jTable.getSelectedRow());
             JDialog jd = new JDialog(this);
             jd.setSize(400, 250);
             jd.add(jPanel1);
             jd.setVisible(true);
-
+            
             jTextAlterAtributo1.setText(muni.getNome());
             jTextAlterAtributo2.setText(muni.getEstado());
             jTextAlterAtributo3.setText(muni.getPais());
@@ -719,9 +719,10 @@ public class CrudMunicipio extends javax.swing.JFrame {
 
     private void jBotaoAlterPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoAlterPaneActionPerformed
 
-        Municipio municipio = new Municipio();
+                                                    
+        Municipio municipio= new Municipio();
         municipio = dados.arrayMuni.get(indexMuni);
-
+        
         municipio.setNome(jTextAlterAtributo1.getText());
         municipio.setEstado(jTextAlterAtributo2.getText());
         municipio.setPais(jTextAlterAtributo3.getText());
@@ -731,7 +732,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
             dados.arrayMuni.set(jTable.getSelectedRow(), municipio);
             preencheTabela(ficharioAtual.getDataString(dados.arrayMuni), ficharioAtual.getColumnName());
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
-                    JOptionPane.DEFAULT_OPTION);
+                JOptionPane.DEFAULT_OPTION);
 
         }
 
