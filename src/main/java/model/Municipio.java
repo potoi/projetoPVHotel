@@ -9,16 +9,19 @@ package model;
  * @author Victor
  */
 public class Municipio {
-    
-    private String nome;
-    private String estado;
-    private String pais;
-    
+
+    public Municipio() {
+    }
+
     public Municipio(String nome, String estado, String pais) {
         this.nome = nome;
         this.estado = estado;
         this.pais = pais;
     }
+    
+    private String nome;
+    private String estado;
+    private String pais;
 
     public String getNome() {
         return nome;
@@ -43,5 +46,5 @@ public class Municipio {
     public void setPais(String pais) {
         this.pais = pais;
     }
-
+    
 }

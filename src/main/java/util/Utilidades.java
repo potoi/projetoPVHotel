@@ -4,6 +4,8 @@
  */
 package util;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Victor
@@ -18,6 +20,15 @@ public class Utilidades {
     }
     public static String toString (double d){
         return Double.toString(d);
+    }
+        public static boolean verificaIgual(Object o, ArrayList<Object> array) {
+        
+        for (Object obj : array) {
+            if (o == obj) {
+                return true;
+            }
+        }
+        return false;
     }
         
 }

@@ -10,7 +10,7 @@ import model.Veiculo;
  *
  * @author Victor
  */
-public class VeiculoFichario extends Fichario {
+public class VeiculoFichario  {
     
     
         public String[] fieldsToString(Veiculo b) {

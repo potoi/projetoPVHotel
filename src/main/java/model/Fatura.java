@@ -4,10 +4,83 @@
  */
 package model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Victor
  */
 public class Fatura {
+
+    public Fatura(Conta conta, LocalDate dataLiquidacao, int qtdParcelas, Parcela[] parcelas, int tipopagamento) {
+        this.conta = conta;
+        this.dataLiquidacao = dataLiquidacao;
+        this.qtdParcelas = qtdParcelas;
+        this.parcelas = parcelas;
+        this.tipopagamento = tipopagamento;
+    }
+    
+    private Conta conta;
+    private LocalDate dataLiquidacao;
+    private int qtdParcelas;
+    private Parcela parcelas[];
+    private int tipopagamento;
+
+    
+    public enum tipoPagamento{
+       
+        DINHEIRO("dinheiro"),
+        CARTAO("cartão");
+        
+        private String tipo;
+        
+        tipoPagamento(String tipo){
+        this.tipo = tipo;
+    }
+        
+        public String getTipo(){
+            return tipo;
+        }
+    }
+    
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
+    public LocalDate getDataLiquidacao() {
+        return dataLiquidacao;
+    }
+
+    public void setDataLiquidacao(LocalDate dataLiquidacao) {
+        this.dataLiquidacao = dataLiquidacao;
+    }
+
+    public int getQtdParcelas() {
+        return qtdParcelas;
+    }
+
+    public void setQtdParcelas(int qtdParcelas) {
+        this.qtdParcelas = qtdParcelas;
+    }
+
+    public Parcela[] getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas(Parcela[] parcelas) {
+        this.parcelas = parcelas;
+    }
+
+    public int getTipopagamento() {
+        return tipopagamento;
+    }
+
+    public void setTipopagamento(int tipopagamento) {
+        this.tipopagamento = tipopagamento;
+    }
     
 }

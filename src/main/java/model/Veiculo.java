@@ -12,12 +12,6 @@ import java.awt.Color;
  */
 public class Veiculo {
 
-    private String marca;
-    private String modelo;
-    private Color cor;
-    private String placa;
-    private String vagaOcupada;
-
     public Veiculo(String marca, String modelo, Color cor, String placa, String vagaOcupada) {
         this.marca = marca;
         this.modelo = modelo;
@@ -25,9 +19,12 @@ public class Veiculo {
         this.placa = placa;
         this.vagaOcupada = vagaOcupada;
     }
-
-    public Veiculo() {
-    }
+    
+    private String marca;
+    private String modelo;
+    private Color cor;
+    private String placa;
+    private String vagaOcupada;
 
     public String getMarca() {
         return marca;
@@ -68,5 +65,5 @@ public class Veiculo {
     public void setVagaOcupada(String vagaOcupada) {
         this.vagaOcupada = vagaOcupada;
     }
-
+    
 }

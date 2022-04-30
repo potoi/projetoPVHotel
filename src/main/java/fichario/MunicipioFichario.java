@@ -11,12 +11,13 @@ import model.Municipio;
  *
  * @author Victor
  */
-public class MunicipioFichario extends Fichario {
+public class MunicipioFichario {
 
     public String[] getColumnName() {
         String[] a = {"Nome", "Estado", "Pais"};
         return a;
     }
+
     public String[][] getDataString(ArrayList<Municipio> data) {
         String[][] stringTotal;
         int quantCampos = 3;
@@ -33,5 +34,16 @@ public class MunicipioFichario extends Fichario {
         return stringTotal;
     }
 
+    public Municipio getMuni(int i, ArrayList<Municipio> array) {
+        return array.get(i);
+    }
+
+    public void add(ArrayList<Municipio> array, Municipio muni) {
+
+    }
+
+    public void remove( int i,ArrayList<Municipio> array) {  
+        array.remove(i);
+    }
 
 }

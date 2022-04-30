@@ -8,7 +8,7 @@ package model;
  *
  * @author Victor
  */
-public class Cliente {
+public abstract class Cliente {
     
     private int id;
     private String nome;

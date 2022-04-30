@@ -9,23 +9,21 @@ import fichario.*;
 import java.util.ArrayList;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import util.Utilidades;
 import dados.Data;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Victor
  */
-public class CrudMunicipio extends javax.swing.JFrame {
+public class CrudFatura extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
     private ArrayList<Municipio> arrayAtual;
     private MunicipioFichario ficharioAtual;
     private Data dados;
-    private int indexMuni;
 
-    public CrudMunicipio(Data dados) {
+    public CrudFatura(Data dados) {
         ficharioAtual = new MunicipioFichario();
         this.arrayAtual = dados.arrayMuni;
         this.dados = dados;
@@ -45,15 +43,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextAlterAtributo1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextAlterAtributo2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextAlterAtributo3 = new javax.swing.JTextField();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        jBotaoAlterPane = new javax.swing.JButton();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
@@ -87,40 +77,6 @@ public class CrudMunicipio extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Nome");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 20));
-
-        jTextAlterAtributo1.setText("jTextField1");
-        jTextAlterAtributo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAlterAtributo1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextAlterAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 70, -1));
-
-        jLabel2.setText("Estado");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        jTextAlterAtributo2.setText("jTextField2");
-        jPanel1.add(jTextAlterAtributo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 46, 70, -1));
-
-        jLabel3.setText("Páis");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-
-        jTextAlterAtributo3.setText("jTextField3");
-        jPanel1.add(jTextAlterAtributo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 86, -1, -1));
-        jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 237, 34, 25));
-
-        jBotaoAlterPane.setText("Gravar");
-        jBotaoAlterPane.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotaoAlterPaneActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBotaoAlterPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 151, -1, -1));
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -143,11 +99,6 @@ public class CrudMunicipio extends javax.swing.JFrame {
         getContentPane().add(jButtonRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
 
         jButtonAlter.setText("Alterar");
-        jButtonAlter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButtonAlter, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
 
         jMenu10.setText("Mostrar");
@@ -338,7 +289,7 @@ public class CrudMunicipio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowVeiculoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudMunicipio crud = new CrudMunicipio(dados);
+        CrudFatura crud = new CrudFatura(dados);
         crud.setVisible(true);
         this.dispose();
 
@@ -459,83 +410,24 @@ public class CrudMunicipio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
 
-    private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
-        if (jTable.getSelectedRow() > -1) {
-            indexMuni= jTable.getSelectedRow();
-            Municipio muni = dados.arrayMuni.get(jTable.getSelectedRow());
-            JDialog jd = new JDialog(this);
-            jd.setSize(500, 400);
-            jd.add(jPanel1);
-            jd.setVisible(true);
-            
-            jTextAlterAtributo1.setText(muni.getNome());
-            jTextAlterAtributo2.setText(muni.getEstado());
-            jTextAlterAtributo3.setText(muni.getPais());
-            System.out.println(indexMuni);
-        }
-    }//GEN-LAST:event_jButtonAlterActionPerformed
-
-    private void jTextAlterAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAlterAtributo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextAlterAtributo1ActionPerformed
-
-    private void jBotaoAlterPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoAlterPaneActionPerformed
-
-                                                    
-        Municipio municipio= new Municipio();
-        municipio = dados.arrayMuni.get(indexMuni);
-        
-        municipio.setNome(jTextAlterAtributo1.getText());
-        municipio.setEstado(jTextAlterAtributo2.getText());
-        municipio.setPais(jTextAlterAtributo3.getText());
-        int input;
-        input = JOptionPane.showConfirmDialog(null, "Tem certeza?", "Alterar Município", JOptionPane.OK_CANCEL_OPTION);
-        if (input == JOptionPane.OK_OPTION) {
-            dados.arrayMuni.set(jTable.getSelectedRow(), municipio);
-            preencheTabela(ficharioAtual.getDataString(dados.arrayMuni), ficharioAtual.getColumnName());
-            JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
-                JOptionPane.DEFAULT_OPTION);
-
-        }
-
-    }//GEN-LAST:event_jBotaoAlterPaneActionPerformed
-
     private void preencheTabela(String a[][], String b[]) {
         dtm.setRowCount(0);
         dtm.setColumnCount(0);
+
         for (String n : b) {
             dtm.addColumn(n);
         }
         for (String[] n2 : a) {
             dtm.insertRow(0, n2);
         }
+
     }
 
     private void removeItem() {
-        boolean igual = false;
 
         if ((jTable.getSelectedRow()) > -1) {
-            Municipio muni = arrayAtual.get(jTable.getSelectedRow());
-            for (Endereco ende : dados.arrayEnde) {
-                if (muni == ende.getMunicipio()) {
-                    igual = true;
-
-                }
-            }
-
-            if (igual == false) {
-                int input;
-                input = JOptionPane.showConfirmDialog(null, "Tem certeza?", "Remover Municipio", JOptionPane.OK_CANCEL_OPTION);
-                if (input == JOptionPane.OK_OPTION) {
-                    ficharioAtual.remove(jTable.getSelectedRow(), arrayAtual);
-                    dtm.removeRow(jTable.getSelectedRow());
-
-                }
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "O dado é utilizado em outra tabela");
-            }
+            ficharioAtual.remove(jTable.getSelectedRow(), arrayAtual);
+            dtm.removeRow(jTable.getSelectedRow());
 
         }
 
@@ -543,16 +435,11 @@ public class CrudMunicipio extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
-    private javax.swing.JButton jBotaoAlterPane;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonAlter;
     private javax.swing.JButton jButtonRemove;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu2;
@@ -578,11 +465,8 @@ public class CrudMunicipio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuShowMunicipio;
     private javax.swing.JMenuItem jMenuShowParcela;
     private javax.swing.JMenuItem jMenuShowVeiculo;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextAlterAtributo1;
-    private javax.swing.JTextField jTextAlterAtributo2;
-    private javax.swing.JTextField jTextAlterAtributo3;
     // End of variables declaration//GEN-END:variables
 }

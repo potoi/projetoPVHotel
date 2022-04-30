@@ -11,7 +11,7 @@ import model.Endereco;
  *
  * @author Victor
  */
-public class EnderecoFichario extends Fichario {
+public class EnderecoFichario {
     
       public String[] getColumnName(){
        String[] a = {"Logradouro","Número","Bairro","Município","Complemento","Cep"};
@@ -34,5 +34,17 @@ public class EnderecoFichario extends Fichario {
           }
           return stringTotal;
       }
+      
+      public Endereco getEnde(int i,ArrayList<Endereco> array){
+          return array.get(i);
+      }
+      public ArrayList<Endereco> getArrayEnde(ArrayList<Endereco> array){
+          
+          return array;
+      }
+        public void remove( int i,ArrayList array) {  
+        array.remove(i);
+    }
+
     
 }
