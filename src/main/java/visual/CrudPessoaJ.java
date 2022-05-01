@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package visual;
-
+ 
 import model.*;
 import fichario.*;
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import dados.Data;
  *
  * @author Victor
  */
-public class CrudVeiculo extends javax.swing.JFrame {
+public class CrudPessoaJ extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
     private ArrayList<Municipio> arrayAtual;
     private MunicipioFichario ficharioAtual;
     private Data dados;
 
-    public CrudVeiculo(Data dados) {
+    public CrudPessoaJ(Data dados) {
         ficharioAtual = new MunicipioFichario();
         this.arrayAtual = dados.arrayMuni;
         this.dados = dados;
@@ -216,12 +216,12 @@ public class CrudVeiculo extends javax.swing.JFrame {
     }
 
     private void removeItem() {
- 
+
         if ((jTable.getSelectedRow()) > -1) {
             ficharioAtual.remove(jTable.getSelectedRow(), arrayAtual);
             dtm.removeRow(jTable.getSelectedRow());
- 
-        } 
+
+        }
 
     }
 
@@ -265,4 +265,4 @@ public class CrudVeiculo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
-} 
+}

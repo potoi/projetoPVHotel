@@ -10,17 +10,17 @@ import dados.Data;
  *
  * @author Victor
  */
-public class CrudAddItem extends javax.swing.JFrame {
+public class CrudAddProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form CrudAddMunicipio
      */
         Data dados;
-       public CrudAddItem(Data dados) {
+       public CrudAddProduto(Data dados) {
        this.dados= dados;
         initComponents();
     }
-    public CrudAddItem() {
+    public CrudAddProduto() {
         initComponents();
     }
 
@@ -66,21 +66,23 @@ public class CrudAddItem extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrudAddItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrudAddItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrudAddItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrudAddItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrudAddItem().setVisible(true);
+                new CrudAddProduto().setVisible(true);
             }
         });
     }

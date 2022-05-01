@@ -17,10 +17,17 @@ import static java.awt.Color.RED;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    Data dados = new Data();
+    private Data dados;
 
     public TelaPrincipal() {
+        this.dados= new Data();
         dadosExemplos();
+        initComponents();
+
+    }
+
+    public TelaPrincipal(Data dados) {
+        this.dados=dados;    
         initComponents();
 
     }
@@ -68,205 +75,121 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         jMenu10 = new javax.swing.JMenu();
-        jMenuShowCliente = new javax.swing.JMenuItem();
+        jMenuShowPessoaF = new javax.swing.JMenuItem();
+        jMenuShowPessoaJ = new javax.swing.JMenuItem();
         jMenuShowEndereco = new javax.swing.JMenuItem();
         jMenuShowMunicipio = new javax.swing.JMenuItem();
         jMenuShowVeiculo = new javax.swing.JMenuItem();
         jMenuShowConta = new javax.swing.JMenuItem();
         jMenuShowFatura = new javax.swing.JMenuItem();
         jMenuShowParcela = new javax.swing.JMenuItem();
-        jMenuShowItem = new javax.swing.JMenuItem();
+        jMenuShowProduto = new javax.swing.JMenuItem();
+        jMenuShowServico = new javax.swing.JMenuItem();
         jMenuShowEquipamento = new javax.swing.JMenuItem();
         jMenuShowFuncionario = new javax.swing.JMenuItem();
         jMenu15 = new javax.swing.JMenu();
-        jMenuAddCliente = new javax.swing.JMenuItem();
+        jMenuAddClientePF = new javax.swing.JMenuItem();
+        jMenuAddClientePj = new javax.swing.JMenuItem();
         jMenuAddEndereco = new javax.swing.JMenuItem();
         jMenuAddMunicipio = new javax.swing.JMenuItem();
         jMenuAddVeiculo = new javax.swing.JMenuItem();
         jMenuAddConta = new javax.swing.JMenuItem();
         jMenuAddFatura = new javax.swing.JMenuItem();
         jMenuAddParcela = new javax.swing.JMenuItem();
-        jMenuAddItem = new javax.swing.JMenuItem();
+        jMenuAddProduto = new javax.swing.JMenuItem();
+        jMenuAddServico = new javax.swing.JMenuItem();
         jMenuAddEquipamento = new javax.swing.JMenuItem();
         jMenuAddFuncionario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuTelaPrincipal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jMenu10.setText("Mostrar");
 
-        jMenuShowCliente.setText("Cliente");
-        jMenuShowCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowClienteActionPerformed(evt);
-            }
-        });
-        jMenu10.add(jMenuShowCliente);
+        jMenuShowPessoaF.setText("PessoaF");
+        jMenu10.add(jMenuShowPessoaF);
+
+        jMenuShowPessoaJ.setText("PessoaJ");
+        jMenu10.add(jMenuShowPessoaJ);
 
         jMenuShowEndereco.setText("Endereço");
-        jMenuShowEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowEnderecoActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowEndereco);
 
         jMenuShowMunicipio.setText("Município");
-        jMenuShowMunicipio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowMunicipioActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowMunicipio);
 
         jMenuShowVeiculo.setText("Veículo");
-        jMenuShowVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowVeiculoActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowVeiculo);
 
         jMenuShowConta.setText("Conta");
-        jMenuShowConta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowContaActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowConta);
 
         jMenuShowFatura.setText("Fatura");
-        jMenuShowFatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowFaturaActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowFatura);
 
         jMenuShowParcela.setText("Parcela");
-        jMenuShowParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowParcelaActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowParcela);
 
-        jMenuShowItem.setText("Item");
-        jMenuShowItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowItemActionPerformed(evt);
-            }
-        });
-        jMenu10.add(jMenuShowItem);
+        jMenuShowProduto.setText("Produto");
+        jMenu10.add(jMenuShowProduto);
+
+        jMenuShowServico.setText("Serviço");
+        jMenu10.add(jMenuShowServico);
 
         jMenuShowEquipamento.setText("Equipamento");
-        jMenuShowEquipamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowEquipamentoActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowEquipamento);
 
         jMenuShowFuncionario.setText("Funcionario");
-        jMenuShowFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuShowFuncionarioActionPerformed(evt);
-            }
-        });
         jMenu10.add(jMenuShowFuncionario);
 
         jMenuBarPrincipal.add(jMenu10);
 
         jMenu15.setText("Adicionar");
 
-        jMenuAddCliente.setText("Cliente");
-        jMenuAddCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddClienteActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddCliente);
+        jMenuAddClientePF.setText("PessoaF");
+        jMenu15.add(jMenuAddClientePF);
+
+        jMenuAddClientePj.setText("PessoaJ");
+        jMenu15.add(jMenuAddClientePj);
 
         jMenuAddEndereco.setText("Endereço");
-        jMenuAddEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddEnderecoActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddEndereco);
 
         jMenuAddMunicipio.setText("Município");
-        jMenuAddMunicipio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddMunicipioActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddMunicipio);
 
         jMenuAddVeiculo.setText("Veículo");
-        jMenuAddVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddVeiculoActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddVeiculo);
 
         jMenuAddConta.setText("Conta");
-        jMenuAddConta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddContaActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddConta);
 
         jMenuAddFatura.setText("Fatura");
-        jMenuAddFatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddFaturaActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddFatura);
 
         jMenuAddParcela.setText("Parcela");
-        jMenuAddParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddParcelaActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddParcela);
 
-        jMenuAddItem.setText("Item");
-        jMenuAddItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddItemActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddItem);
+        jMenuAddProduto.setText("Produto");
+        jMenu15.add(jMenuAddProduto);
+
+        jMenuAddServico.setText("Serviço");
+        jMenu15.add(jMenuAddServico);
 
         jMenuAddEquipamento.setText("Equipamento");
-        jMenuAddEquipamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddEquipamentoActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddEquipamento);
 
         jMenuAddFuncionario.setText("Funcionario");
-        jMenuAddFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddFuncionarioActionPerformed(evt);
-            }
-        });
         jMenu15.add(jMenuAddFuncionario);
 
         jMenuBarPrincipal.add(jMenu15);
 
         jMenu2.setText("Ir para");
 
-        jMenuItem1.setText("Tela Principal");
-        jMenu2.add(jMenuItem1);
+        jMenuTelaPrincipal.setText("Tela Principal");
+        jMenu2.add(jMenuTelaPrincipal);
 
         jMenuBarPrincipal.add(jMenu2);
 
@@ -276,135 +199,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 734, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 369, Short.MAX_VALUE)
         );
 
         setBounds(0, 0, 750, 400);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuShowClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowClienteActionPerformed
-        CrudCliente crud = new CrudCliente(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowClienteActionPerformed
-
-    private void jMenuShowEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowEnderecoActionPerformed
-        CrudEndereco crud = new CrudEndereco(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowEnderecoActionPerformed
-
-    private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudMunicipio crud = new CrudMunicipio(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowMunicipioActionPerformed
-
-    private void jMenuShowVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowVeiculoActionPerformed
-        CrudVeiculo crud = new CrudVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowVeiculoActionPerformed
-
-    private void jMenuShowContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowContaActionPerformed
-        CrudConta crud = new CrudConta(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowContaActionPerformed
-
-    private void jMenuShowFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowFaturaActionPerformed
-        CrudFatura crud = new CrudFatura(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowFaturaActionPerformed
-
-    private void jMenuShowParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowParcelaActionPerformed
-        CrudParcela crud = new CrudParcela(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowParcelaActionPerformed
-
-    private void jMenuShowItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowItemActionPerformed
-        CrudItem crud = new CrudItem(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowItemActionPerformed
-
-    private void jMenuShowEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowEquipamentoActionPerformed
-        CrudEquipamento crud = new CrudEquipamento(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowEquipamentoActionPerformed
-
-    private void jMenuShowFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowFuncionarioActionPerformed
-        CrudFuncionario crud = new CrudFuncionario(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuShowFuncionarioActionPerformed
-
-    private void jMenuAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddClienteActionPerformed
-        CrudAddCliente crud = new CrudAddCliente(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddClienteActionPerformed
-
-    private void jMenuAddEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddEnderecoActionPerformed
-        CrudAddEndereco crud = new CrudAddEndereco(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddEnderecoActionPerformed
-
-    private void jMenuAddMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddMunicipioActionPerformed
-        CrudAddMunicipio crud = new CrudAddMunicipio(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddMunicipioActionPerformed
-
-    private void jMenuAddVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVeiculoActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddVeiculoActionPerformed
-
-    private void jMenuAddContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddContaActionPerformed
-        CrudAddConta crud = new CrudAddConta(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddContaActionPerformed
-
-    private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
-        CrudAddFatura crud = new CrudAddFatura(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddFaturaActionPerformed
-
-    private void jMenuAddParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddParcelaActionPerformed
-        CrudAddParcela crud = new CrudAddParcela(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddParcelaActionPerformed
-
-    private void jMenuAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddItemActionPerformed
-        CrudAddItem crud = new CrudAddItem(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddItemActionPerformed
-
-    private void jMenuAddEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddEquipamentoActionPerformed
-        CrudAddEquipamento crud = new CrudAddEquipamento(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddEquipamentoActionPerformed
-
-    private void jMenuAddFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFuncionarioActionPerformed
-        CrudAddFuncionario crud = new CrudAddFuncionario(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,28 +217,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuAddCliente;
+    private javax.swing.JMenuItem jMenuAddClientePF;
+    private javax.swing.JMenuItem jMenuAddClientePj;
     private javax.swing.JMenuItem jMenuAddConta;
     private javax.swing.JMenuItem jMenuAddEndereco;
     private javax.swing.JMenuItem jMenuAddEquipamento;
     private javax.swing.JMenuItem jMenuAddFatura;
     private javax.swing.JMenuItem jMenuAddFuncionario;
-    private javax.swing.JMenuItem jMenuAddItem;
     private javax.swing.JMenuItem jMenuAddMunicipio;
     private javax.swing.JMenuItem jMenuAddParcela;
+    private javax.swing.JMenuItem jMenuAddProduto;
+    private javax.swing.JMenuItem jMenuAddServico;
     private javax.swing.JMenuItem jMenuAddVeiculo;
     private javax.swing.JMenuBar jMenuBarPrincipal;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuShowCliente;
     private javax.swing.JMenuItem jMenuShowConta;
     private javax.swing.JMenuItem jMenuShowEndereco;
     private javax.swing.JMenuItem jMenuShowEquipamento;
     private javax.swing.JMenuItem jMenuShowFatura;
     private javax.swing.JMenuItem jMenuShowFuncionario;
-    private javax.swing.JMenuItem jMenuShowItem;
     private javax.swing.JMenuItem jMenuShowMunicipio;
     private javax.swing.JMenuItem jMenuShowParcela;
+    private javax.swing.JMenuItem jMenuShowPessoaF;
+    private javax.swing.JMenuItem jMenuShowPessoaJ;
+    private javax.swing.JMenuItem jMenuShowProduto;
+    private javax.swing.JMenuItem jMenuShowServico;
     private javax.swing.JMenuItem jMenuShowVeiculo;
+    private javax.swing.JMenuItem jMenuTelaPrincipal;
     // End of variables declaration//GEN-END:variables
 
     private void dadosExemplos() {
@@ -463,13 +270,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dados.arrayItem.add(servico);
         Servico servico2 = new Servico(null, null, 13, "Pegar agua", 200.0);
         dados.arrayItem.add(servico2);
-        
-        Produto produto = new Produto("Sprite",null,55,"Refrigerante",130.0);
-        Produto produto2 = new Produto("Coca",null,56,"Refrigerante Coca",120.0);
+
+        Produto produto = new Produto("Sprite", null, 55, "Refrigerante", 130.0);
+        Produto produto2 = new Produto("Coca", null, 56, "Refrigerante Coca", 120.0);
         dados.arrayItem.add(produto);
         dados.arrayItem.add(produto2);
-        
-        PessoaFisica pessoaf= new PessoaFisica("123123",2,"Jose",testeEndereco,testeEndereco2,null,"312323","2525","111");
+
+        PessoaFisica pessoaf = new PessoaFisica("123123", 2, "Jose", testeEndereco, testeEndereco2, null, "312323", "2525", "111");
         dados.arrayClie.add(pessoaf);
 
     }
