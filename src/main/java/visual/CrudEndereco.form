@@ -183,7 +183,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextAlterAtributo6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField5"/>
+            <Property name="text" type="java.lang.String" value="jTextField6"/>
           </Properties>
         </Component>
         <Component class="javax.swing.Box$Filler" name="filler1">

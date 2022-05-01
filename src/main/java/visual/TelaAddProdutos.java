@@ -7,24 +7,24 @@ package visual;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import model.Item;
-import model.Servico;
+import model.Produto;
 
 /**
  *
  * @author Victor
  */
-public class TelaAddServicos extends javax.swing.JDialog {
+public class TelaAddProdutos extends javax.swing.JDialog {
 
     /**
-     * Creates new form TelaAddServicos
+     * Creates new form TelaAddProdutos
      */
     String[] arrayS;
-    ArrayList<Servico> servicoCliente;
-    ArrayList<Servico> servicoHotel;
+    ArrayList<Produto> produtoCliente;
+    ArrayList<Produto> produtoHotel;
     DefaultListModel lModelC;
     DefaultListModel lModelH;
 
-    public TelaAddServicos(java.awt.Frame parent, boolean modal, ArrayList<Item> array) {
+    public TelaAddProdutos(java.awt.Frame parent, boolean modal, ArrayList<Item> array) {
         super(parent, modal);
 
         DefaultListModel lModelH = new DefaultListModel();
@@ -32,15 +32,15 @@ public class TelaAddServicos extends javax.swing.JDialog {
         this.lModelC = lModelC;
         this.lModelH = lModelH;
         ArrayList<String> arrayS = new ArrayList<>();
-        servicoHotel = new ArrayList<>();
-        servicoCliente = new ArrayList<>();
+        produtoHotel = new ArrayList<>();
+        produtoCliente = new ArrayList<>();
 
         int i = 0;
         for (Item item : array) {
-            if (item instanceof Servico) {
+            if (item instanceof Produto) {
                 i++;
                 arrayS.add(item.getDescricao());
-                servicoHotel.add((Servico) item);
+                produtoHotel.add((Produto) item);
 
             }
 
@@ -55,13 +55,13 @@ public class TelaAddServicos extends javax.swing.JDialog {
         jListCliente.setModel(lModelC);
         jListHotel.setModel(lModelH);
 
-        for (Servico servico : servicoHotel) {
-            lModelH.addElement(servico.getDescricao());
+        for (Produto produto : produtoHotel) {
+            lModelH.addElement(produto.getDescricao());
         }
 
     }
 
-    public TelaAddServicos(java.awt.Frame parent, boolean modal, ArrayList<Item> array,ArrayList<Servico> arrayServ) {
+    public TelaAddProdutos(java.awt.Frame parent, boolean modal, ArrayList<Item> array,ArrayList<Produto> arrayServ) {
         super(parent, modal);
 
         DefaultListModel lModelH = new DefaultListModel();
@@ -69,15 +69,15 @@ public class TelaAddServicos extends javax.swing.JDialog {
         this.lModelC = lModelC;
         this.lModelH = lModelH;
         ArrayList<String> arrayS = new ArrayList<>();
-        servicoHotel = new ArrayList<>();
-        servicoCliente = new ArrayList<>();
+        produtoHotel = new ArrayList<>();
+        produtoCliente = new ArrayList<>();
 
         int i = 0;
         for (Item item : array) {
-            if (item instanceof Servico) {
+            if (item instanceof Produto) {
                 i++;
                 arrayS.add(item.getDescricao());
-                servicoHotel.add((Servico) item);
+                produtoHotel.add((Produto) item);
 
             }
 
@@ -92,15 +92,15 @@ public class TelaAddServicos extends javax.swing.JDialog {
         jListCliente.setModel(lModelC);
         jListHotel.setModel(lModelH);
 
-        for (Servico servico : servicoHotel) {
-            lModelH.addElement(servico.getDescricao());
+        for (Produto produto : produtoHotel) {
+            lModelH.addElement(produto.getDescricao());
         }
         if(arrayServ!=null){
-        for(Servico servico : arrayServ){
-            lModelC.addElement(servico.getDescricao());
-            servicoCliente.add(servico);
+        for(Produto produto : arrayServ){
+            lModelC.addElement(produto.getDescricao());
+            produtoCliente.add(produto);
         }}
- 
+
     }
 
     /**
@@ -149,9 +149,9 @@ public class TelaAddServicos extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Serviços Requisitados");
+        jLabel2.setText("Produtos Requisitados");
 
-        jLabel3.setText("Serviços do Hotel");
+        jLabel3.setText("Produtos do Hotel");
 
         jButton2.setText("<<<");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +221,7 @@ public class TelaAddServicos extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int i = jListHotel.getSelectedIndex();
         if (i > -1) {
-            servicoCliente.add(servicoHotel.get(jListHotel.getSelectedIndex()));
+            produtoCliente.add(produtoHotel.get(jListHotel.getSelectedIndex()));
 
             lModelC.addElement(lModelH.getElementAt(i));
         }
@@ -232,7 +232,7 @@ public class TelaAddServicos extends javax.swing.JDialog {
         int i = jListCliente.getSelectedIndex();
         if (i > -1) {
             lModelC.remove(i);
-            servicoCliente.remove(i);
+            produtoCliente.remove(i);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -242,9 +242,9 @@ public class TelaAddServicos extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    ArrayList<Servico> showDialog() {
+    ArrayList<Produto> showDialog() {
         setVisible(true);
-        return servicoCliente;
+        return produtoCliente;
     }
     /**
      * @param args the command line arguments

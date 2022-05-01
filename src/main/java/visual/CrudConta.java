@@ -17,7 +17,7 @@ import dados.Data;
  * @author Victor
  */
 public class CrudConta extends javax.swing.JFrame {
-
+ 
     private DefaultTableModel dtm;
     private ArrayList<Conta> arrayAtual;
     private ContaFichario ficharioAtual;

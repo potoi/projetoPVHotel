@@ -424,7 +424,7 @@ public class CrudVeiculo extends javax.swing.JFrame {
     }
 
     private void removeItem() {
-
+ 
         if ((jTable.getSelectedRow()) > -1) {
             ficharioAtual.remove(jTable.getSelectedRow(), arrayAtual);
             dtm.removeRow(jTable.getSelectedRow());

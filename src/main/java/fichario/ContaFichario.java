@@ -21,7 +21,7 @@ public class ContaFichario {
         String[] a = {"Nome do Cliente", "Data Abertura", "Data Fechamento", "Total", "Quarto", "Quantidade Items"};
         return a;
     }
-
+ 
     public String[][] getDataString(ArrayList<Conta> data) {
         String[][] stringTotal;
         int quantCampos = 6;

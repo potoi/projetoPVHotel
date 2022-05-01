@@ -29,7 +29,8 @@ public class EnderecoFichario {
             stringTotal[i][2] = c.getBairro();
             stringTotal[i][3] = c.getMunicipio().getNome();
             stringTotal[i][4] = c.getComplemento();
-            stringTotal[i][5] = c.getComplemento();
+            stringTotal[i][5] = c.getCep();
+            
             i++;
 
         }
@@ -44,9 +45,10 @@ public class EnderecoFichario {
 
         return array;
     }
-
+ 
     public void remove(int i, ArrayList array) {
         array.remove(i);
     }
 
 }
+  

@@ -25,9 +25,10 @@ public class CrudEndereco extends javax.swing.JFrame {
     private DefaultTableModel dtm;
     private EnderecoFichario ficharioAtual;
     private Data dados;
+    private JDialog jd;
 
     public CrudEndereco(Data dados) {
-        EnderecoFichario fichario= new EnderecoFichario();
+        EnderecoFichario fichario = new EnderecoFichario();
         ficharioAtual = fichario;
         this.dados = dados;
 
@@ -123,7 +124,7 @@ public class CrudEndereco extends javax.swing.JFrame {
 
         jLabel6.setText("CEP");
 
-        jTextAlterAtributo6.setText("jTextField5");
+        jTextAlterAtributo6.setText("jTextField6");
 
         jBotaoAlterSelecionarMunicipio.setText("Selecionar");
         jBotaoAlterSelecionarMunicipio.addActionListener(new java.awt.event.ActionListener() {
@@ -570,18 +571,20 @@ public class CrudEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
 
     private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
-        if(jTable.getSelectedRow()> -1){
-        Endereco ende = dados.arrayEnde.get(jTable.getSelectedRow());
-        JDialog jd = new JDialog(this);
-        jd.setSize(500, 400);
-        jd.add(jPanel1);
-        jd.setVisible(true);
-        jTextAlterAtributo1.setText(ende.getLogradouro());
-        jTextAlterAtributo2.setText(ende.getNumero());
-        jTextAlterAtributo3.setText(ende.getBairro());
-        jTextAlterAtributo4.setText(ende.getMunicipio().getNome());
-        jTextAlterAtributo5.setText(ende.getComplemento());
-        jTextAlterAtributo6.setText(ende.getCep());
+        if (jTable.getSelectedRow() > -1) {
+            Endereco ende = dados.arrayEnde.get(jTable.getSelectedRow());
+            System.out.println(jTable.getSelectedRow());
+            JDialog jd = new JDialog(this);
+            jd.setSize(500, 400);
+            jd.add(jPanel1);
+            jd.setVisible(true);
+            jTextAlterAtributo1.setText(ende.getLogradouro());
+            jTextAlterAtributo2.setText(ende.getNumero());
+            jTextAlterAtributo3.setText(ende.getBairro());
+            jTextAlterAtributo4.setText(ende.getMunicipio().getNome());
+            jTextAlterAtributo5.setText(ende.getComplemento());
+            jTextAlterAtributo6.setText(ende.getCep());
+            this.jd= jd;
         }
     }//GEN-LAST:event_jButtonAlterActionPerformed
 
@@ -632,7 +635,10 @@ public class CrudEndereco extends javax.swing.JFrame {
             dados.arrayEnde.set(jTable.getSelectedRow(), endereco);
             preencheTabela(ficharioAtual.getDataString(dados.arrayEnde), ficharioAtual.getColumnName());
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
-                    JOptionPane.DEFAULT_OPTION);
+            JOptionPane.DEFAULT_OPTION);
+            jd.setVisible(false);
+            jd.dispose();
+            
 
         }
 

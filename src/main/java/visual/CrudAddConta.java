@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.Conta;
 import model.Item;
+import model.Produto;
 import model.Servico;
 
 /**
@@ -27,6 +28,7 @@ public class CrudAddConta extends javax.swing.JFrame {
     private int indexCliente;
     private Data dados;
     private ArrayList<Servico> arrayServico;
+    private ArrayList<Produto> arrayProduto;
     double totalServ;
     double totalProd;
 
@@ -55,42 +57,45 @@ public class CrudAddConta extends javax.swing.JFrame {
 
         jLabelTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextAtributo1 = new javax.swing.JTextField();
         jTextAtributo3 = new javax.swing.JTextField();
         jButtonAddAtributo1 = new javax.swing.JButton();
         jTextAtributo6 = new javax.swing.JTextField();
         jButtonGravar = new javax.swing.JButton();
-        jTextAtributo2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButtonVoltar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        jLabelProduto = new javax.swing.JLabel();
         jLabelServico = new javax.swing.JLabel();
         jBotaoTelaServicos = new javax.swing.JButton();
         jBotaoTelaProdutos = new javax.swing.JButton();
         jLabelTotal = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTitulo.setText("Endereço");
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 9, -1, -1));
+        jLabelTitulo.setText("Conta");
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         jLabel1.setText("Cadastro:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 9, -1, -1));
-
-        jTextAtributo1.setMinimumSize(new java.awt.Dimension(65, 25));
-        jTextAtributo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAtributo1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 46, 150, 25));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jTextAtributo3.setMinimumSize(new java.awt.Dimension(65, 25));
-        getContentPane().add(jTextAtributo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 129, 150, -1));
+        getContentPane().add(jTextAtributo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 150, -1));
 
         jButtonAddAtributo1.setText("Selecionar Cliente");
         jButtonAddAtributo1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,11 +103,11 @@ public class CrudAddConta extends javax.swing.JFrame {
                 jButtonAddAtributo1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 181, -1, -1));
+        getContentPane().add(jButtonAddAtributo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
 
         jTextAtributo6.setText("Cliente");
         jTextAtributo6.setEnabled(false);
-        getContentPane().add(jTextAtributo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 181, 150, -1));
+        getContentPane().add(jTextAtributo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 150, -1));
 
         jButtonGravar.setText("Gravar");
         jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,19 +116,18 @@ public class CrudAddConta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonGravar, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 332, 150, 36));
-        getContentPane().add(jTextAtributo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 89, 150, -1));
 
         jLabel2.setText("Data Abertura");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 50, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
 
         jLabel3.setText("Data Fechamento");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         jLabel4.setText("Quarto");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 132, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
         jLabel5.setText("Cliente");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 184, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
 
         jButtonVoltar.setText("<<<");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -133,8 +137,8 @@ public class CrudAddConta extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, -1));
 
-        jLabel9.setText("Qtd:0");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+        jLabelProduto.setText("Qtd:0");
+        getContentPane().add(jLabelProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
         jLabelServico.setText("Qtd:0");
         getContentPane().add(jLabelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
@@ -148,17 +152,63 @@ public class CrudAddConta extends javax.swing.JFrame {
         getContentPane().add(jBotaoTelaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 130, 39));
 
         jBotaoTelaProdutos.setText("Adicionar Produtos");
+        jBotaoTelaProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoTelaProdutosActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBotaoTelaProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 311, 138, 39));
 
         jLabelTotal.setText("Total:  0");
         getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 30, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 70, -1));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 30, -1));
+
+        jLabel6.setText("/");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 50, -1));
+
+        jLabel7.setText("/");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 20, -1));
+
+        jLabel8.setText("Dia");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
+
+        jLabel10.setText("Mês");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, -1, 20));
+
+        jLabel11.setText("Ano");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 30, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 70, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 30, -1));
+
+        jLabel12.setText("/");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 50, -1));
+
+        jLabel13.setText("/");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 20, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAtributo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextAtributo1ActionPerformed
 
     private void jButtonAddAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddAtributo1ActionPerformed
         String[] possibilidades;
@@ -211,7 +261,8 @@ public class CrudAddConta extends javax.swing.JFrame {
 
     private void jBotaoTelaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaServicosActionPerformed
 
-        TelaAddServicos tela = new TelaAddServicos(this, true, dados.arrayItem,arrayServico);
+        TelaAddServicos tela = new TelaAddServicos(this, true, dados.arrayItem, arrayServico);
+ 
         totalServ = 0;
         arrayServico = tela.showDialog();
 
@@ -224,6 +275,31 @@ public class CrudAddConta extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jBotaoTelaServicosActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jBotaoTelaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaProdutosActionPerformed
+        TelaAddProdutos tela = new TelaAddProdutos(this, true, dados.arrayItem, arrayProduto);
+        totalProd = 0;
+        arrayProduto = tela.showDialog();
+        jLabelProduto.setText("Qtd:" + Integer.toString(arrayProduto.size()));
+        for (Produto prod : arrayProduto) {
+            totalProd += prod.getPreco();
+        }
+        jLabelTotal.setText("Total  :" + Double.toString(totalServ + totalProd));
+        tela.dispose();
+
+    }//GEN-LAST:event_jBotaoTelaProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,17 +346,28 @@ public class CrudAddConta extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelProduto;
     private javax.swing.JLabel jLabelServico;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTotal;
-    private javax.swing.JTextField jTextAtributo1;
-    private javax.swing.JTextField jTextAtributo2;
     private javax.swing.JTextField jTextAtributo3;
     private javax.swing.JTextField jTextAtributo6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

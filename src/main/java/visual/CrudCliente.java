@@ -377,7 +377,7 @@ public class CrudCliente extends javax.swing.JFrame {
     private void jMenuAddContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddContaActionPerformed
         CrudAddConta crud = new CrudAddConta(dados);
         crud.setVisible(true);
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_jMenuAddContaActionPerformed
 
     private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
