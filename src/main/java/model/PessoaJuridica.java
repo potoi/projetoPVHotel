@@ -20,7 +20,11 @@ public class PessoaJuridica extends Cliente {
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
     }
-    
+
+    public PessoaJuridica() {
+
+    }
+
     private String cnpj;
     private String nomeFantasia;
 
@@ -39,6 +43,5 @@ public class PessoaJuridica extends Cliente {
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
     }
-    
-    
+
 }

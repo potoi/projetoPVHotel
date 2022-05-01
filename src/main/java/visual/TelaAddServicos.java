@@ -26,7 +26,6 @@ public class TelaAddServicos extends javax.swing.JDialog {
 
     public TelaAddServicos(java.awt.Frame parent, boolean modal, ArrayList<Item> array) {
         super(parent, modal);
-
         DefaultListModel lModelH = new DefaultListModel();
         DefaultListModel lModelC = new DefaultListModel();
         this.lModelC = lModelC;

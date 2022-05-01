@@ -30,7 +30,7 @@ public class EnderecoFichario {
             stringTotal[i][3] = c.getMunicipio().getNome();
             stringTotal[i][4] = c.getComplemento();
             stringTotal[i][5] = c.getCep();
-            
+
             i++;
 
         }
@@ -41,14 +41,16 @@ public class EnderecoFichario {
         return array.get(i);
     }
 
-    public ArrayList<Endereco> getArrayEnde(ArrayList<Endereco> array) {
-
+    public ArrayList getArray(ArrayList array) {
         return array;
     }
- 
+
     public void remove(int i, ArrayList array) {
         array.remove(i);
     }
 
+    public void add(Endereco e, ArrayList array) {
+        array.add(e);
+    }
+
 }
-  

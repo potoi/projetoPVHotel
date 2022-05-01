@@ -8,10 +8,13 @@ import dados.Data;
 import fichario.ClienteFichario;
 import fichario.ContaFichario;
 import fichario.MunicipioFichario;
+import java.awt.Component;
+import java.awt.Container;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.Conta;
 import model.Endereco;
 import model.Item;
@@ -29,7 +32,7 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
     /**
      * Creates new form CrudAddMunicipio
      */
-    private int indexCliente;
+    private int indexMunicipio;
     private Data dados;
     private Endereco endereco;
     private ArrayList<Veiculo> arrayVeiculo;
@@ -76,18 +79,18 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldE1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jTextFieldE2 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        jTextFieldE3 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        jTextFieldE5 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        jTextFieldE6 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jTextFieldE4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -142,9 +145,14 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
 
         jLabel2.setText("Município");
 
-        jTextField10.setEnabled(false);
+        jTextFieldE4.setEnabled(false);
 
         jButton1.setText("Escolher Municipio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Quantidade de veículos: 0");
 
@@ -164,31 +172,31 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel20)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jTextFieldE3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel16)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jTextFieldE2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(jLabel10)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextFieldE1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(116, 116, 116)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel23))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextFieldE6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldE4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel22)
                                     .addGap(36, 36, 36)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldE5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel15)
                                     .addGap(27, 27, 27)
@@ -258,20 +266,20 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldE1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldE5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldE2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldE6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldE3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldE4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
@@ -289,16 +297,17 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddAtributo1ActionPerformed
-         TelaAddVeiculo tela = new TelaAddVeiculo(this, true, dados.arrayVeic, arrayVeiculo);
+        TelaAddVeiculo tela = new TelaAddVeiculo(this, true, dados.arrayVeic, arrayVeiculo);
 
-        totalVeic = 0;
+      
         arrayVeiculo = tela.showDialog();
-       
+          totalVeic = 0;
+
         for (Veiculo veic : arrayVeiculo) {
-            totalVeic ++;
+            totalVeic++;
         }
-        jLabel3.setText("Quantidade de veículos: "+Integer.toString(totalVeic));
-   
+        jLabel3.setText("Quantidade de veículos: " + Integer.toString(totalVeic));
+
         tela.dispose();
 
     }//GEN-LAST:event_jButtonAddAtributo1ActionPerformed
@@ -309,8 +318,10 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
         Veiculo[] veic;
 
         try {
+            if (arrayVeiculo!=null){
+               veic = arrayVeiculo.toArray(new Veiculo[0]); 
+            }else veic= null;
             
-            veic=arrayVeiculo.toArray( new Veiculo[0]);
             pessoaF.setCpf(jTextField1.getText());
             pessoaF.setId(Integer.parseInt(jTextField2.getText()));
             pessoaF.setNome(jTextField3.getText());
@@ -318,11 +329,24 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
             pessoaF.setTelefoneCelular(jTextField6.getText());
             pessoaF.setTelefoneComercial(jTextField7.getText());
             pessoaF.setVeiculos(veic);
-            
-            
-            
-            
+            endereco.setLogradouro(jTextFieldE1.getText());
+            endereco.setNumero(jTextFieldE2.getText());
+            endereco.setBairro(jTextFieldE3.getText());
+            endereco.setMunicipio(dados.arrayMuni.get(indexMunicipio));
+            endereco.setComplemento(jTextFieldE5.getText());
+            endereco.setCep(jTextFieldE6.getText());
+            pessoaF.setEnderecoResidencial(endereco);
+            dados.arrayEnde.add(endereco);
             dados.arrayClie.add(pessoaF);
+
+            Container con = this.getContentPane();
+            for (Component c : con.getComponents()) {
+                if (c instanceof JTextField) {
+                    JTextField j = (JTextField) c;
+                    j.setText("");
+                }
+            }
+
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
         } catch (Exception e) {
@@ -334,10 +358,34 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        CrudConta crud = new CrudConta(dados);
+        CrudPessoaF crud = new CrudPessoaF(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String[] possibilidades;
+        MunicipioFichario munFichario = new MunicipioFichario();
+        String[][] stringToda;
+        stringToda = munFichario.getDataString(dados.arrayMuni);
+        possibilidades = new String[stringToda.length];
+        int i = 0;
+        for (String s[] : stringToda) {
+            possibilidades[i] = s[0];
+            i++;
+        }
+        JComboBox cb = new JComboBox(possibilidades);
+        int input;
+        input = JOptionPane.showConfirmDialog(this, cb, "Selecione o Municipio",
+                JOptionPane.DEFAULT_OPTION);
+        if (input == JOptionPane.OK_OPTION) {
+            String str = (String) cb.getSelectedItem();
+            indexMunicipio = cb.getSelectedIndex();
+            jTextFieldE4.setText(str);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,16 +401,24 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrudAddPessoaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddPessoaF.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrudAddPessoaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddPessoaF.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrudAddPessoaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddPessoaF.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrudAddPessoaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddPessoaF.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -410,16 +466,16 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldE1;
+    private javax.swing.JTextField jTextFieldE2;
+    private javax.swing.JTextField jTextFieldE3;
+    private javax.swing.JTextField jTextFieldE4;
+    private javax.swing.JTextField jTextFieldE5;
+    private javax.swing.JTextField jTextFieldE6;
     // End of variables declaration//GEN-END:variables
 }

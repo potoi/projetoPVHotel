@@ -19,13 +19,13 @@ import dados.Data;
 public class CrudPessoaF extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
-    private ArrayList<Municipio> arrayAtual;
-    private MunicipioFichario ficharioAtual;
+    private ArrayList<Cliente> arrayAtual;
+    private PessoaFisicaFichario ficharioAtual;
     private Data dados;
 
     public CrudPessoaF(Data dados) {
-        ficharioAtual = new MunicipioFichario();
-        this.arrayAtual = dados.arrayMuni;
+        ficharioAtual = new PessoaFisicaFichario();
+        this.arrayAtual = dados.arrayClie;
         this.dados = dados;
 
         dtm = new DefaultTableModel(0, 0) {
@@ -36,7 +36,7 @@ public class CrudPessoaF extends javax.swing.JFrame {
         };
         initComponents();
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.setTitle("Tabela: Município");
+        this.setTitle("Tabela: Cliente F");
         preencheTabela(ficharioAtual.getDataString(arrayAtual), ficharioAtual.getColumnName());
     }
 
@@ -341,7 +341,7 @@ public class CrudPessoaF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowEnderecoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudMunicipio crud = new CrudMunicipio(dados);
+        CrudPessoaF crud = new CrudPessoaF(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowMunicipioActionPerformed
@@ -413,7 +413,7 @@ public class CrudPessoaF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAddEnderecoActionPerformed
 
     private void jMenuAddMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddMunicipioActionPerformed
-        CrudAddMunicipio crud = new CrudAddMunicipio(dados);
+        CrudAddPessoaF crud = new CrudAddPessoaF(dados);
         crud.setVisible(true);
         this.dispose();
 
