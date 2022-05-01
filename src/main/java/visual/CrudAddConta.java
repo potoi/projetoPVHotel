@@ -5,6 +5,7 @@
 package visual;
 
 import dados.Data;
+import fichario.ClienteFichario;
 import fichario.ContaFichario;
 import fichario.MunicipioFichario;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ public class CrudAddConta extends javax.swing.JFrame {
     private Data dados;
     private ArrayList<Servico> arrayServico;
     private ArrayList<Produto> arrayProduto;
+    private ArrayList<Item> arrayItem;
     double totalServ;
     double totalProd;
 
@@ -71,17 +73,17 @@ public class CrudAddConta extends javax.swing.JFrame {
         jBotaoTelaServicos = new javax.swing.JButton();
         jBotaoTelaProdutos = new javax.swing.JButton();
         jLabelTotal = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldMes1 = new javax.swing.JTextField();
+        jTextFieldAno1 = new javax.swing.JTextField();
+        jTextFieldDia1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldMes2 = new javax.swing.JTextField();
+        jTextFieldAno2 = new javax.swing.JTextField();
+        jTextFieldDia2 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -162,20 +164,20 @@ public class CrudAddConta extends javax.swing.JFrame {
         jLabelTotal.setText("Total:  0");
         getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldMes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldMes1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 30, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 70, -1));
+        getContentPane().add(jTextFieldMes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 30, -1));
+        getContentPane().add(jTextFieldAno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 70, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldDia1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 30, -1));
+        getContentPane().add(jTextFieldDia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 30, -1));
 
         jLabel6.setText("/");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 50, -1));
@@ -192,14 +194,14 @@ public class CrudAddConta extends javax.swing.JFrame {
         jLabel11.setText("Ano");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldMes2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldMes2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 30, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 70, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 30, -1));
+        getContentPane().add(jTextFieldMes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 30, -1));
+        getContentPane().add(jTextFieldAno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 70, -1));
+        getContentPane().add(jTextFieldDia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 30, -1));
 
         jLabel12.setText("/");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 50, -1));
@@ -212,15 +214,17 @@ public class CrudAddConta extends javax.swing.JFrame {
 
     private void jButtonAddAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddAtributo1ActionPerformed
         String[] possibilidades;
-        ContaFichario contFichario = new ContaFichario();
+        ClienteFichario clieFichario = new ClienteFichario();
         String[][] stringToda;
-        stringToda = contFichario.getDataString(dados.arrayCont);
+        stringToda = clieFichario.getDataString(dados.arrayClie);
         possibilidades = new String[stringToda.length];
         int i = 0;
         for (String s[] : stringToda) {
-            possibilidades[i] = s[0] + " " + s[1];
+            possibilidades[i] = s[0] + " " + s[1]+" "+s[2];
             i++;
         }
+        
+        
         JComboBox cb = new JComboBox(possibilidades);
         int input;
         input = JOptionPane.showConfirmDialog(this, cb, "Selecione o Cliente",
@@ -229,20 +233,41 @@ public class CrudAddConta extends javax.swing.JFrame {
             String str = (String) cb.getSelectedItem();
             indexCliente = cb.getSelectedIndex();
             jTextAtributo6.setText(str);
+           
         }
     }//GEN-LAST:event_jButtonAddAtributo1ActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         Conta conta = new Conta();
-        Item[] item = null;
+        Item[] item;
 
         try {
-
-            conta.setDataAbertura(LocalDate.MAX);
-            conta.setDataFechamento(LocalDate.MIN);
+            int dia, mes, ano;
+            dia = Integer.parseInt(jTextFieldDia1.getText());
+            mes = Integer.parseInt(jTextFieldMes1.getText());
+            ano = Integer.parseInt(jTextFieldAno1.getText());
+            LocalDate date = LocalDate.of(ano, mes, dia);
+            conta.setDataAbertura(date);
+            dia = Integer.parseInt(jTextFieldDia2.getText());
+            mes = Integer.parseInt(jTextFieldMes2.getText());
+            ano = Integer.parseInt(jTextFieldAno2.getText());
+            LocalDate date2 = LocalDate.of(ano, mes, dia);
+            conta.setDataFechamento(date2);
             conta.setQuarto(Integer.parseInt(jTextAtributo3.getText()));
+            
+            arrayItem = new ArrayList<>();
+            for(Servico serv:arrayServico){
+                arrayItem.add(serv);
+            }
+            for(Produto prod:arrayProduto){
+                arrayItem.add(prod);
+            }
+            int i = arrayItem.size();
+            item = arrayItem.toArray(new Item[i]);
             conta.setItens(item);
-
+            conta.setTotal(totalServ+totalProd);
+            conta.setCliente(dados.arrayClie.get(indexCliente));
+            dados.arrayCont.add(conta);
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
         } catch (Exception e) {
@@ -262,7 +287,7 @@ public class CrudAddConta extends javax.swing.JFrame {
     private void jBotaoTelaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaServicosActionPerformed
 
         TelaAddServicos tela = new TelaAddServicos(this, true, dados.arrayItem, arrayServico);
- 
+
         totalServ = 0;
         arrayServico = tela.showDialog();
 
@@ -276,17 +301,17 @@ public class CrudAddConta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBotaoTelaServicosActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldMes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMes1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldMes1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldMes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMes2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldMes2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldDia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDia1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldDia1ActionPerformed
 
     private void jBotaoTelaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaProdutosActionPerformed
         TelaAddProdutos tela = new TelaAddProdutos(this, true, dados.arrayItem, arrayProduto);
@@ -363,11 +388,11 @@ public class CrudAddConta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTotal;
     private javax.swing.JTextField jTextAtributo3;
     private javax.swing.JTextField jTextAtributo6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldAno1;
+    private javax.swing.JTextField jTextFieldAno2;
+    private javax.swing.JTextField jTextFieldDia1;
+    private javax.swing.JTextField jTextFieldDia2;
+    private javax.swing.JTextField jTextFieldMes1;
+    private javax.swing.JTextField jTextFieldMes2;
     // End of variables declaration//GEN-END:variables
 }

@@ -468,6 +468,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Produto produto2 = new Produto("Coca",null,56,"Refrigerante Coca",120.0);
         dados.arrayItem.add(produto);
         dados.arrayItem.add(produto2);
+        
+        PessoaFisica pessoaf= new PessoaFisica("123123",2,"Jose",testeEndereco,testeEndereco2,null,"312323","2525","111");
+        dados.arrayClie.add(pessoaf);
 
     }
 }

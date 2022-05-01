@@ -30,12 +30,12 @@ public class ContaFichario {
         for (Conta c : data) {
             stringTotal[i][0] = c.getCliente().getNome();
             stringTotal[i][1] = Integer.toString(c.getDataAbertura().
-                    getDayOfMonth()) + Integer.toString(c.getDataAbertura().
-                            getMonthValue()) + Integer.toString(c.getDataAbertura().getYear());
+                    getDayOfMonth()) +"."+ Integer.toString(c.getDataAbertura().
+                            getMonthValue()) +"."+ Integer.toString(c.getDataAbertura().getYear());
 
             stringTotal[i][2] = Integer.toString(c.getDataFechamento().
-                    getDayOfMonth()) + Integer.toString(c.getDataFechamento().
-                            getMonthValue()) + Integer.toString(c.getDataFechamento().getYear());
+                    getDayOfMonth()) +"."+ Integer.toString(c.getDataFechamento().
+                            getMonthValue()) +"."+ Integer.toString(c.getDataFechamento().getYear());
             stringTotal[i][3] = Double.toString(c.getTotal());
             stringTotal[i][4] = Integer.toString(c.getQuarto());
             stringTotal[i][5] = Integer.toString(c.getItens().length);

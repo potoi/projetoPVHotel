@@ -9,6 +9,17 @@ package model;
  * @author Victor
  */
 public class PessoaJuridica extends Cliente {
+
+    public PessoaJuridica(String cnpj, String nomeFantasia, int id, String nome, Endereco enderecoResidencial, Endereco enderecoComercial, Veiculo[] veiculos, String telefoneFixo, String telefoneCelular, String telefoneComercial) {
+        super(id, nome, enderecoResidencial, enderecoComercial, veiculos, telefoneFixo, telefoneCelular, telefoneComercial);
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public PessoaJuridica(String cnpj, String nomeFantasia) {
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+    }
     
     private String cnpj;
     private String nomeFantasia;

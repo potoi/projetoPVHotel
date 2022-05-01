@@ -29,7 +29,10 @@ public class ClienteFichario  {
             stringTotal[i][1] = c.getNome();
             stringTotal[i][2] = c.getEnderecoResidencial().getMunicipio().getNome();
             stringTotal[i][3] = c.getEnderecoComercial().getMunicipio().getNome();
-            stringTotal[i][4] = c.getVeiculos()[0].getModelo();
+            if(c.getVeiculos()!=null){
+             stringTotal[i][4] = c.getVeiculos()[0].getModelo();
+            }else  stringTotal[i][4] = "sem carro";
+            
             stringTotal[i][5] = c.getTelefoneCelular();
             stringTotal[i][6] = c.getTelefoneComercial();
             stringTotal[i][7] = c.getTelefoneFixo();
