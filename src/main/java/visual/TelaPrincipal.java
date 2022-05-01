@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import static util.Utilidades.*;
 import dados.Data;
 import static java.awt.Color.RED;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -349,10 +351,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAddEnderecoActionPerformed
 
     private void jMenuAddMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddMunicipioActionPerformed
-            CrudAddMunicipio crud = new CrudAddMunicipio(dados);
+        CrudAddMunicipio crud = new CrudAddMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
-   
+
     }//GEN-LAST:event_jMenuAddMunicipioActionPerformed
 
     private void jMenuAddVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVeiculoActionPerformed
@@ -362,19 +364,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAddVeiculoActionPerformed
 
     private void jMenuAddContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddContaActionPerformed
-             CrudAddConta crud = new CrudAddConta(dados);
+        CrudAddConta crud = new CrudAddConta(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddContaActionPerformed
 
     private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
+        CrudAddFatura crud = new CrudAddFatura(null,true,dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddFaturaActionPerformed
 
     private void jMenuAddParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddParcelaActionPerformed
-        // TODO add your handling code here:
+        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
+        crud.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuAddParcelaActionPerformed
 
     private void jMenuAddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddProdutoActionPerformed
@@ -408,67 +412,71 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowPessoaFActionPerformed
 
     private void jMenuShowPessoaJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowPessoaJActionPerformed
-               CrudPessoaJ crud = new CrudPessoaJ(dados);
+        CrudPessoaJ crud = new CrudPessoaJ(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowPessoaJActionPerformed
 
     private void jMenuShowEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowEnderecoActionPerformed
-               CrudEndereco crud = new CrudEndereco(dados);
+        CrudEndereco crud = new CrudEndereco(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowEnderecoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-               CrudMunicipio crud = new CrudMunicipio(dados);
+        CrudMunicipio crud = new CrudMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowMunicipioActionPerformed
 
     private void jMenuShowVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowVeiculoActionPerformed
-       CrudVeiculo crud = new CrudVeiculo(dados);
+        CrudVeiculo crud = new CrudVeiculo(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowVeiculoActionPerformed
 
     private void jMenuShowContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowContaActionPerformed
-           CrudConta crud = new CrudConta(dados);
+        CrudConta crud = new CrudConta(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowContaActionPerformed
 
     private void jMenuShowFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowFaturaActionPerformed
-         CrudFatura crud = new CrudFatura(dados);
-        crud.setVisible(true);
+        this.setVisible(false);
         this.dispose();
+        CrudFatura crud = new CrudFatura(dados);
+        
+    
+        crud.setVisible(true);
+        
     }//GEN-LAST:event_jMenuShowFaturaActionPerformed
 
     private void jMenuShowParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowParcelaActionPerformed
-            CrudParcela crud = new CrudParcela(dados);
+        CrudParcela crud = new CrudParcela(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowParcelaActionPerformed
 
     private void jMenuShowProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowProdutoActionPerformed
-               CrudProduto crud = new CrudProduto(dados);
+        CrudProduto crud = new CrudProduto(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowProdutoActionPerformed
 
     private void jMenuShowServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowServicoActionPerformed
-               CrudServico crud = new CrudServico(dados);
+        CrudServico crud = new CrudServico(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowServicoActionPerformed
 
     private void jMenuShowEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowEquipamentoActionPerformed
-               CrudEquipamento crud = new CrudEquipamento(dados);
+        CrudEquipamento crud = new CrudEquipamento(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowEquipamentoActionPerformed
 
     private void jMenuShowFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowFuncionarioActionPerformed
-               CrudFuncionario crud = new CrudFuncionario(dados);
+        CrudFuncionario crud = new CrudFuncionario(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowFuncionarioActionPerformed

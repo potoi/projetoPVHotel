@@ -46,4 +46,19 @@ public class VeiculoFichario  {
           }
           return stringTotal;
       }
+          public Veiculo getEnde(int i, ArrayList<Veiculo> array) {
+        return array.get(i);
+    }
+
+    public ArrayList getArray(ArrayList array) {
+        return array;
+    }
+
+    public void remove(int i, ArrayList array) {
+        array.remove(i);
+    }
+
+    public void add(Veiculo e, ArrayList array) {
+        array.add(e);
+    }
 }

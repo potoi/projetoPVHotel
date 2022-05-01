@@ -338,6 +338,7 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
             pessoaF.setEnderecoResidencial(endereco);
             dados.arrayEnde.add(endereco);
             dados.arrayClie.add(pessoaF);
+            dados.arrayVeic.addAll(arrayVeiculo.size(), arrayVeiculo);
 
             Container con = this.getContentPane();
             for (Component c : con.getComponents()) {

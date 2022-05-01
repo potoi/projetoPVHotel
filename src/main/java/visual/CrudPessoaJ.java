@@ -341,7 +341,7 @@ public class CrudPessoaJ extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowEnderecoActionPerformed
 
     private void jMenuShowMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowMunicipioActionPerformed
-        CrudPessoaJ crud = new CrudPessoaJ(dados);
+        CrudMunicipio crud = new CrudMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowMunicipioActionPerformed
