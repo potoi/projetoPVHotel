@@ -26,6 +26,10 @@ public class Veiculo {
     private String placa;
     private String vagaOcupada;
 
+    public Veiculo() {
+     
+    }
+
     public String getMarca() {
         return marca;
     }
