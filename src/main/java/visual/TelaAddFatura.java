@@ -4,9 +4,17 @@
  */
 package visual;
 
+import dados.Data;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import model.Conta;
+import model.Fatura;
 import model.Item;
+import model.Parcela;
 import model.Servico;
 
 /**
@@ -18,88 +26,18 @@ public class TelaAddFatura extends javax.swing.JDialog {
     /**
      * Creates new form TelaAddServicos
      */
-    String[] arrayS;
-    ArrayList<Servico> servicoCliente;
-    ArrayList<Servico> servicoHotel;
-    DefaultListModel lModelC;
-    DefaultListModel lModelH;
+    int indexPagamento;
+    private boolean feito = false;
+    private int qntParcela = 1;
+    private Conta conta;
+    Data dados;
 
-    public TelaAddFatura(java.awt.Frame parent, boolean modal, ArrayList<Item> array) {
+    public TelaAddFatura(java.awt.Frame parent, boolean modal, Data dados, Conta conta) {
         super(parent, modal);
-        DefaultListModel lModelH = new DefaultListModel();
-        DefaultListModel lModelC = new DefaultListModel();
-        this.lModelC = lModelC;
-        this.lModelH = lModelH;
-        ArrayList<String> arrayS = new ArrayList<>();
-        servicoHotel = new ArrayList<>();
-        servicoCliente = new ArrayList<>();
-
-        int i = 0;
-        for (Item item : array) {
-            if (item instanceof Servico) {
-                i++;
-                arrayS.add(item.getDescricao());
-                servicoHotel.add((Servico) item);
-
-            }
-
-        }
-        this.arrayS = arrayS.toArray(new String[i]);
-        for (String s : this.arrayS) {
-            System.out.println(s);
-            System.out.println("asdd");
-        }
-
+        this.conta = conta;
+        this.dados= dados;
         initComponents();
-        jListCliente.setModel(lModelC);
-        jListHotel.setModel(lModelH);
 
-        for (Servico servico : servicoHotel) {
-            lModelH.addElement(servico.getDescricao());
-        }
-
-    }
-
-    public TelaAddFatura(java.awt.Frame parent, boolean modal, ArrayList<Item> array,ArrayList<Servico> arrayServ) {
-        super(parent, modal);
-
-        DefaultListModel lModelH = new DefaultListModel();
-        DefaultListModel lModelC = new DefaultListModel();
-        this.lModelC = lModelC;
-        this.lModelH = lModelH;
-        ArrayList<String> arrayS = new ArrayList<>();
-        servicoHotel = new ArrayList<>();
-        servicoCliente = new ArrayList<>();
-
-        int i = 0;
-        for (Item item : array) {
-            if (item instanceof Servico) {
-                i++;
-                arrayS.add(item.getDescricao());
-                servicoHotel.add((Servico) item);
-
-            }
-
-        }
-        this.arrayS = arrayS.toArray(new String[i]);
-        for (String s : this.arrayS) {
-            System.out.println(s);
-            System.out.println("asdd");
-        }
-
-        initComponents();
-        jListCliente.setModel(lModelC);
-        jListHotel.setModel(lModelH);
-
-        for (Servico servico : servicoHotel) {
-            lModelH.addElement(servico.getDescricao());
-        }
-        if(arrayServ!=null){
-        for(Servico servico : arrayServ){
-            lModelC.addElement(servico.getDescricao());
-            servicoCliente.add(servico);
-        }}
- 
     }
 
     /**
@@ -115,7 +53,7 @@ public class TelaAddFatura extends javax.swing.JDialog {
         jList2 = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelN = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -140,8 +78,8 @@ public class TelaAddFatura extends javax.swing.JDialog {
 
         jLabel2.setText("Tipo de Pagamento");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("1");
+        jLabelN.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelN.setText("1");
 
         jLabel4.setText("Quantidade de Parcela");
 
@@ -167,6 +105,11 @@ public class TelaAddFatura extends javax.swing.JDialog {
         });
 
         jButton5.setText("Gravar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,7 +131,7 @@ public class TelaAddFatura extends javax.swing.JDialog {
                                 .addGap(8, 8, 8)
                                 .addComponent(jButton3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
+                                .addComponent(jLabelN)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1))))
                     .addGroup(layout.createSequentialGroup()
@@ -209,7 +152,7 @@ public class TelaAddFatura extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabelN)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
@@ -228,20 +171,91 @@ public class TelaAddFatura extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (qntParcela < 3) {
+            qntParcela++;
+            jLabelN.setText(Integer.toString(qntParcela));
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (qntParcela > 1) {
+            qntParcela--;
+            jLabelN.setText(Integer.toString(qntParcela));
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        String[] possibilidades = {"Dinheiro", "Cartão de Crédito", "Cartão de débito", "Pix"};
+        Fatura fatura = new Fatura();
+        fatura.getTipopagamento();
+        JComboBox cb = new JComboBox(possibilidades);
+        int input;
+        input = JOptionPane.showConfirmDialog(this, cb,
+                "Selecione o método de pagamento", JOptionPane.DEFAULT_OPTION);
+        if (input == JOptionPane.OK_OPTION) {
+            String str = (String) cb.getSelectedItem();
+            indexPagamento = cb.getSelectedIndex();
+            jLabel2.setText(str);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    ArrayList<Servico> showDialog() {
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       try{
+        Fatura fatura = new Fatura();
+        ArrayList<Parcela> arrayParcela= new ArrayList<>();
+        fatura.setQtdParcelas(qntParcela);
+        fatura.setTipopagamento(indexPagamento);
+        fatura.setConta(conta);
+        
+        
+            int i, j;
+            double juros, valorParcela;
+            switch (indexPagamento) {
+                case 0 ->
+                    juros = 0.02;
+                case 1 ->
+                    juros = 0.06;
+                case 2 ->
+                    juros = 0.04;
+                case 3 ->
+                    juros = 0.02;
+                default ->
+                    juros = 0;
+
+            }
+            for (i = 0; i < qntParcela; i++) {
+                Parcela parcela = new Parcela();
+                parcela.setIdentificador(ERROR);
+                LocalDate sl = conta.getDataFechamento();
+                sl.plusDays(15);
+                parcela.setDataVencimento(sl);
+                valorParcela = conta.getTotal() / 3;
+
+                for (j = i; j > 0; j--) {
+                    valorParcela *= juros;
+                }
+                parcela.setValor(valorParcela);
+                arrayParcela.add(parcela);
+                
+            }
+            
+            dados.arrayParc.addAll(arrayParcela);
+            dados.arrayFatu.add(fatura);
+            feito=true;
+            this.dispose();
+
+    
+            
+       }catch(Exception e){
+                JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Ok",
+                    JOptionPane.DEFAULT_OPTION);
+       }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    boolean showDialog() {
         setVisible(true);
-        return servicoCliente;
+        return feito;
     }
     /**
      * @param args the command line arguments
@@ -254,8 +268,8 @@ public class TelaAddFatura extends javax.swing.JDialog {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelN;
     private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

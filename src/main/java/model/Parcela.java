@@ -12,19 +12,24 @@ import java.time.LocalDate;
  */
 public class Parcela {
 
-    public Parcela(int identificador, LocalDate dataliquidacao, int qtdParcelas, Parcela[] parcelas) {
-        this.identificador = identificador;
-        this.dataliquidacao = dataliquidacao;
-        this.qtdParcelas = qtdParcelas;
-        this.parcelas = parcelas;
-    }
-    
     private int identificador;
-    private LocalDate dataliquidacao;
-    private int qtdParcelas;
-    private Parcela parcelas[];
-   
+    private LocalDate dataVencimento;
+    private LocalDate dataPagamento;
+    private double valor;
+    private double jurosMoraAplicado;
+    private double valorfinal;
 
+    public Parcela(int identificador, LocalDate dataVencimento, LocalDate dataPagamento, double valor, double jurosMoraAplicado, double valorfinal) {
+        this.identificador = identificador;
+        this.dataVencimento = dataVencimento;
+        this.dataPagamento = dataPagamento;
+        this.valor = valor;
+        this.jurosMoraAplicado = jurosMoraAplicado;
+        this.valorfinal = valorfinal;
+    }
+    public Parcela(){
+        
+    }
 
     public int getIdentificador() {
         return identificador;
@@ -34,27 +39,44 @@ public class Parcela {
         this.identificador = identificador;
     }
 
-    public LocalDate getDataliquidacao() {
-        return dataliquidacao;
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
     }
 
-    public void setDataliquidacao(LocalDate dataliquidacao) {
-        this.dataliquidacao = dataliquidacao;
+    public void setDataVencimento(LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
-    public int getQtdParcelas() {
-        return qtdParcelas;
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
     }
 
-    public void setQtdParcelas(int qtdParcelas) {
-        this.qtdParcelas = qtdParcelas;
+    public void setDataPagamento(LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
     }
 
-    public Parcela[] getParcelas() {
-        return parcelas;
+    public double getValor() {
+        return valor;
     }
 
-    public void setParcelas(Parcela[] parcelas) {
-        this.parcelas = parcelas;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
+
+    public double getJurosMoraAplicado() {
+        return jurosMoraAplicado;
+    }
+
+    public void setJurosMoraAplicado(double jurosMoraAplicado) {
+        this.jurosMoraAplicado = jurosMoraAplicado;
+    }
+
+    public double getValorfinal() {
+        return valorfinal;
+    }
+
+    public void setValorfinal(double valorfinal) {
+        this.valorfinal = valorfinal;
+    }
+
 }
