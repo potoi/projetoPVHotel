@@ -4,6 +4,7 @@
  */
 package dados;
 
+import fichario.ContaFichario;
 import java.util.ArrayList;
 import model.Cliente;
 import model.Conta;
@@ -27,7 +28,7 @@ import model.Veiculo;
 public class Data {
 
     public  ArrayList<Cliente> arrayClie = new ArrayList<>();
-    public  ArrayList<Conta> arrayCont = new ArrayList<>();
+    public  ContaFichario ficharioConta= new ContaFichario();
     public  ArrayList<Endereco> arrayEnde = new ArrayList<>();
     public  ArrayList<Equipamento> arrayEqui = new ArrayList<>();
     public  ArrayList<Fatura> arrayFatu = new ArrayList<>();

@@ -28,15 +28,15 @@ public class CrudAddConta extends javax.swing.JFrame {
      */
     private int indexCliente;
     private Data dados;
-    private ArrayList<Servico> arrayServico= new ArrayList<>();
-    private ArrayList<Produto> arrayProduto= new ArrayList<>();
+    private ArrayList<Servico> arrayServico = new ArrayList<>();
+    private ArrayList<Produto> arrayProduto = new ArrayList<>();
     private ArrayList<Item> arrayItem;
     double totalServ;
     double totalProd;
 
     public CrudAddConta(Data dados) {
         this.dados = dados;
-        
+
         totalServ = 0;
         totalProd = 0;
         this.setTitle("Tela Adicionar Conta");
@@ -241,76 +241,74 @@ public class CrudAddConta extends javax.swing.JFrame {
         Conta conta = new Conta();
         Item[] item;
 
-           try {
-        int dia, mes, ano;
-      
+        try {
+            int dia, mes, ano;
+
             dia = Integer.parseInt(jTextFieldDia1.getText());
             mes = Integer.parseInt(jTextFieldMes1.getText());
             ano = Integer.parseInt(jTextFieldAno1.getText());
             LocalDate date = LocalDate.of(ano, mes, dia);
             conta.setDataAbertura(date);
-        
-        
-        
-        if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().isEmpty() && !jTextFieldAno2.getText().isEmpty()) {
-            dia = Integer.parseInt(jTextFieldDia2.getText());
-            mes = Integer.parseInt(jTextFieldMes2.getText());
-            ano = Integer.parseInt(jTextFieldAno2.getText());
-            LocalDate date2 = LocalDate.of(ano, mes, dia);
-            conta.setDataFechamento(date2);
-        }
 
-        conta.setQuarto(Integer.parseInt(jTextAtributo3.getText()));
-        
-        arrayItem = new ArrayList<>();
-        if (!arrayServico.isEmpty()) {
-            for (Servico serv : arrayServico) {
-                arrayItem.add(serv);
+            if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().isEmpty() && !jTextFieldAno2.getText().isEmpty()) {
+                dia = Integer.parseInt(jTextFieldDia2.getText());
+                mes = Integer.parseInt(jTextFieldMes2.getText());
+                ano = Integer.parseInt(jTextFieldAno2.getText());
+                LocalDate date2 = LocalDate.of(ano, mes, dia);
+                conta.setDataFechamento(date2);
             }
-        }
 
-        if (!arrayProduto.isEmpty()) {
-            for (Produto prod : arrayProduto) {
-                arrayItem.add(prod);
+            conta.setQuarto(Integer.parseInt(jTextAtributo3.getText()));
+
+            arrayItem = new ArrayList<>();
+            if (!arrayServico.isEmpty()) {
+                for (Servico serv : arrayServico) {
+                    arrayItem.add(serv);
+                }
             }
-        }
-        if (!arrayItem.isEmpty()) {
-            int i = arrayItem.size();
-            item = arrayItem.toArray(new Item[i]);
-            conta.setItens(item);
-        }
 
-        conta.setTotal(totalServ + totalProd);
-        conta.setCliente(dados.arrayClie.get(indexCliente));
+            if (!arrayProduto.isEmpty()) {
+                for (Produto prod : arrayProduto) {
+                    arrayItem.add(prod);
+                }
+            }
+            if (!arrayItem.isEmpty()) {
+                int i = arrayItem.size();
+                item = arrayItem.toArray(new Item[i]);
+                conta.setItens(item);
+            }
 
-        if (conta.getDataFechamento() == null) {
-            dados.arrayCont.add(conta);
-            JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
-                    JOptionPane.DEFAULT_OPTION);
+            conta.setTotal(totalServ + totalProd);
+            conta.setCliente(dados.arrayClie.get(indexCliente));
 
-        } else {
-
-            TelaAddFatura tela = new TelaAddFatura(this, true, dados, conta);
-
-            if (tela.showDialog()) {
-                dados.arrayCont.add(conta);
+            if (conta.getDataFechamento() == null) {
+                dados.ficharioConta.add(conta);
                 JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
                         JOptionPane.DEFAULT_OPTION);
 
             } else {
-                JOptionPane.showConfirmDialog(null,
-                        "É necessário cadastrar uma parcela caso o fechamento ocorreu",
-                        "Ok", JOptionPane.DEFAULT_OPTION);
+
+                TelaAddFatura tela = new TelaAddFatura(this, true, dados, conta);
+
+                if (tela.showDialog()) {
+                    dados.ficharioConta.add(conta);
+                    JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
+                            JOptionPane.DEFAULT_OPTION);
+
+                } else {
+                    JOptionPane.showConfirmDialog(null,
+                            "É necessário cadastrar uma parcela caso o fechamento ocorra",
+                            "Ok", JOptionPane.DEFAULT_OPTION);
+                }
+
             }
 
+        } catch (Exception e) {
+
+            JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
+                    JOptionPane.DEFAULT_OPTION);
+
         }
-
-           } catch (Exception e) {
-            
-        JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
-                JOptionPane.DEFAULT_OPTION);
-
-           }
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 

@@ -727,7 +727,6 @@ public class CrudEndereco extends javax.swing.JFrame {
                     igual = true;
                 }
             }
-
             if (igual == false) {
                 int input;
                 input = JOptionPane.showConfirmDialog(null, "Tem certeza?", "Remover Endereço", JOptionPane.OK_CANCEL_OPTION);

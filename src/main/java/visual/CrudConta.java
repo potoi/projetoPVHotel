@@ -11,21 +11,22 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import util.Utilidades;
 import dados.Data;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Victor
  */
 public class CrudConta extends javax.swing.JFrame {
-  
+
     private DefaultTableModel dtm;
     private ArrayList<Conta> arrayAtual;
     private ContaFichario ficharioAtual;
     private Data dados;
 
     public CrudConta(Data dados) {
-        ficharioAtual = new ContaFichario();
-        this.arrayAtual = dados.arrayCont;
+        ficharioAtual = dados.ficharioConta;
+        this.arrayAtual = dados.ficharioConta.arrayCont;
         this.dados = dados;
 
         dtm = new DefaultTableModel(0, 0) {
@@ -51,6 +52,8 @@ public class CrudConta extends javax.swing.JFrame {
         jButtonAdd = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonAlter = new javax.swing.JButton();
+        jButtonPendente = new javax.swing.JButton();
+        jButtonTodos = new javax.swing.JButton();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         jMenu10 = new javax.swing.JMenu();
         jMenuShowPessoaF = new javax.swing.JMenuItem();
@@ -103,7 +106,28 @@ public class CrudConta extends javax.swing.JFrame {
         getContentPane().add(jButtonRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
 
         jButtonAlter.setText("Alterar");
+        jButtonAlter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAlter, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
+
+        jButtonPendente.setText("Mostar Pendentes");
+        jButtonPendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPendenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonPendente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
+
+        jButtonTodos.setText("Mostar Todos");
+        jButtonTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTodosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         jMenu10.setText("Mostrar");
 
@@ -319,7 +343,26 @@ public class CrudConta extends javax.swing.JFrame {
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
 
-        removeItem();
+        if ((jTable.getSelectedRow()) > -1) {
+            int id = Integer.parseInt((String) jTable.getValueAt(jTable.getSelectedRow(), 0));
+            int index = ficharioAtual.findIndex(id);
+            if (dados.ficharioConta.arrayCont.get(index).getDataFechamento() == null) {
+
+                int input;
+                input = JOptionPane.showConfirmDialog(null, "Tem certeza?", "Remover Conta", JOptionPane.OK_CANCEL_OPTION);
+                if (input == JOptionPane.OK_OPTION) {
+                    ficharioAtual.remove(index);
+                    dtm.removeRow(jTable.getSelectedRow());
+                    preencheTabela(ficharioAtual.getDataString(arrayAtual), ficharioAtual.getColumnName());
+
+                }
+
+            } else {
+                JOptionPane.showConfirmDialog(null, "A conta ja foi encerrada", "Aviso",
+                        JOptionPane.DEFAULT_OPTION);
+            }
+        }
+
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jMenuShowPessoaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowPessoaFActionPerformed
@@ -465,6 +508,43 @@ public class CrudConta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
 
+    private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
+        if (jTable.getSelectedRow() != -1) {
+            int id = Integer.parseInt((String) jTable.getValueAt(jTable.getSelectedRow(), 0));
+            int index = ficharioAtual.findIndex(id);
+            if (dados.ficharioConta.arrayCont.get(index).getDataFechamento() == null) {
+
+                CrudAlterConta tela;
+                tela = new CrudAlterConta(this, true, dados, dados.ficharioConta.arrayCont.get(index), index);
+                tela.showDialog();
+                preencheTabela(dados.ficharioConta.getDataString(arrayAtual), dados.ficharioConta.getColumnName());
+
+            } else {
+                JOptionPane.showConfirmDialog(null, "A conta ja foi encerrada", "Aviso",
+                        JOptionPane.DEFAULT_OPTION);
+            }
+
+        }
+    }//GEN-LAST:event_jButtonAlterActionPerformed
+
+    private void jButtonTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTodosActionPerformed
+
+        preencheTabela(dados.ficharioConta.getDataString(arrayAtual),
+                dados.ficharioConta.getColumnName());
+    }//GEN-LAST:event_jButtonTodosActionPerformed
+
+    private void jButtonPendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPendenteActionPerformed
+        ArrayList<Conta> arrayfiltro = new ArrayList<>();
+        for (Conta conta : arrayAtual) {
+            if (conta.getDataFechamento() == null) {
+                arrayfiltro.add(conta);
+            }
+        }
+
+        preencheTabela(dados.ficharioConta.getDataString(arrayfiltro),
+                dados.ficharioConta.getColumnName());
+    }//GEN-LAST:event_jButtonPendenteActionPerformed
+
     private void preencheTabela(String a[][], String b[]) {
         dtm.setRowCount(0);
         dtm.setColumnCount(0);
@@ -478,23 +558,15 @@ public class CrudConta extends javax.swing.JFrame {
 
     }
 
-    private void removeItem() {
-
-        if ((jTable.getSelectedRow()) > -1) {
-            
-            dtm.removeRow(jTable.getSelectedRow());
-
-        }
-
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonAlter;
+    private javax.swing.JButton jButtonPendente;
     private javax.swing.JButton jButtonRemove;
+    private javax.swing.JButton jButtonTodos;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu2;

@@ -30,22 +30,39 @@ public class CrudAlterConta extends javax.swing.JDialog {
     private ArrayList<Servico> arrayServico = new ArrayList<>();
     private ArrayList<Produto> arrayProduto = new ArrayList<>();
     private ArrayList<Item> arrayItem;
-    double totalServ=0;
-    double totalProd=0;
+    double totalServ = 0;
+    double totalProd = 0;
     Conta conta;
+    int index;
 
-    public CrudAlterConta(java.awt.Frame parent, boolean modal, Data dados,Conta conta) {
+    public CrudAlterConta(java.awt.Frame parent, boolean modal, Data dados, Conta conta, int index) {
         super(parent, modal);
         this.setTitle("Tela Alterar Conta");
         this.dados = dados;
-        this.conta=conta;
-        
-        
-        
+        this.conta = conta;
+        this.index = index;
+
         initComponents();
-        jTextFieldDia1.setText(Integer.toString(conta.getDataAbertura().getDayOfMonth())) ;
-        
-        
+        jTextFieldDia1.setText(Integer.toString(conta.getDataAbertura().getDayOfMonth()));
+        jTextFieldMes1.setText(Integer.toString(conta.getDataAbertura().getMonthValue()));
+        jTextFieldAno1.setText(Integer.toString(conta.getDataAbertura().getYear()));
+        jTextAtributo3.setText(Integer.toString(conta.getQuarto()));
+        jTextAtributo6.setText(conta.getCliente().getNome() + " " + conta.getCliente().getId());
+        if (conta.getItens() != null) {
+            for (Item item : conta.getItens()) {
+                if (item instanceof Servico servico) {
+                    totalServ += servico.getPreco();
+                    arrayServico.add(servico);
+                }
+                if (item instanceof Produto produto) {
+                    totalProd += produto.getPreco();
+                    arrayProduto.add(produto);
+                }
+            }
+            jLabelServico.setText("Qtd:" + Integer.toString(arrayServico.size()));
+            jLabelProduto.setText("Qtd:" + Integer.toString(arrayProduto.size()));;
+        }
+        jLabelTotal.setText(Double.toString(totalServ + totalProd));
     }
 
     /**
@@ -113,6 +130,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
         jLabel5.setText("Cliente");
 
         jButtonAddAtributo1.setText("Selecionar Cliente");
+        jButtonAddAtributo1.setEnabled(false);
         jButtonAddAtributo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddAtributo1ActionPerformed(evt);
@@ -144,12 +162,16 @@ public class CrudAlterConta extends javax.swing.JDialog {
 
         jLabelTotal.setText("Total:  0");
 
+        jTextFieldMes1.setEditable(false);
         jTextFieldMes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMes1ActionPerformed(evt);
             }
         });
 
+        jTextFieldAno1.setEditable(false);
+
+        jTextFieldDia1.setEditable(false);
         jTextFieldDia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDia1ActionPerformed(evt);
@@ -329,7 +351,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        Conta conta = new Conta();
+
         Item[] item;
 
         try {
@@ -338,8 +360,8 @@ public class CrudAlterConta extends javax.swing.JDialog {
             dia = Integer.parseInt(jTextFieldDia1.getText());
             mes = Integer.parseInt(jTextFieldMes1.getText());
             ano = Integer.parseInt(jTextFieldAno1.getText());
-            LocalDate date = LocalDate.of(ano, mes, dia);
-            conta.setDataAbertura(date);
+            LocalDate date1 = LocalDate.of(ano, mes, dia);
+            conta.setDataAbertura(date1);
 
             if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().isEmpty() && !jTextFieldAno2.getText().isEmpty()) {
                 dia = Integer.parseInt(jTextFieldDia2.getText());
@@ -373,22 +395,24 @@ public class CrudAlterConta extends javax.swing.JDialog {
             conta.setCliente(dados.arrayClie.get(indexCliente));
 
             if (conta.getDataFechamento() == null) {
-                dados.arrayCont.add(conta);
-                JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
+                dados.ficharioConta.arrayCont.set(index, conta);
+                JOptionPane.showConfirmDialog(null, "Conta alterada com sucesso", "Sucesso",
                         JOptionPane.DEFAULT_OPTION);
+                this.dispose();
 
             } else {
 
-                TelaAddFatura tela = new TelaAddFatura((Frame)this.getParent(), true, dados, conta);
+                TelaAddFatura tela = new TelaAddFatura((Frame) this.getParent(), true, dados, conta);
 
                 if (tela.showDialog()) {
-                    dados.arrayCont.add(conta);
-                    JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
+                    dados.ficharioConta.arrayCont.set(index, conta);
+                    JOptionPane.showConfirmDialog(null, "Conta alterada com sucesso", "Sucesso",
                             JOptionPane.DEFAULT_OPTION);
+                     this.dispose();
 
                 } else {
                     JOptionPane.showConfirmDialog(null,
-                            "É necessário cadastrar uma parcela caso o fechamento ocorreu",
+                            "É necessário cadastrar uma parcela caso o fechamento ocorra",
                             "Ok", JOptionPane.DEFAULT_OPTION);
                 }
 
@@ -403,32 +427,12 @@ public class CrudAlterConta extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonAddAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddAtributo1ActionPerformed
-        String[] possibilidades;
-        ClienteFichario clieFichario = new ClienteFichario();
-        String[][] stringToda;
-        stringToda = clieFichario.getDataString(dados.arrayClie);
-        possibilidades = new String[stringToda.length];
-        int i = 0;
-        for (String s[] : stringToda) {
-            possibilidades[i] = s[0] + " " + s[1] + " " + s[2];
-            i++;
-        }
 
-        JComboBox cb = new JComboBox(possibilidades);
-        int input;
-        input = JOptionPane.showConfirmDialog(this, cb, "Selecione o Cliente",
-                JOptionPane.DEFAULT_OPTION);
-        if (input == JOptionPane.OK_OPTION) {
-            String str = (String) cb.getSelectedItem();
-            indexCliente = cb.getSelectedIndex();
-            jTextAtributo6.setText(str);
-
-        }
     }//GEN-LAST:event_jButtonAddAtributo1ActionPerformed
 
     private void jBotaoTelaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaServicosActionPerformed
 
-        TelaAddServicos tela = new TelaAddServicos((Frame)this.getParent(), true, dados.arrayItem, arrayServico);
+        TelaAddServicos tela = new TelaAddServicos((Frame) this.getParent(), true, dados.arrayItem, arrayServico);
 
         totalServ = 0;
         arrayServico = tela.showDialog();
@@ -443,7 +447,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
     }//GEN-LAST:event_jBotaoTelaServicosActionPerformed
 
     private void jBotaoTelaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaProdutosActionPerformed
-        TelaAddProdutos tela = new TelaAddProdutos((Frame)this.getParent(), true, dados.arrayItem, arrayProduto);
+        TelaAddProdutos tela = new TelaAddProdutos((Frame) this.getParent(), true, dados.arrayItem, arrayProduto);
         totalProd = 0;
         arrayProduto = tela.showDialog();
         jLabelProduto.setText("Qtd:" + Integer.toString(arrayProduto.size()));
@@ -500,4 +504,9 @@ public class CrudAlterConta extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldMes1;
     private javax.swing.JTextField jTextFieldMes2;
     // End of variables declaration//GEN-END:variables
+
+    void showDialog() {
+        this.setVisible(true);
+        
+    }
 }

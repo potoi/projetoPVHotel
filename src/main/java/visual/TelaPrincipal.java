@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import static util.Utilidades.*;
 import dados.Data;
 import static java.awt.Color.RED;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -549,9 +550,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dados.arrayItem.add(produto2);
 
         PessoaFisica pessoaf = new PessoaFisica("123123", 2, "Jose", testeEndereco, testeEndereco2, null, "312323", "2525", "111");
+        PessoaFisica pessoaf2 = new PessoaFisica("123123", 2, "Jose", testeEndereco, testeEndereco2, null, "312323", "2525", "111");
         dados.arrayClie.add(pessoaf);
-        Conta conta = new Conta(null,null,null,15.0,pessoaf,12);
-        dados.arrayCont.add(conta);
+        
+        LocalDate date2 = LocalDate.of(2020, 7, 20);
+        LocalDate date3 = LocalDate.of(2021, 7, 20);
+        Conta conta = new Conta(null,date2,null,15.0,pessoaf,12,1);
+        Conta conta2 = new Conta(null,date3,date2,15.0,pessoaf,12,2);
+        dados.ficharioConta.add(conta);
+        dados.ficharioConta.add(conta2);
 
     }
 }
