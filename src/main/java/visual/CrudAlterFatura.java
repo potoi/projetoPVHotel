@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.Conta;
 import model.Fatura;
 import model.Item;
+import model.Parcela;
 import model.Produto;
 import model.Servico;
 
@@ -28,7 +29,7 @@ public class CrudAlterFatura extends javax.swing.JDialog {
      */
     private int indexCliente;
     private Data dados;
-    int qtdParcelas;
+    int quantParcelas;
     Conta conta;
     int index;
     int jaPago;
@@ -38,9 +39,9 @@ public class CrudAlterFatura extends javax.swing.JDialog {
         super(parent, modal);
         this.setTitle("Tela Alterar Fatura");
         this.dados = dados;
-        this.conta = conta;
+
         this.index = index;
-        this.fatura=fatura;
+        this.fatura = fatura;
         int jaPago = 0;
         jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
         initComponents();
@@ -60,7 +61,7 @@ public class CrudAlterFatura extends javax.swing.JDialog {
         jLabelParcela3.setVisible(false);
         jLabelDias3.setVisible(false);
 
-        if (qtdParcelas > 1) {
+        if (quantParcelas > 1) {
             jLabelParcela2.setVisible(true);
             jLabelDias2.setVisible(true);
             String a2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getDayOfMonth());
@@ -72,10 +73,10 @@ public class CrudAlterFatura extends javax.swing.JDialog {
                 jLabelParcela2.setText("Parcela paga.");
                 jaPago++;
             }
-           
+
             jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
         }
-        if (qtdParcelas > 2) {
+        if (quantParcelas > 2) {
             jLabelParcela3.setVisible(true);
             jLabelDias3.setVisible(true);
             String a3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getDayOfMonth());
@@ -88,10 +89,10 @@ public class CrudAlterFatura extends javax.swing.JDialog {
                 jaPago++;
             }
         }
-         if(fatura.getQtdParcelas()==jaPago){
-               jButtonPagar1.setText("Todas Parcelas pagas");
-         }
-      
+        if (fatura.getQtdParcelas() == jaPago) {
+            jButtonPagar1.setText("Todas Parcelas pagas");
+        }
+
         this.jaPago = jaPago;
     }
 
@@ -271,69 +272,10 @@ public class CrudAlterFatura extends javax.swing.JDialog {
         Item[] item;
 
         try {
-            int dia, mes, ano;
+            dados.ficharioFatura.arrayFatu.set(index, fatura);
 
-            dia = Integer.parseInt(jTextFieldDia1.getText());
-            mes = Integer.parseInt(jTextFieldMes1.getText());
-            ano = Integer.parseInt(jTextFieldAno1.getText());
-            LocalDate date1 = LocalDate.of(ano, mes, dia);
-            conta.setDataAbertura(date1);
-
-            if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().isEmpty() && !jTextFieldAno2.getText().isEmpty()) {
-                dia = Integer.parseInt(jTextFieldDia2.getText());
-                mes = Integer.parseInt(jTextFieldMes2.getText());
-                ano = Integer.parseInt(jTextFieldAno2.getText());
-                LocalDate date2 = LocalDate.of(ano, mes, dia);
-                conta.setDataFechamento(date2);
-            }
-
-            conta.setQuarto(Integer.parseInt(jTextAtributo3.getText()));
-
-            arrayItem = new ArrayList<>();
-            if (!arrayServico.isEmpty()) {
-                for (Servico serv : arrayServico) {
-                    arrayItem.add(serv);
-                }
-            }
-
-            if (!arrayProduto.isEmpty()) {
-                for (Produto prod : arrayProduto) {
-                    arrayItem.add(prod);
-                }
-            }
-            if (!arrayItem.isEmpty()) {
-                int i = arrayItem.size();
-                item = arrayItem.toArray(new Item[i]);
-                conta.setItens(item);
-            }
-
-            conta.setTotal(totalServ + totalProd);
-            conta.setCliente(dados.arrayClie.get(indexCliente));
-
-            if (conta.getDataFechamento() == null) {
-                dados.ficharioConta.arrayCont.set(index, conta);
-                JOptionPane.showConfirmDialog(null, "Conta alterada com sucesso", "Sucesso",
-                        JOptionPane.DEFAULT_OPTION);
-                this.dispose();
-
-            } else {
-
-                TelaAddFatura tela = new TelaAddFatura((Frame) this.getParent(), true, dados, conta);
-
-                if (tela.showDialog()) {
-                    dados.ficharioConta.arrayCont.set(index, conta);
-                    JOptionPane.showConfirmDialog(null, "Conta alterada com sucesso", "Sucesso",
-                            JOptionPane.DEFAULT_OPTION);
-                    this.dispose();
-
-                } else {
-                    JOptionPane.showConfirmDialog(null,
-                            "É necessário cadastrar uma parcela caso o fechamento ocorra",
-                            "Ok", JOptionPane.DEFAULT_OPTION);
-                }
-
-            }
-
+            JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
+                    JOptionPane.DEFAULT_OPTION);
         } catch (Exception e) {
 
             JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
@@ -348,7 +290,26 @@ public class CrudAlterFatura extends javax.swing.JDialog {
         int mes = Integer.parseInt(jTextField2.getText());
         int ano = Integer.parseInt(jTextField3.getText());
         LocalDate date = LocalDate.of(ano, mes, dia);
-       
+
+        if (jaPago < quantParcelas) {
+
+            fatura.getParcelas()[jaPago].setDataPagamento(date);
+            fatura.JurosPorAtraso();
+            String h = Double.toString(fatura.getParcelas()[jaPago].getValorfinal());
+
+            int input;
+            input = JOptionPane.showConfirmDialog(null, "O preço final é " + h + " ", "Pagar", JOptionPane.OK_CANCEL_OPTION);
+            if (input == JOptionPane.OK_OPTION) {
+
+                JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
+                        JOptionPane.DEFAULT_OPTION);
+
+            }
+
+        } else {
+            JOptionPane.showConfirmDialog(null, "Não tem parcela para pagar", "Erro",
+                    JOptionPane.DEFAULT_OPTION);
+        }
 
     }//GEN-LAST:event_jButtonPagar1ActionPerformed
 
@@ -379,6 +340,60 @@ public class CrudAlterFatura extends javax.swing.JDialog {
 
     void showDialog() {
         this.setVisible(true);
+
+    }
+
+    void atualiza() {
+        jaPago = 0;
+        jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
+        initComponents();
+        String a = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getDayOfMonth());
+        String b = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getMonthValue());
+        String c = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getYear());
+        String d = Double.toString(fatura.getParcelas()[2].getValor());
+        jLabelParcela1.setText("Data de vencimento: " + a + "." + b + "." + c + ": Valor = " + d);
+        if (fatura.getParcelas()[0].getDataPagamento() != null) {
+            jLabelParcela1.setText("Parcela paga.");
+            jaPago++;
+        }
+        jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
+
+        jLabelParcela2.setVisible(false);
+        jLabelDias2.setVisible(false);
+        jLabelParcela3.setVisible(false);
+        jLabelDias3.setVisible(false);
+
+        if (quantParcelas > 1) {
+            jLabelParcela2.setVisible(true);
+            jLabelDias2.setVisible(true);
+            String a2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getDayOfMonth());
+            String b2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getMonthValue());
+            String c2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getYear());
+            String d2 = Double.toString(fatura.getParcelas()[1].getValor());
+            jLabelParcela2.setText("Data de vencimento: " + a2 + "." + b2 + "." + c2 + ": Valor = " + d2);
+            if (fatura.getParcelas()[1].getDataPagamento() != null) {
+                jLabelParcela2.setText("Parcela paga.");
+                jaPago++;
+            }
+
+            jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
+        }
+        if (quantParcelas > 2) {
+            jLabelParcela3.setVisible(true);
+            jLabelDias3.setVisible(true);
+            String a3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getDayOfMonth());
+            String b3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getMonthValue());
+            String c3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getYear());
+            String d3 = Double.toString(fatura.getParcelas()[2].getValor());
+            jLabelParcela3.setText("Data de vencimento: " + a3 + "." + b3 + "." + c3 + ": Valor = " + d3);
+            if (fatura.getParcelas()[2].getDataPagamento() != null) {
+                jLabelParcela3.setText("Parcela paga.");
+                jaPago++;
+            }
+        }
+        if (fatura.getQtdParcelas() == jaPago) {
+            jButtonPagar1.setText("Todas Parcelas pagas");
+        }
 
     }
 }

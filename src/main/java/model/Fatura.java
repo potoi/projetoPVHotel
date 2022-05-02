@@ -100,8 +100,8 @@ public class Fatura {
     public void JurosPorParcelmento() {
 
         int i, j;
-        
-        double juros, valorParcela, jurosgeral,total=0;
+
+        double juros, valorParcela, jurosgeral, total = 0;
         switch (tipopagamento) {
             case 0 -> {
                 juros = 1.02;
@@ -139,7 +139,7 @@ public class Fatura {
             double[] valorParcelas = new double[qtdParcelas];
             for (i = 1; i <= qtdParcelas; i++) {
 
-                valorParcelas[i - 1] = conta.getTotal()/qtdParcelas;
+                valorParcelas[i - 1] = conta.getTotal() / qtdParcelas;
                 LocalDate sl = conta.getDataFechamento();
                 sl.plusDays(30 * i);
                 parcelas[i - 1].setDataVencimento(sl);
@@ -147,12 +147,12 @@ public class Fatura {
                 for (j = i; j > 0; j--) {
                     valorParcelas[i - 1] *= juros;
                 }
-                total+=valorParcelas[i-1];
-              
+                total += valorParcelas[i - 1];
+
             }
             total *= jurosgeral;
             for (int z = 0; z < qtdParcelas; z++) {
-                parcelas[z].setValor(total/qtdParcelas);
+                parcelas[z].setValor(total / qtdParcelas);
             }
         } else {
             LocalDate sl = conta.getDataFechamento();
@@ -194,8 +194,12 @@ public class Fatura {
 
                     }
 
+                } else {
+
+              
                 }
                 i++;
+                parcela.setValorfinal(parcela.getValor()+parcela.getJurosMoraAplicado());
                 parcelas[i] = parcela;
             }
         }
