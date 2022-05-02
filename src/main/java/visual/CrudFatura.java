@@ -11,6 +11,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import util.Utilidades;
 import dados.Data;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +26,7 @@ public class CrudFatura extends javax.swing.JFrame {
 
     public CrudFatura(Data dados) {
         ficharioAtual = dados.ficharioFatura;
-        this.arrayAtual = dados.arrayFatu;
+        this.arrayAtual =dados.ficharioFatura.arrayFatu;
         this.dados = dados;
 
         dtm = new DefaultTableModel(0, 0) {
@@ -103,6 +104,11 @@ public class CrudFatura extends javax.swing.JFrame {
         getContentPane().add(jButtonRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
 
         jButtonAlter.setText("Alterar");
+        jButtonAlter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAlter, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
 
         jMenu10.setText("Mostrar");
@@ -464,6 +470,19 @@ public class CrudFatura extends javax.swing.JFrame {
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
+
+    private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
+        if (jTable.getSelectedRow() != -1) {
+            int id = Integer.parseInt((String) jTable.getValueAt(jTable.getSelectedRow(), 0));
+      
+            int index = ficharioAtual.findIndex(id);
+            CrudAlterFatura tela;
+            tela = new CrudAlterFatura(this, true, dados, dados.ficharioFatura.arrayFatu.get(index), index);
+            tela.showDialog();
+            preencheTabela(ficharioAtual.getDataString(arrayAtual), ficharioAtual.getColumnName());
+
+        }
+    }//GEN-LAST:event_jButtonAlterActionPerformed
 
     private void preencheTabela(String a[][], String b[]) {
         dtm.setRowCount(0);

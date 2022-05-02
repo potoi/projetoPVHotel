@@ -34,7 +34,6 @@ public class Data {
     public  FaturaFichario ficharioFatura= new FaturaFichario();
     public  ArrayList<Endereco> arrayEnde = new ArrayList<>();
     public  ArrayList<Equipamento> arrayEqui = new ArrayList<>();
-    public  ArrayList<Fatura> arrayFatu = new ArrayList<>();
     public  ArrayList<Funcionario> arrayFunc = new ArrayList<>();
     public  ArrayList<Item> arrayItem = new ArrayList<>();
     public  ArrayList<Municipio> arrayMuni = new ArrayList<>();

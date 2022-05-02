@@ -252,6 +252,7 @@ public class CrudAddConta extends javax.swing.JFrame {
             ano = Integer.parseInt(jTextFieldAno1.getText());
             LocalDate date = LocalDate.of(ano, mes, dia);
             conta.setDataAbertura(date);
+            conta.setId(dados.ficharioConta.getNextId());
 
             if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().isEmpty() && !jTextFieldAno2.getText().isEmpty()) {
                 dia = Integer.parseInt(jTextFieldDia2.getText());

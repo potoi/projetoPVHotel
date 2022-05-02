@@ -218,7 +218,7 @@ public class TelaAddFatura extends javax.swing.JDialog {
             }
             Fatura fatura = new Fatura(conta, qntParcela, indexPagamento, arrayParcela);
             
-            dados.arrayFatu.add(fatura);
+            dados.ficharioFatura.arrayFatu.add(fatura);
             feito = true;
             this.dispose();
             

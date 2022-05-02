@@ -69,7 +69,7 @@ public class FaturaFichario {
     public int findIndex(int id) {
         int i = 0;
         for (Fatura fatura : arrayFatu) {
-
+           
             if (fatura.getConta().getId() == id) {
                 return i;
             }
