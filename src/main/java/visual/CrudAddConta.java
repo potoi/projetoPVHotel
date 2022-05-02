@@ -8,10 +8,13 @@ import dados.Data;
 import fichario.ClienteFichario;
 import fichario.ContaFichario;
 import fichario.MunicipioFichario;
+import java.awt.Component;
+import java.awt.Container;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.Conta;
 import model.Item;
 import model.Produto;
@@ -285,6 +288,13 @@ public class CrudAddConta extends javax.swing.JFrame {
                 dados.ficharioConta.add(conta);
                 JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
                         JOptionPane.DEFAULT_OPTION);
+                Container con = this.getContentPane();
+                for (Component c : con.getComponents()) {
+                    if (c instanceof JTextField) {
+                        JTextField j = (JTextField) c;
+                        j.setText("");
+                    }
+                }
 
             } else {
 
@@ -294,6 +304,13 @@ public class CrudAddConta extends javax.swing.JFrame {
                     dados.ficharioConta.add(conta);
                     JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
                             JOptionPane.DEFAULT_OPTION);
+                    Container con = this.getContentPane();
+                    for (Component c : con.getComponents()) {
+                        if (c instanceof JTextField) {
+                            JTextField j = (JTextField) c;
+                            j.setText("");
+                        }
+                    }
 
                 } else {
                     JOptionPane.showConfirmDialog(null,

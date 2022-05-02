@@ -12,14 +12,14 @@ import java.time.LocalDate;
  */
 public class Conta {
 
-    public Conta(Item[] itens, LocalDate dataAbertura, LocalDate dataFechamento, double total, Cliente cliente, int quarto,int id) {
+    public Conta(Item[] itens, LocalDate dataAbertura, LocalDate dataFechamento, double total, Cliente cliente, int quarto, int id) {
         this.itens = itens;
         this.dataAbertura = dataAbertura;
         this.dataFechamento = dataFechamento;
         this.total = total;
         this.cliente = cliente;
         this.quarto = quarto;
-        this.id= id;
+        this.id = id;
     }
 
     public Conta() {
@@ -85,8 +85,10 @@ public class Conta {
     }
 
     public void setQuarto(int quarto) {
+        if (quarto < 1 || quarto > 15) {
+            throw new IllegalArgumentException(quarto + " is out of range");
+        }
         this.quarto = quarto;
     }
-    
-}
 
+}

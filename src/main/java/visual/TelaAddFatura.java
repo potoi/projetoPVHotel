@@ -5,6 +5,7 @@
 package visual;
 
 import dados.Data;
+import fichario.ParcelaFichario;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -26,18 +27,20 @@ public class TelaAddFatura extends javax.swing.JDialog {
     /**
      * Creates new form TelaAddServicos
      */
-    int indexPagamento;
+    int indexPagamento=-1;
     private boolean feito = false;
     private int qntParcela = 1;
     private Conta conta;
     Data dados;
-
+    ParcelaFichario ficharioAtual;
+    
     public TelaAddFatura(java.awt.Frame parent, boolean modal, Data dados, Conta conta) {
         super(parent, modal);
         this.conta = conta;
-        this.dados= dados;
+        this.dados = dados;
+        ficharioAtual = dados.ficharioParcela;
         initComponents();
-
+        this.setTitle("Adicionar Fatura");
     }
 
     /**
@@ -117,12 +120,9 @@ public class TelaAddFatura extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,21 +133,23 @@ public class TelaAddFatura extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelN)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))))
+                                .addComponent(jButton1))
+                            .addComponent(jLabel2)))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jButton5)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton4)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton4))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -165,7 +167,7 @@ public class TelaAddFatura extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -201,58 +203,30 @@ public class TelaAddFatura extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       try{
-        Fatura fatura = new Fatura();
-        ArrayList<Parcela> arrayParcela= new ArrayList<>();
-        fatura.setQtdParcelas(qntParcela);
-        fatura.setTipopagamento(indexPagamento);
-        fatura.setConta(conta);
         
-        
-            int i, j;
-            double juros, valorParcela;
-            switch (indexPagamento) {
-                case 0 ->
-                    juros = 0.02;
-                case 1 ->
-                    juros = 0.06;
-                case 2 ->
-                    juros = 0.04;
-                case 3 ->
-                    juros = 0.02;
-                default ->
-                    juros = 0;
-
-            }
-            for (i = 0; i < qntParcela; i++) {
-                Parcela parcela = new Parcela();
-                parcela.setIdentificador(ERROR);
-                LocalDate sl = conta.getDataFechamento();
-                sl.plusDays(15);
-                parcela.setDataVencimento(sl);
-                valorParcela = conta.getTotal() / 3;
-
-                for (j = i; j > 0; j--) {
-                    valorParcela *= juros;
-                }
-                parcela.setValor(valorParcela);
-                arrayParcela.add(parcela);
-                
-            }
+        if (indexPagamento!=-1){
             
-            dados.arrayParc.addAll(arrayParcela);
+        
+        try {
+            
+            Parcela arrayParcela[] = new Parcela[qntParcela];
+            
+            for (int k = 0; k < qntParcela; k++) {
+                arrayParcela[k]= new Parcela();
+                arrayParcela[k].setIdentificador(dados.ficharioParcela.getNextId());
+  
+            }
+            Fatura fatura = new Fatura(conta, qntParcela, indexPagamento, arrayParcela);
+            
             dados.arrayFatu.add(fatura);
-            feito=true;
+            feito = true;
             this.dispose();
-
-    
             
-       }catch(Exception e){
-                JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Ok",
-                    JOptionPane.DEFAULT_OPTION);
-       }
+        } catch (Exception e) {JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",JOptionPane.DEFAULT_OPTION);
+        }
+        }else JOptionPane.showConfirmDialog(null, "Selecione o método de pagamento", "Pagamento não encontrado",JOptionPane.DEFAULT_OPTION);
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
     boolean showDialog() {
         setVisible(true);
         return feito;

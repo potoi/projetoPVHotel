@@ -13,7 +13,7 @@ import model.Conta;
  */
 public class ContaFichario {
 
-    private int nextSafeId = 0;
+    private int nextSafeId = 1;
     public ArrayList<Conta> arrayCont;
 
     public ContaFichario() {

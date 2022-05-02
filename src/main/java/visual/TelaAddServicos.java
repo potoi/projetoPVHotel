@@ -79,10 +79,7 @@ public class TelaAddServicos extends javax.swing.JDialog {
 
         }
         this.arrayS = arrayS.toArray(new String[i]);
-        for (String s : this.arrayS) {
-            System.out.println(s);
-            System.out.println("asdd");
-        }
+
 
         initComponents();
         jListCliente.setModel(lModelC);

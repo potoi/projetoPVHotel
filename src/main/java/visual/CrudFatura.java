@@ -19,13 +19,13 @@ import dados.Data;
 public class CrudFatura extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
-    private ArrayList<Municipio> arrayAtual;
-    private MunicipioFichario ficharioAtual;
+    private ArrayList<Fatura> arrayAtual;
+    private FaturaFichario ficharioAtual;
     private Data dados;
 
     public CrudFatura(Data dados) {
-        ficharioAtual = new MunicipioFichario();
-        this.arrayAtual = dados.arrayMuni;
+        ficharioAtual = dados.ficharioFatura;
+        this.arrayAtual = dados.arrayFatu;
         this.dados = dados;
 
         dtm = new DefaultTableModel(0, 0) {
@@ -36,7 +36,7 @@ public class CrudFatura extends javax.swing.JFrame {
         };
         initComponents();
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.setTitle("Tabela: Município");
+        this.setTitle("Tabela: Fatura");
         preencheTabela(ficharioAtual.getDataString(arrayAtual), ficharioAtual.getColumnName());
     }
 
@@ -87,7 +87,7 @@ public class CrudFatura extends javax.swing.JFrame {
         jTable.setModel(dtm);
         jScrollPane2.setViewportView(jTable);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 650, 240));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 760, 240));
         getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 60, 80));
         getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 40, 40));
 
@@ -481,9 +481,11 @@ public class CrudFatura extends javax.swing.JFrame {
     private void removeItem() {
 
         if ((jTable.getSelectedRow()) > -1) {
-            ficharioAtual.remove(jTable.getSelectedRow(), arrayAtual);
-            dtm.removeRow(jTable.getSelectedRow());
 
+            int id = Integer.parseInt((String) jTable.getValueAt(jTable.getSelectedRow(), 0));
+            int index = ficharioAtual.findIndex(id);
+            ficharioAtual.remove(index);
+            dtm.removeRow(jTable.getSelectedRow());
         }
 
     }
