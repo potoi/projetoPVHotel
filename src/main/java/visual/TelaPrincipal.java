@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * 
  * @author Victor
  */
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -370,7 +370,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAddContaActionPerformed
 
     private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
-        CrudAddFatura crud = new CrudAddFatura(null,true,dados);
+        CrudAddFatura crud = new CrudAddFatura(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddFaturaActionPerformed
@@ -550,6 +550,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         PessoaFisica pessoaf = new PessoaFisica("123123", 2, "Jose", testeEndereco, testeEndereco2, null, "312323", "2525", "111");
         dados.arrayClie.add(pessoaf);
+        Conta conta = new Conta(null,null,null,15.0,pessoaf,12);
+        dados.arrayCont.add(conta);
 
     }
 }

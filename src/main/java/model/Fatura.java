@@ -26,11 +26,18 @@ public class Fatura {
     private Parcela parcelas[];
     private int tipopagamento;
 
+    public Fatura() {
+       
+    }
+
     
     public enum tipoPagamento{
        
         DINHEIRO("dinheiro"),
-        CARTAO("cartão");
+        CARTAOCREDITO("cartão de crédito"),
+        CARTAODEBITO("cartão de débito"),
+        PIX("pix");
+    
         
         private String tipo;
         
