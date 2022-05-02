@@ -5,30 +5,33 @@
 package visual;
 
 import dados.Data;
-import fichario.FuncionarioFichario;
+import dados.DataLogin;
+import fichario.MunicipioFichario;
+import fichario.UsuarioFichario;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import model.Funcionario;
+import model.Usuario;
+import model.Municipio;
 
 /**
  *
  * @author Victor
  */
-public class CrudAddFuncionario extends javax.swing.JFrame {
+public class CrudAddUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form CrudAddFuncionario
+     * Creates new form CrudAddMunicipio
      */
-    private Data dados;
+    private DataLogin dadosLogin;
 
-    public CrudAddFuncionario(Data dados) {
-        this.dados = dados;
+    public CrudAddUsuario(DataLogin dadosLogin) {
+        this.dadosLogin = dadosLogin;
 
-        this.setTitle("Tela Adicionar Funcionario");
+        this.setTitle("Tela Adicionar Usuario");
         initComponents();
     }
 
-    public CrudAddFuncionario() {
+    public CrudAddUsuario() {
         initComponents();
     }
 
@@ -45,16 +48,14 @@ public class CrudAddFuncionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextAtributo1 = new javax.swing.JTextField();
         jButtonGravar = new javax.swing.JButton();
-        jTextAtributo2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButtonVoltar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jTextAtributo3 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTitulo.setText("Funcionário");
+        jLabelTitulo.setText("Usuario");
 
         jLabel1.setText("Cadastro:");
 
@@ -72,75 +73,69 @@ public class CrudAddFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Matrícula");
+        jLabel2.setText("Login:");
 
-        jLabel3.setText("Nome");
+        jLabel3.setText("Senha:");
 
-        jButtonVoltar.setText("<<<");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
+                jPasswordField1ActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Profissão");
+        jButton1.setText("<<<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonVoltar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(110, 110, 110)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonGravar)
+                            .addComponent(jTextAtributo1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelTitulo)
-                        .addGap(152, 152, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextAtributo2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextAtributo1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextAtributo3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonGravar)
-                .addGap(44, 44, 44))
+                        .addComponent(jLabelTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTitulo)
-                    .addComponent(jLabel1)
-                    .addComponent(jButtonVoltar))
-                .addGap(50, 50, 50)
+                    .addComponent(jLabel1))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextAtributo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextAtributo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextAtributo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
                 .addComponent(jButtonGravar)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,15 +146,14 @@ public class CrudAddFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextAtributo1ActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        Funcionario funcionario = new Funcionario();
+        Usuario usuario = new Usuario();
         try {
-            funcionario.setMatricula(jTextAtributo1.getText());
-            funcionario.setNome(jTextAtributo2.getText());
-            funcionario.setProfissao(jTextAtributo3.getText());
-            dados.arrayFunc.add(funcionario);
+             usuario.setLogin(jTextAtributo1.getText());
+            usuario.setSenha(jPasswordField1.getText());
+         dadosLogin.arrayUsuario.add(usuario);
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
-        } catch (Exception e) {
+        }  catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
                     JOptionPane.DEFAULT_OPTION);
 
@@ -167,11 +161,15 @@ public class CrudAddFuncionario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        CrudFuncionario crud = new CrudFuncionario(dados);
-        crud.setVisible(true);
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       TelaLogin tela = new TelaLogin();
+        tela.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,22 +188,14 @@ public class CrudAddFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrudAddFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrudAddFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrudAddFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrudAddFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudAddUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -218,21 +208,19 @@ public class CrudAddFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrudAddFuncionario().setVisible(true);
+                new CrudAddUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonGravar;
-    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextAtributo1;
-    private javax.swing.JTextField jTextAtributo2;
-    private javax.swing.JTextField jTextAtributo3;
     // End of variables declaration//GEN-END:variables
 }

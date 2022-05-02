@@ -15,7 +15,10 @@ public class Funcionario {
         this.nome = nome;
         this.profissao = profissao;
     }
-    
+
+    public Funcionario() {
+   
+    }
     private String matricula;
     private String nome;
     private String profissao;
@@ -43,5 +46,5 @@ public class Funcionario {
     public void setProfissao(String profissao) {
         this.profissao = profissao;
     }
-    
+
 }
