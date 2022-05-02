@@ -148,12 +148,12 @@ public class CrudAddUsuario extends javax.swing.JFrame {
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         Usuario usuario = new Usuario();
         try {
-             usuario.setLogin(jTextAtributo1.getText());
+            usuario.setLogin(jTextAtributo1.getText());
             usuario.setSenha(jPasswordField1.getText());
-         dadosLogin.arrayUsuario.add(usuario);
+            dadosLogin.arrayUsuario.add(usuario);
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
                     JOptionPane.DEFAULT_OPTION);
 
@@ -166,7 +166,7 @@ public class CrudAddUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       TelaLogin tela = new TelaLogin();
+        TelaLogin tela = new TelaLogin(dadosLogin);
         tela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

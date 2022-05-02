@@ -71,12 +71,8 @@ public class CrudConta extends javax.swing.JFrame {
         jMenu15 = new javax.swing.JMenu();
         jMenuAddClientePF = new javax.swing.JMenuItem();
         jMenuAddClientePj = new javax.swing.JMenuItem();
-        jMenuAddEndereco = new javax.swing.JMenuItem();
         jMenuAddMunicipio = new javax.swing.JMenuItem();
-        jMenuAddVeiculo = new javax.swing.JMenuItem();
         jMenuAddConta = new javax.swing.JMenuItem();
-        jMenuAddFatura = new javax.swing.JMenuItem();
-        jMenuAddParcela = new javax.swing.JMenuItem();
         jMenuAddProduto = new javax.swing.JMenuItem();
         jMenuAddServico = new javax.swing.JMenuItem();
         jMenuAddEquipamento = new javax.swing.JMenuItem();
@@ -247,14 +243,6 @@ public class CrudConta extends javax.swing.JFrame {
         });
         jMenu15.add(jMenuAddClientePj);
 
-        jMenuAddEndereco.setText("Endereço");
-        jMenuAddEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddEnderecoActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddEndereco);
-
         jMenuAddMunicipio.setText("Município");
         jMenuAddMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,14 +251,6 @@ public class CrudConta extends javax.swing.JFrame {
         });
         jMenu15.add(jMenuAddMunicipio);
 
-        jMenuAddVeiculo.setText("Veículo");
-        jMenuAddVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddVeiculoActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddVeiculo);
-
         jMenuAddConta.setText("Conta");
         jMenuAddConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,22 +258,6 @@ public class CrudConta extends javax.swing.JFrame {
             }
         });
         jMenu15.add(jMenuAddConta);
-
-        jMenuAddFatura.setText("Fatura");
-        jMenuAddFatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddFaturaActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddFatura);
-
-        jMenuAddParcela.setText("Parcela");
-        jMenuAddParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddParcelaActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddParcela);
 
         jMenuAddProduto.setText("Produto");
         jMenuAddProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -365,6 +329,43 @@ public class CrudConta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
+    private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
+        if (jTable.getSelectedRow() != -1) {
+            int id = Integer.parseInt((String) jTable.getValueAt(jTable.getSelectedRow(), 0));
+            int index = ficharioAtual.findIndex(id);
+            if (dados.ficharioConta.arrayCont.get(index).getDataFechamento() == null) {
+
+                CrudAlterConta tela;
+                tela = new CrudAlterConta(this, true, dados, dados.ficharioConta.arrayCont.get(index), index);
+                tela.showDialog();
+                preencheTabela(dados.ficharioConta.getDataString(arrayAtual), dados.ficharioConta.getColumnName());
+
+            } else {
+                JOptionPane.showConfirmDialog(null, "A conta ja foi encerrada", "Aviso",
+                        JOptionPane.DEFAULT_OPTION);
+            }
+
+        }
+    }//GEN-LAST:event_jButtonAlterActionPerformed
+
+    private void jButtonTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTodosActionPerformed
+
+        preencheTabela(dados.ficharioConta.getDataString(arrayAtual),
+                dados.ficharioConta.getColumnName());
+    }//GEN-LAST:event_jButtonTodosActionPerformed
+
+    private void jButtonPendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPendenteActionPerformed
+        ArrayList<Conta> arrayfiltro = new ArrayList<>();
+        for (Conta conta : arrayAtual) {
+            if (conta.getDataFechamento() == null) {
+                arrayfiltro.add(conta);
+            }
+        }
+
+        preencheTabela(dados.ficharioConta.getDataString(arrayfiltro),
+                dados.ficharioConta.getColumnName());
+    }//GEN-LAST:event_jButtonPendenteActionPerformed
+
     private void jMenuShowPessoaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowPessoaFActionPerformed
         CrudPessoaF crud = new CrudPessoaF(dados);
         crud.setVisible(true);
@@ -402,9 +403,12 @@ public class CrudConta extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowContaActionPerformed
 
     private void jMenuShowFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowFaturaActionPerformed
-        CrudFatura crud = new CrudFatura(dados);
-        crud.setVisible(true);
+        this.setVisible(false);
         this.dispose();
+        CrudFatura crud = new CrudFatura(dados);
+
+        crud.setVisible(true);
+
     }//GEN-LAST:event_jMenuShowFaturaActionPerformed
 
     private void jMenuShowParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowParcelaActionPerformed
@@ -449,40 +453,17 @@ public class CrudConta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuAddClientePjActionPerformed
 
-    private void jMenuAddEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddEnderecoActionPerformed
-        CrudAddEndereco crud = new CrudAddEndereco(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddEnderecoActionPerformed
-
     private void jMenuAddMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddMunicipioActionPerformed
         CrudAddMunicipio crud = new CrudAddMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jMenuAddMunicipioActionPerformed
-
-    private void jMenuAddVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVeiculoActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddVeiculoActionPerformed
 
     private void jMenuAddContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddContaActionPerformed
         CrudAddConta crud = new CrudAddConta(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddContaActionPerformed
-
-    private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddFaturaActionPerformed
-
-    private void jMenuAddParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddParcelaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuAddParcelaActionPerformed
 
     private void jMenuAddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddProdutoActionPerformed
         CrudAddProduto crud = new CrudAddProduto(dados);
@@ -507,43 +488,6 @@ public class CrudConta extends javax.swing.JFrame {
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
-
-    private void jButtonAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterActionPerformed
-        if (jTable.getSelectedRow() != -1) {
-            int id = Integer.parseInt((String) jTable.getValueAt(jTable.getSelectedRow(), 0));
-            int index = ficharioAtual.findIndex(id);
-            if (dados.ficharioConta.arrayCont.get(index).getDataFechamento() == null) {
-
-                CrudAlterConta tela;
-                tela = new CrudAlterConta(this, true, dados, dados.ficharioConta.arrayCont.get(index), index);
-                tela.showDialog();
-                preencheTabela(dados.ficharioConta.getDataString(arrayAtual), dados.ficharioConta.getColumnName());
-
-            } else {
-                JOptionPane.showConfirmDialog(null, "A conta ja foi encerrada", "Aviso",
-                        JOptionPane.DEFAULT_OPTION);
-            }
-
-        }
-    }//GEN-LAST:event_jButtonAlterActionPerformed
-
-    private void jButtonTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTodosActionPerformed
-
-        preencheTabela(dados.ficharioConta.getDataString(arrayAtual),
-                dados.ficharioConta.getColumnName());
-    }//GEN-LAST:event_jButtonTodosActionPerformed
-
-    private void jButtonPendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPendenteActionPerformed
-        ArrayList<Conta> arrayfiltro = new ArrayList<>();
-        for (Conta conta : arrayAtual) {
-            if (conta.getDataFechamento() == null) {
-                arrayfiltro.add(conta);
-            }
-        }
-
-        preencheTabela(dados.ficharioConta.getDataString(arrayfiltro),
-                dados.ficharioConta.getColumnName());
-    }//GEN-LAST:event_jButtonPendenteActionPerformed
 
     private void preencheTabela(String a[][], String b[]) {
         dtm.setRowCount(0);
@@ -573,15 +517,11 @@ public class CrudConta extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuAddClientePF;
     private javax.swing.JMenuItem jMenuAddClientePj;
     private javax.swing.JMenuItem jMenuAddConta;
-    private javax.swing.JMenuItem jMenuAddEndereco;
     private javax.swing.JMenuItem jMenuAddEquipamento;
-    private javax.swing.JMenuItem jMenuAddFatura;
     private javax.swing.JMenuItem jMenuAddFuncionario;
     private javax.swing.JMenuItem jMenuAddMunicipio;
-    private javax.swing.JMenuItem jMenuAddParcela;
     private javax.swing.JMenuItem jMenuAddProduto;
     private javax.swing.JMenuItem jMenuAddServico;
-    private javax.swing.JMenuItem jMenuAddVeiculo;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuShowConta;
     private javax.swing.JMenuItem jMenuShowEndereco;

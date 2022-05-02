@@ -16,23 +16,23 @@ import model.Usuario;
  * @author Saulo Barbosa
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    
     private DataLogin dadosLogin;
     private String login1;
     private String senha1;
-
+    
     public TelaLogin() {
         this.dadosLogin = new DataLogin();
-
         initComponents();
-
+        
     }
-
+    
     public TelaLogin(DataLogin dadosLogin) {
         this.dadosLogin = dadosLogin;
         initComponents();
-
+        
     }
+
     //public boolean checkLogin(String login,String senha){
     //Usuario usuario = new Usuario();
     //return login.equals(usuario.getLogin())&& senha.equals(usuario.getSenha());    }
@@ -150,16 +150,26 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
-
-        if (login.getText().equals("123") && senha.getText().equals("123")) {
+        boolean achou = false;
+        String password = senha.getText();
+        String user = login.getText();
+        
+        for (Usuario usuario : dadosLogin.arrayUsuario) {
+            System.out.println(usuario.getLogin() + usuario.getSenha() + senha.getText());
+            if (usuario.getLogin().equals(user) && usuario.getSenha().equals(password)) {
+                achou = true;
+            }
+            
+        }
+        
+        if (achou == true) {
             JOptionPane.showMessageDialog(null, "Acesso Permitido");
-//Chamar a tela principal
             TelaPrincipal crud = new TelaPrincipal();
             crud.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
-
+            
         }
 
     }//GEN-LAST:event_entrarActionPerformed
@@ -175,7 +185,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-
+        
 
     }//GEN-LAST:event_senhaActionPerformed
 

@@ -159,8 +159,8 @@ public class CrudAddMunicipio extends javax.swing.JFrame {
             municipio.setPais(jTextAtributo3.getText());
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
-            MunicipioFichario muniFichario = new MunicipioFichario();
-            muniFichario.add(dados.arrayMuni, municipio);
+  
+            dados.arrayMuni.add(municipio);
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
                     JOptionPane.DEFAULT_OPTION);

@@ -24,7 +24,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
         this.dados = new Data();
-        dadosExemplos();
+    //    dadosExemplos();
         initComponents();
 
     }
@@ -93,12 +93,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu15 = new javax.swing.JMenu();
         jMenuAddClientePF = new javax.swing.JMenuItem();
         jMenuAddClientePj = new javax.swing.JMenuItem();
-        jMenuAddEndereco = new javax.swing.JMenuItem();
         jMenuAddMunicipio = new javax.swing.JMenuItem();
-        jMenuAddVeiculo = new javax.swing.JMenuItem();
         jMenuAddConta = new javax.swing.JMenuItem();
-        jMenuAddFatura = new javax.swing.JMenuItem();
-        jMenuAddParcela = new javax.swing.JMenuItem();
         jMenuAddProduto = new javax.swing.JMenuItem();
         jMenuAddServico = new javax.swing.JMenuItem();
         jMenuAddEquipamento = new javax.swing.JMenuItem();
@@ -227,14 +223,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu15.add(jMenuAddClientePj);
 
-        jMenuAddEndereco.setText("Endereço");
-        jMenuAddEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddEnderecoActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddEndereco);
-
         jMenuAddMunicipio.setText("Município");
         jMenuAddMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,14 +231,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu15.add(jMenuAddMunicipio);
 
-        jMenuAddVeiculo.setText("Veículo");
-        jMenuAddVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddVeiculoActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddVeiculo);
-
         jMenuAddConta.setText("Conta");
         jMenuAddConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,22 +238,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu15.add(jMenuAddConta);
-
-        jMenuAddFatura.setText("Fatura");
-        jMenuAddFatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddFaturaActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddFatura);
-
-        jMenuAddParcela.setText("Parcela");
-        jMenuAddParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddParcelaActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddParcela);
 
         jMenuAddProduto.setText("Produto");
         jMenuAddProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -326,10 +290,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 750, 400);
+        setBounds(0, 0, 750, 444);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuAddClientePFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddClientePFActionPerformed
@@ -345,12 +309,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuAddClientePjActionPerformed
 
-    private void jMenuAddEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddEnderecoActionPerformed
-        CrudAddEndereco crud = new CrudAddEndereco(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddEnderecoActionPerformed
-
     private void jMenuAddMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddMunicipioActionPerformed
         CrudAddMunicipio crud = new CrudAddMunicipio(dados);
         crud.setVisible(true);
@@ -358,29 +316,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuAddMunicipioActionPerformed
 
-    private void jMenuAddVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVeiculoActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddVeiculoActionPerformed
-
     private void jMenuAddContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddContaActionPerformed
         CrudAddConta crud = new CrudAddConta(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddContaActionPerformed
-
-    private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
-        CrudAddFatura crud = new CrudAddFatura(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddFaturaActionPerformed
-
-    private void jMenuAddParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddParcelaActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddParcelaActionPerformed
 
     private void jMenuAddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddProdutoActionPerformed
         CrudAddProduto crud = new CrudAddProduto(dados);
@@ -493,15 +433,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuAddClientePF;
     private javax.swing.JMenuItem jMenuAddClientePj;
     private javax.swing.JMenuItem jMenuAddConta;
-    private javax.swing.JMenuItem jMenuAddEndereco;
     private javax.swing.JMenuItem jMenuAddEquipamento;
-    private javax.swing.JMenuItem jMenuAddFatura;
     private javax.swing.JMenuItem jMenuAddFuncionario;
     private javax.swing.JMenuItem jMenuAddMunicipio;
-    private javax.swing.JMenuItem jMenuAddParcela;
     private javax.swing.JMenuItem jMenuAddProduto;
     private javax.swing.JMenuItem jMenuAddServico;
-    private javax.swing.JMenuItem jMenuAddVeiculo;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuShowConta;
     private javax.swing.JMenuItem jMenuShowEndereco;

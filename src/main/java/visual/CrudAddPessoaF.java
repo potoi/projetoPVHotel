@@ -35,7 +35,7 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
     private int indexMunicipio;
     private Data dados;
     private Endereco endereco;
-    private ArrayList<Veiculo> arrayVeiculo;
+    private ArrayList<Veiculo> arrayVeiculo=new ArrayList<>();
     int totalVeic;
     double totalProd;
 
@@ -317,8 +317,8 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
         endereco = new Endereco();
         Veiculo[] veic;
 
-        try {
-            if (arrayVeiculo!=null){
+      //  try {
+            if (!arrayVeiculo.isEmpty()){
                veic = arrayVeiculo.toArray(new Veiculo[0]); 
             }else veic= null;
             
@@ -338,8 +338,9 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
             pessoaF.setEnderecoResidencial(endereco);
             dados.arrayEnde.add(endereco);
             dados.arrayClie.add(pessoaF);
-            dados.arrayVeic.addAll(arrayVeiculo.size(), arrayVeiculo);
-
+            if(arrayVeiculo.size()>0){
+            dados.arrayVeic.addAll(arrayVeiculo.size()-1, arrayVeiculo);
+            }
             Container con = this.getContentPane();
             for (Component c : con.getComponents()) {
                 if (c instanceof JTextField) {
@@ -350,11 +351,11 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
 
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
-        } catch (Exception e) {
+     //   } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
                     JOptionPane.DEFAULT_OPTION);
 
-        }
+      //  }
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 

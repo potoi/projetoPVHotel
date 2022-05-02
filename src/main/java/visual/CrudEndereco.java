@@ -67,7 +67,6 @@ public class CrudEndereco extends javax.swing.JFrame {
         jTable = new javax.swing.JTable();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        jButtonAdd = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonAlter = new javax.swing.JButton();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
@@ -87,12 +86,8 @@ public class CrudEndereco extends javax.swing.JFrame {
         jMenu15 = new javax.swing.JMenu();
         jMenuAddClientePF = new javax.swing.JMenuItem();
         jMenuAddClientePj = new javax.swing.JMenuItem();
-        jMenuAddEndereco = new javax.swing.JMenuItem();
         jMenuAddMunicipio = new javax.swing.JMenuItem();
-        jMenuAddVeiculo = new javax.swing.JMenuItem();
         jMenuAddConta = new javax.swing.JMenuItem();
-        jMenuAddFatura = new javax.swing.JMenuItem();
-        jMenuAddParcela = new javax.swing.JMenuItem();
         jMenuAddProduto = new javax.swing.JMenuItem();
         jMenuAddServico = new javax.swing.JMenuItem();
         jMenuAddEquipamento = new javax.swing.JMenuItem();
@@ -245,9 +240,6 @@ public class CrudEndereco extends javax.swing.JFrame {
         getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 60, 80));
         getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 40, 40));
 
-        jButtonAdd.setText("Adicionar");
-        getContentPane().add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, -1, -1));
-
         jButtonRemove.setText("Remover");
         jButtonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,14 +374,6 @@ public class CrudEndereco extends javax.swing.JFrame {
         });
         jMenu15.add(jMenuAddClientePj);
 
-        jMenuAddEndereco.setText("Endereço");
-        jMenuAddEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddEnderecoActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddEndereco);
-
         jMenuAddMunicipio.setText("Município");
         jMenuAddMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,14 +382,6 @@ public class CrudEndereco extends javax.swing.JFrame {
         });
         jMenu15.add(jMenuAddMunicipio);
 
-        jMenuAddVeiculo.setText("Veículo");
-        jMenuAddVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddVeiculoActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddVeiculo);
-
         jMenuAddConta.setText("Conta");
         jMenuAddConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,22 +389,6 @@ public class CrudEndereco extends javax.swing.JFrame {
             }
         });
         jMenu15.add(jMenuAddConta);
-
-        jMenuAddFatura.setText("Fatura");
-        jMenuAddFatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddFaturaActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddFatura);
-
-        jMenuAddParcela.setText("Parcela");
-        jMenuAddParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddParcelaActionPerformed(evt);
-            }
-        });
-        jMenu15.add(jMenuAddParcela);
 
         jMenuAddProduto.setText("Produto");
         jMenuAddProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -594,9 +554,12 @@ public class CrudEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuShowContaActionPerformed
 
     private void jMenuShowFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowFaturaActionPerformed
-        CrudFatura crud = new CrudFatura(dados);
-        crud.setVisible(true);
+        this.setVisible(false);
         this.dispose();
+        CrudFatura crud = new CrudFatura(dados);
+
+        crud.setVisible(true);
+
     }//GEN-LAST:event_jMenuShowFaturaActionPerformed
 
     private void jMenuShowParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuShowParcelaActionPerformed
@@ -641,40 +604,17 @@ public class CrudEndereco extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuAddClientePjActionPerformed
 
-    private void jMenuAddEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddEnderecoActionPerformed
-        CrudAddEndereco crud = new CrudAddEndereco(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddEnderecoActionPerformed
-
     private void jMenuAddMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddMunicipioActionPerformed
         CrudAddMunicipio crud = new CrudAddMunicipio(dados);
         crud.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jMenuAddMunicipioActionPerformed
-
-    private void jMenuAddVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVeiculoActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddVeiculoActionPerformed
 
     private void jMenuAddContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddContaActionPerformed
         CrudAddConta crud = new CrudAddConta(dados);
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddContaActionPerformed
-
-    private void jMenuAddFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddFaturaActionPerformed
-        CrudAddVeiculo crud = new CrudAddVeiculo(dados);
-        crud.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuAddFaturaActionPerformed
-
-    private void jMenuAddParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddParcelaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuAddParcelaActionPerformed
 
     private void jMenuAddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddProdutoActionPerformed
         CrudAddProduto crud = new CrudAddProduto(dados);
@@ -752,7 +692,6 @@ public class CrudEndereco extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler3;
     private javax.swing.JButton jBotaoAlterPane;
     private javax.swing.JButton jBotaoAlterSelecionarMunicipio;
-    private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonAlter;
     private javax.swing.JButton jButtonRemove;
     private javax.swing.JLabel jLabel1;
@@ -767,15 +706,11 @@ public class CrudEndereco extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuAddClientePF;
     private javax.swing.JMenuItem jMenuAddClientePj;
     private javax.swing.JMenuItem jMenuAddConta;
-    private javax.swing.JMenuItem jMenuAddEndereco;
     private javax.swing.JMenuItem jMenuAddEquipamento;
-    private javax.swing.JMenuItem jMenuAddFatura;
     private javax.swing.JMenuItem jMenuAddFuncionario;
     private javax.swing.JMenuItem jMenuAddMunicipio;
-    private javax.swing.JMenuItem jMenuAddParcela;
     private javax.swing.JMenuItem jMenuAddProduto;
     private javax.swing.JMenuItem jMenuAddServico;
-    private javax.swing.JMenuItem jMenuAddVeiculo;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuShowConta;
     private javax.swing.JMenuItem jMenuShowEndereco;
