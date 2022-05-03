@@ -11,12 +11,18 @@ import fichario.MunicipioFichario;
 import java.awt.Component;
 import java.awt.Container;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import static java.util.concurrent.TimeUnit.DAYS;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import model.Cliente;
 import model.Conta;
 import model.Item;
+import model.PessoaFisica;
+import model.PessoaJuridica;
 import model.Produto;
 import model.Servico;
 
@@ -36,10 +42,11 @@ public class CrudAddConta extends javax.swing.JFrame {
     private ArrayList<Item> arrayItem;
     double totalServ;
     double totalProd;
+    double valorData;
 
     public CrudAddConta(Data dados) {
         this.dados = dados;
-
+        valorData = 0;
         totalServ = 0;
         totalProd = 0;
         this.setTitle("Tela Adicionar Conta");
@@ -49,6 +56,7 @@ public class CrudAddConta extends javax.swing.JFrame {
     public CrudAddConta() {
         totalServ = 0;
         totalProd = 0;
+        valorData = 0;
         initComponents();
     }
 
@@ -90,6 +98,9 @@ public class CrudAddConta extends javax.swing.JFrame {
         jTextFieldDia2 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabelTotalD = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,20 +176,36 @@ public class CrudAddConta extends javax.swing.JFrame {
         });
         getContentPane().add(jBotaoTelaProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 311, 138, 39));
 
-        jLabelTotal.setText("Total:  0");
-        getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        jLabelTotal.setText("Valor Total:  0");
+        getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
         jTextFieldMes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMes1ActionPerformed(evt);
             }
         });
+        jTextFieldMes1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldMes1KeyReleased(evt);
+            }
+        });
         getContentPane().add(jTextFieldMes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 30, -1));
+
+        jTextFieldAno1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldAno1KeyReleased(evt);
+            }
+        });
         getContentPane().add(jTextFieldAno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 70, -1));
 
         jTextFieldDia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDia1ActionPerformed(evt);
+            }
+        });
+        jTextFieldDia1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDia1KeyReleased(evt);
             }
         });
         getContentPane().add(jTextFieldDia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 30, -1));
@@ -203,8 +230,34 @@ public class CrudAddConta extends javax.swing.JFrame {
                 jTextFieldMes2ActionPerformed(evt);
             }
         });
+        jTextFieldMes2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldMes2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldMes2KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldMes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 30, -1));
+
+        jTextFieldAno2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldAno2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldAno2KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldAno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 70, -1));
+
+        jTextFieldDia2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDia2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDia2KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldDia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 30, -1));
 
         jLabel12.setText("/");
@@ -213,19 +266,32 @@ public class CrudAddConta extends javax.swing.JFrame {
         jLabel13.setText("/");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 20, -1));
 
+        jLabel9.setText("Diária= 50");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        jLabelTotalD.setText("Total:  0 ");
+        getContentPane().add(jLabelTotalD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jLabel14.setText("CheckIn= 60");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddAtributo1ActionPerformed
         String[] possibilidades;
         ClienteFichario clieFichario = new ClienteFichario();
-        String[][] stringToda;
-        stringToda = clieFichario.getDataString(dados.arrayClie);
-        possibilidades = new String[stringToda.length];
+        possibilidades = new String[dados.arrayClie.size()];
         int i = 0;
-        for (String s[] : stringToda) {
-            possibilidades[i] = s[0] + " " + s[1] + " " + s[2];
-            i++;
+        for (Cliente clie : dados.arrayClie) {
+            if (clie instanceof PessoaFisica pessoaFisica) {
+                possibilidades[i] = clie.getNome() + " " + pessoaFisica.getCpf();
+                i++;
+            } else {
+                possibilidades[i] = clie.getNome() + " " + ((PessoaJuridica) clie).getNomeFantasia();
+                i++;
+            }
+
         }
 
         JComboBox cb = new JComboBox(possibilidades);
@@ -245,6 +311,7 @@ public class CrudAddConta extends javax.swing.JFrame {
         Item[] item;
 
         try {
+
             int dia, mes, ano;
 
             dia = Integer.parseInt(jTextFieldDia1.getText());
@@ -252,9 +319,8 @@ public class CrudAddConta extends javax.swing.JFrame {
             ano = Integer.parseInt(jTextFieldAno1.getText());
             LocalDate date = LocalDate.of(ano, mes, dia);
             conta.setDataAbertura(date);
-            conta.setId(dados.ficharioConta.getNextId());
 
-            if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().isEmpty() && !jTextFieldAno2.getText().isEmpty()) {
+            if (mudaValorDiaria() > -1) {
                 dia = Integer.parseInt(jTextFieldDia2.getText());
                 mes = Integer.parseInt(jTextFieldMes2.getText());
                 ano = Integer.parseInt(jTextFieldAno2.getText());
@@ -282,20 +348,14 @@ public class CrudAddConta extends javax.swing.JFrame {
                 conta.setItens(item);
             }
 
-            conta.setTotal(totalServ + totalProd);
+            conta.setTotal(totalServ + totalProd + valorData);
             conta.setCliente(dados.arrayClie.get(indexCliente));
-
+            conta.setId(dados.ficharioConta.getNextId());
             if (conta.getDataFechamento() == null) {
                 dados.ficharioConta.add(conta);
                 JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
                         JOptionPane.DEFAULT_OPTION);
-                Container con = this.getContentPane();
-                for (Component c : con.getComponents()) {
-                    if (c instanceof JTextField) {
-                        JTextField j = (JTextField) c;
-                        j.setText("");
-                    }
-                }
+                zeraDados();
 
             } else {
 
@@ -305,13 +365,7 @@ public class CrudAddConta extends javax.swing.JFrame {
                     dados.ficharioConta.add(conta);
                     JOptionPane.showConfirmDialog(null, "Conta gravada com sucesso", "Sucesso",
                             JOptionPane.DEFAULT_OPTION);
-                    Container con = this.getContentPane();
-                    for (Component c : con.getComponents()) {
-                        if (c instanceof JTextField) {
-                            JTextField j = (JTextField) c;
-                            j.setText("");
-                        }
-                    }
+                    zeraDados();
 
                 } else {
                     JOptionPane.showConfirmDialog(null,
@@ -347,7 +401,7 @@ public class CrudAddConta extends javax.swing.JFrame {
         for (Servico serv : arrayServico) {
             totalServ += serv.getPreco();
         }
-        jLabelTotal.setText("Total  :" + Double.toString(totalServ + totalProd));
+        jLabelTotal.setText("Total  Valor Total:  " + Double.toString(totalServ + totalProd + valorData));
         tela.dispose();
 
 
@@ -373,10 +427,46 @@ public class CrudAddConta extends javax.swing.JFrame {
         for (Produto prod : arrayProduto) {
             totalProd += prod.getPreco();
         }
-        jLabelTotal.setText("Total  :" + Double.toString(totalServ + totalProd));
+        jLabelTotal.setText("Valor Total:  " + Double.toString(totalServ + totalProd + valorData));
         tela.dispose();
 
     }//GEN-LAST:event_jBotaoTelaProdutosActionPerformed
+
+    private void jTextFieldDia2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDia2KeyTyped
+
+    }//GEN-LAST:event_jTextFieldDia2KeyTyped
+
+    private void jTextFieldMes2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMes2KeyTyped
+
+    }//GEN-LAST:event_jTextFieldMes2KeyTyped
+
+    private void jTextFieldAno2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAno2KeyTyped
+
+    }//GEN-LAST:event_jTextFieldAno2KeyTyped
+
+    private void jTextFieldAno2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAno2KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldAno2KeyReleased
+
+    private void jTextFieldMes2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMes2KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldMes2KeyReleased
+
+    private void jTextFieldDia2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDia2KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldDia2KeyReleased
+
+    private void jTextFieldDia1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDia1KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldDia1KeyReleased
+
+    private void jTextFieldMes1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMes1KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldMes1KeyReleased
+
+    private void jTextFieldAno1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAno1KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldAno1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -416,6 +506,60 @@ public class CrudAddConta extends javax.swing.JFrame {
         });
     }
 
+    public double mudaValorDiaria() {
+        try {
+            int dia, mes, ano;
+            long l;
+
+            dia = Integer.parseInt(jTextFieldDia1.getText());
+            mes = Integer.parseInt(jTextFieldMes1.getText());
+            ano = Integer.parseInt(jTextFieldAno1.getText());
+            LocalDate date = LocalDate.of(ano, mes, dia);
+
+            if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().
+                    isEmpty() && !jTextFieldAno2.getText().isEmpty() && jTextFieldAno2.getText().length() == 4) {
+                dia = Integer.parseInt(jTextFieldDia2.getText());
+                mes = Integer.parseInt(jTextFieldMes2.getText());
+                ano = Integer.parseInt(jTextFieldAno2.getText());
+                LocalDate date2 = LocalDate.of(ano, mes, dia);
+                long a = ChronoUnit.DAYS.between(date, date2);
+                if (a > -1) {
+                    int c = (int) a;
+                    double valorTotal = c * 50 + 60;
+                    jLabelTotalD.setText("Total:  " + valorTotal);
+                    valorData = valorTotal;
+                    double valorTudo;
+                    valorTudo = valorTotal + totalServ + totalProd;
+                    jLabelTotal.setText("Valor Total:  " + Double.toString(valorTudo));
+                    return (valorTotal);
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+        return 0;
+
+    }
+
+    public void zeraDados() {
+        indexCliente = -1;
+        arrayServico = new ArrayList<>();
+        arrayProduto = new ArrayList<>();
+        arrayItem = new ArrayList<>();
+        totalServ = 0;
+        totalProd = 0;
+        valorData = 0;
+        Container con = this.getContentPane();
+        for (Component c : con.getComponents()) {
+            if (c instanceof JTextField) {
+                JTextField j = (JTextField) c;
+                j.setText("");
+            }
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBotaoTelaProdutos;
     private javax.swing.JButton jBotaoTelaServicos;
@@ -427,6 +571,7 @@ public class CrudAddConta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -434,10 +579,12 @@ public class CrudAddConta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelProduto;
     private javax.swing.JLabel jLabelServico;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTotal;
+    private javax.swing.JLabel jLabelTotalD;
     private javax.swing.JTextField jTextAtributo3;
     private javax.swing.JTextField jTextAtributo6;
     private javax.swing.JTextField jTextFieldAno1;

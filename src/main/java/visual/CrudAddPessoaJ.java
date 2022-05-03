@@ -355,7 +355,7 @@ public class CrudAddPessoaJ extends javax.swing.JFrame {
             endereco.setMunicipio(dados.arrayMuni.get(indexMunicipio));
             endereco.setComplemento(jTextFieldE5.getText());
             endereco.setCep(jTextFieldE6.getText());
-            pessoaF.setEnderecoResidencial(endereco);
+            pessoaF.setEnderecoComercial(endereco);
             dados.arrayEnde.add(endereco);
             dados.arrayClie.add(pessoaF);
             dados.arrayVeic.addAll(arrayVeiculo.size(), arrayVeiculo);

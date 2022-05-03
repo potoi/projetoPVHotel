@@ -317,7 +317,7 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
         endereco = new Endereco();
         Veiculo[] veic;
 
-      //  try {
+        try {
             if (!arrayVeiculo.isEmpty()){
                veic = arrayVeiculo.toArray(new Veiculo[0]); 
             }else veic= null;
@@ -351,11 +351,11 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
 
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);
-     //   } catch (Exception e) {
+      } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Não gravou corretamente", "Erro",
                     JOptionPane.DEFAULT_OPTION);
 
-      //  }
+        }
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
