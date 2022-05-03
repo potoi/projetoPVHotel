@@ -420,7 +420,7 @@ public class CrudAddConta extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDia1ActionPerformed
 
     private void jBotaoTelaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoTelaProdutosActionPerformed
-        TelaAddProdutos tela = new TelaAddProdutos(this, true, dados.arrayItem, arrayProduto);
+        TelaAddProdutos tela = new TelaAddProdutos(this, true, dados.ficharioProduto.arrayItem, arrayProduto);
         totalProd = 0;
         arrayProduto = tela.showDialog();
         jLabelProduto.setText("Qtd:" + Integer.toString(arrayProduto.size()));

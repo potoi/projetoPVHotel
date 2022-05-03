@@ -7,6 +7,7 @@ package dados;
 import fichario.ContaFichario;
 import fichario.FaturaFichario;
 import fichario.ParcelaFichario;
+import fichario.ProdutoFichario;
 import java.util.ArrayList;
 import model.Cliente;
 import model.Conta;
@@ -29,18 +30,18 @@ import model.Veiculo;
  */
 public class Data {
 
-    public  ArrayList<Cliente> arrayClie = new ArrayList<>();
-    public  ContaFichario ficharioConta= new ContaFichario();
-    public  FaturaFichario ficharioFatura= new FaturaFichario();
-    public  ArrayList<Endereco> arrayEnde = new ArrayList<>();
-    public  ArrayList<Equipamento> arrayEqui = new ArrayList<>();
-    public  ArrayList<Funcionario> arrayFunc = new ArrayList<>();
-    public  ArrayList<Item> arrayItem = new ArrayList<>();
-    public  ArrayList<Municipio> arrayMuni = new ArrayList<>();
-    public  ParcelaFichario ficharioParcela= new ParcelaFichario();
-    public  ArrayList<PessoaFisica> arrayPessF = new ArrayList<>();
-    public  ArrayList<PessoaJuridica> arrayPessJ = new ArrayList<>();
-    public  ArrayList<Produto> arrayProd = new ArrayList<>();
-    public  ArrayList<Servico> arrayServ = new ArrayList<>();
-    public  ArrayList<Veiculo> arrayVeic = new ArrayList<>();
+    public ArrayList<Cliente> arrayClie = new ArrayList<>();
+    public ContaFichario ficharioConta = new ContaFichario();
+    public FaturaFichario ficharioFatura = new FaturaFichario();
+    public ArrayList<Endereco> arrayEnde = new ArrayList<>();
+    public ArrayList<Equipamento> arrayEqui = new ArrayList<>();
+    public ArrayList<Funcionario> arrayFunc = new ArrayList<>();
+    public ArrayList<Item> arrayItem = new ArrayList<>();
+    public ArrayList<Municipio> arrayMuni = new ArrayList<>();
+    public ParcelaFichario ficharioParcela = new ParcelaFichario();
+    public ArrayList<PessoaFisica> arrayPessF = new ArrayList<>();
+    public ArrayList<PessoaJuridica> arrayPessJ = new ArrayList<>();
+    public ProdutoFichario ficharioProduto = new ProdutoFichario();
+    public ArrayList<Servico> arrayServ = new ArrayList<>();
+    public ArrayList<Veiculo> arrayVeic = new ArrayList<>();
 }

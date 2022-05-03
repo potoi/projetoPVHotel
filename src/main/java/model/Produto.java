@@ -17,7 +17,8 @@ public class Produto extends Item {
         this.marca = marca;
         this.validade = validade;
     }
-    
+
+
     private String marca;
     private LocalDate validade;
 
@@ -36,6 +37,5 @@ public class Produto extends Item {
     public void setValidade(LocalDate validade) {
         this.validade = validade;
     }
-    
-    
+
 }

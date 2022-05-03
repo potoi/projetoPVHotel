@@ -276,6 +276,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Ir para");
 
         jMenuTelaPrincipal.setText("Tela Principal");
+        jMenuTelaPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuTelaPrincipalActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuTelaPrincipal);
 
         jMenuBarPrincipal.add(jMenu2);
@@ -421,6 +426,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuShowFuncionarioActionPerformed
+
+    private void jMenuTelaPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTelaPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuTelaPrincipalActionPerformed
 
     /**
      * @param args the command line arguments

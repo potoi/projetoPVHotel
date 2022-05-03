@@ -5,6 +5,7 @@
 package fichario;
 
 import java.util.ArrayList;
+import model.Item;
 import model.Produto;
 
 /**
@@ -14,10 +15,10 @@ import model.Produto;
 public class ProdutoFichario {
 
     private int nextSafeId = 1;
-    public ArrayList<Produto> arrayProd;
+    public ArrayList<Item> arrayItem;
 
     public ProdutoFichario() {
-        this.arrayProd = new ArrayList<>();
+        this.arrayItem = new ArrayList<>();
 
     }
 
@@ -31,25 +32,28 @@ public class ProdutoFichario {
         return a;
     }
 
-    public String[][] getDataString(ArrayList<Produto> data) {
+    public String[][] getDataString(ArrayList<Item> data) {
         String[][] stringTotal;
         int quantCampos = 5;
         stringTotal = new String[data.size()][quantCampos];
         int i = 0;
-        for (Produto c : data) {
-            stringTotal[i][0] = Integer.toString(c.getIdentificador());
 
-            stringTotal[i][1] = c.getDescricao();
-            stringTotal[i][2] = Double.toString(c.getPreco());
+        for (Item d : data) {
+            if (d instanceof Produto c) {
 
-            stringTotal[i][3] = c.getMarca();
+                stringTotal[i][0] = Integer.toString(c.getIdentificador());
 
-            stringTotal[i][4] = Integer.toString(c.getValidade().
-                    getDayOfMonth()) + "." + Integer.toString(c.getValidade().
-                            getMonthValue()) + "." + Integer.toString(c.getValidade().getYear());
+                stringTotal[i][1] = c.getDescricao();
+                stringTotal[i][2] = Double.toString(c.getPreco());
 
-            i++;
+                stringTotal[i][3] = c.getMarca();
 
+                stringTotal[i][4] = Integer.toString(c.getValidade().
+                        getDayOfMonth()) + "." + Integer.toString(c.getValidade().
+                                getMonthValue()) + "." + Integer.toString(c.getValidade().getYear());
+
+                i++;
+            }
         }
         return stringTotal;
     }
@@ -59,26 +63,27 @@ public class ProdutoFichario {
     }
 
     public void add(Produto e) {
-        arrayProd.add(e);
-        nextSafeId++;
+        arrayItem.add(e);
 
     }
 
     public int findIndex(int id) {
         int i = 0;
-        for (Produto produto : arrayProd) {
-
-            if (produto.getIdentificador() == id) {
-                return i;
+        for (Item item : arrayItem) {
+            if (item instanceof Produto produto) {
+                if (produto.getIdentificador() == id) {
+                    return i;
+                }
+                i++;
             }
-            i++;
+
         }
         return -1;
     }
 
     public void remove(int index) {
 
-        arrayProd.remove(index);
+        arrayItem.remove(index);
 
     }
 }
