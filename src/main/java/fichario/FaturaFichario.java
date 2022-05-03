@@ -35,6 +35,7 @@ public class FaturaFichario {
         double total=0;
         stringTotal = new String[data.size()][quantCampos];
         for (Fatura c : data) {
+            total=0;
             stringTotal[i][0] = Integer.toString(c.getConta().getId());
             stringTotal[i][1] = c.getConta().getCliente().getNome();
 
@@ -55,6 +56,7 @@ public class FaturaFichario {
                 total+=parcela.getValor();
             }
             stringTotal[i][6] = Double.toString(total);
+            i++;
 
         }
         return stringTotal;

@@ -49,7 +49,6 @@ public class CrudFatura extends javax.swing.JFrame {
         jTable = new javax.swing.JTable();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        jButtonAdd = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonAlter = new javax.swing.JButton();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
@@ -87,9 +86,6 @@ public class CrudFatura extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 760, 240));
         getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 60, 80));
         getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 40, 40));
-
-        jButtonAdd.setText("Adicionar");
-        getContentPane().add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, -1, -1));
 
         jButtonRemove.setText("Remover");
         jButtonRemove.addActionListener(new java.awt.event.ActionListener() {
@@ -457,7 +453,6 @@ public class CrudFatura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
-    private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonAlter;
     private javax.swing.JButton jButtonRemove;
     private javax.swing.JMenu jMenu10;

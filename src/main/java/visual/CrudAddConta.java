@@ -550,6 +550,10 @@ public class CrudAddConta extends javax.swing.JFrame {
         totalServ = 0;
         totalProd = 0;
         valorData = 0;
+        jLabelTotal.setText("Valor Total:  " + 0);
+        jLabelTotalD.setText("Total:  " + 0);
+        jLabelProduto.setText("Qtd:" + 0);
+        jLabelProduto.setText("Qtd:" + 0);
         Container con = this.getContentPane();
         for (Component c : con.getComponents()) {
             if (c instanceof JTextField) {

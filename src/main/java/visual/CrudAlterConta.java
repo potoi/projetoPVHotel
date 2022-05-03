@@ -8,6 +8,7 @@ import dados.Data;
 import fichario.ClienteFichario;
 import java.awt.Frame;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
     private ArrayList<Item> arrayItem;
     double totalServ = 0;
     double totalProd = 0;
+    double valorData;
     Conta conta;
     int index;
 
@@ -79,27 +81,30 @@ public class CrudAlterConta extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jButtonGravar = new javax.swing.JButton();
         jLabelProduto = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButtonAddAtributo1 = new javax.swing.JButton();
         jTextAtributo6 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jTextAtributo3 = new javax.swing.JTextField();
         jLabelServico = new javax.swing.JLabel();
         jBotaoTelaServicos = new javax.swing.JButton();
         jBotaoTelaProdutos = new javax.swing.JButton();
         jLabelTotal = new javax.swing.JLabel();
-        jTextFieldMes1 = new javax.swing.JTextField();
-        jTextFieldAno1 = new javax.swing.JTextField();
-        jTextFieldDia1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextFieldMes2 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextFieldAno2 = new javax.swing.JTextField();
+        jLabelTotalD = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jTextFieldDia2 = new javax.swing.JTextField();
+        jTextFieldMes2 = new javax.swing.JTextField();
+        jTextFieldAno2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldAno1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldMes1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldDia1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -125,8 +130,6 @@ public class CrudAlterConta extends javax.swing.JDialog {
 
         jLabelProduto.setText("Qtd:0");
 
-        jLabel3.setText("Data Fechamento");
-
         jLabel5.setText("Cliente");
 
         jButtonAddAtributo1.setText("Selecionar Cliente");
@@ -139,8 +142,6 @@ public class CrudAlterConta extends javax.swing.JDialog {
 
         jTextAtributo6.setText("Cliente");
         jTextAtributo6.setEnabled(false);
-
-        jLabel2.setText("Data Abertura");
 
         jTextAtributo3.setMinimumSize(new java.awt.Dimension(65, 25));
 
@@ -162,37 +163,85 @@ public class CrudAlterConta extends javax.swing.JDialog {
 
         jLabelTotal.setText("Total:  0");
 
-        jTextFieldMes1.setEditable(false);
-        jTextFieldMes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMes1ActionPerformed(evt);
+        jLabelTotalD.setText("Total:  0 ");
+
+        jLabel9.setText("Diária= 50");
+
+        jLabel14.setText("CheckIn= 60");
+
+        jTextFieldDia2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDia2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDia2KeyTyped(evt);
             }
         });
-
-        jTextFieldAno1.setEditable(false);
-
-        jTextFieldDia1.setEditable(false);
-        jTextFieldDia1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDia1ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("/");
-
-        jLabel7.setText("/");
-
-        jLabel8.setText("Dia");
-
-        jLabel10.setText("Mês");
 
         jTextFieldMes2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMes2ActionPerformed(evt);
             }
         });
+        jTextFieldMes2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldMes2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldMes2KeyTyped(evt);
+            }
+        });
+
+        jTextFieldAno2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldAno2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldAno2KeyTyped(evt);
+            }
+        });
+
+        jLabel3.setText("Data Fechamento");
+
+        jLabel2.setText("Data Abertura");
+
+        jTextFieldAno1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldAno1KeyReleased(evt);
+            }
+        });
 
         jLabel11.setText("Ano");
+
+        jLabel10.setText("Mês");
+
+        jTextFieldMes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldMes1ActionPerformed(evt);
+            }
+        });
+        jTextFieldMes1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldMes1KeyReleased(evt);
+            }
+        });
+
+        jLabel8.setText("Dia");
+
+        jTextFieldDia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDia1ActionPerformed(evt);
+            }
+        });
+        jTextFieldDia1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDia1KeyReleased(evt);
+            }
+        });
+
+        jLabel7.setText("/");
+
+        jLabel6.setText("/");
 
         jLabel12.setText("/");
 
@@ -202,143 +251,151 @@ public class CrudAlterConta extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
-                .addComponent(jTextFieldDia1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextFieldMes1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextFieldAno1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonVoltar)
-                            .addGap(128, 128, 128)
-                            .addComponent(jLabel8)
-                            .addGap(33, 33, 33)
-                            .addComponent(jLabel10)
-                            .addGap(48, 48, 48)
-                            .addComponent(jLabel11))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(200, 200, 200)
-                            .addComponent(jTextFieldDia2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(jTextFieldMes2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(jTextFieldAno2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(210, 210, 210)
-                            .addComponent(jTextAtributo3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20)
-                            .addComponent(jLabel4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabelTotal))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(250, 250, 250)
-                            .addComponent(jLabel5))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jBotaoTelaServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabelServico)
-                            .addGap(31, 31, 31)
-                            .addComponent(jTextAtributo6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(jButtonAddAtributo1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jBotaoTelaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabelProduto)
-                            .addGap(28, 28, 28)
-                            .addComponent(jButtonGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabelTotalD)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel10)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldDia1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jTextFieldMes1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jTextFieldAno1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldDia2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jTextFieldMes2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jTextFieldAno2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextAtributo3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabelTotal))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(244, 244, 244)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jBotaoTelaServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabelServico)
+                                .addGap(31, 31, 31)
+                                .addComponent(jTextAtributo6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(jButtonAddAtributo1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBotaoTelaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabelProduto)
+                                .addGap(28, 28, 28)
+                                .addComponent(jButtonGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jTextFieldDia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextFieldMes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldAno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
-                .addContainerGap(304, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jButtonVoltar))
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11))
-                    .addGap(2, 2, 2)
-                    .addComponent(jLabel1)
-                    .addGap(44, 44, 44)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldDia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldMes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12)
-                        .addComponent(jTextFieldAno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel3))
-                    .addGap(48, 48, 48)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextAtributo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabelTotal)
-                    .addGap(4, 4, 4)
-                    .addComponent(jLabel5)
-                    .addGap(14, 14, 14)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jBotaoTelaServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabelServico))
-                        .addComponent(jTextAtributo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonAddAtributo1))
-                    .addGap(22, 22, 22)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jBotaoTelaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jLabelProduto))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jButtonGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonVoltar)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelTotalD))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextFieldMes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextFieldAno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jTextFieldMes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)
+                            .addComponent(jTextFieldAno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextAtributo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelTotal)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel5)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBotaoTelaServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabelServico))
+                    .addComponent(jTextAtributo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddAtributo1))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBotaoTelaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabelProduto))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jButtonGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         pack();
@@ -391,7 +448,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
                 conta.setItens(item);
             }
 
-            conta.setTotal(totalServ + totalProd);
+            conta.setTotal(totalServ + totalProd+valorData);
             conta.setCliente(dados.arrayClie.get(indexCliente));
 
             if (conta.getDataFechamento() == null) {
@@ -408,7 +465,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
                     dados.ficharioConta.arrayCont.set(index, conta);
                     JOptionPane.showConfirmDialog(null, "Conta alterada com sucesso", "Sucesso",
                             JOptionPane.DEFAULT_OPTION);
-                     this.dispose();
+                    this.dispose();
 
                 } else {
                     JOptionPane.showConfirmDialog(null,
@@ -458,21 +515,89 @@ public class CrudAlterConta extends javax.swing.JDialog {
         tela.dispose();
     }//GEN-LAST:event_jBotaoTelaProdutosActionPerformed
 
-    private void jTextFieldMes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMes1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMes1ActionPerformed
+    private void jTextFieldDia2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDia2KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldDia2KeyReleased
 
-    private void jTextFieldDia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDia1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDia1ActionPerformed
+    private void jTextFieldDia2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDia2KeyTyped
+
+    }//GEN-LAST:event_jTextFieldDia2KeyTyped
 
     private void jTextFieldMes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMes2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldMes2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTextFieldMes2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMes2KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldMes2KeyReleased
+
+    private void jTextFieldMes2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMes2KeyTyped
+
+    }//GEN-LAST:event_jTextFieldMes2KeyTyped
+
+    private void jTextFieldAno2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAno2KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldAno2KeyReleased
+
+    private void jTextFieldAno2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAno2KeyTyped
+
+    }//GEN-LAST:event_jTextFieldAno2KeyTyped
+
+    private void jTextFieldAno1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAno1KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldAno1KeyReleased
+
+    private void jTextFieldMes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldMes1ActionPerformed
+
+    private void jTextFieldMes1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMes1KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldMes1KeyReleased
+
+    private void jTextFieldDia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDia1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDia1ActionPerformed
+
+    private void jTextFieldDia1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDia1KeyReleased
+        mudaValorDiaria();
+    }//GEN-LAST:event_jTextFieldDia1KeyReleased
+    public double mudaValorDiaria() {
+        try {
+            int dia, mes, ano;
+            long l;
+
+            dia = Integer.parseInt(jTextFieldDia1.getText());
+            mes = Integer.parseInt(jTextFieldMes1.getText());
+            ano = Integer.parseInt(jTextFieldAno1.getText());
+            LocalDate date = LocalDate.of(ano, mes, dia);
+
+            if (!jTextFieldDia2.getText().isEmpty() && !jTextFieldMes2.getText().
+                    isEmpty() && !jTextFieldAno2.getText().isEmpty() && jTextFieldAno2.getText().length() == 4) {
+                dia = Integer.parseInt(jTextFieldDia2.getText());
+                mes = Integer.parseInt(jTextFieldMes2.getText());
+                ano = Integer.parseInt(jTextFieldAno2.getText());
+                LocalDate date2 = LocalDate.of(ano, mes, dia);
+                long a = ChronoUnit.DAYS.between(date, date2);
+                if (a > -1) {
+                    int c = (int) a;
+                    double valorTotal = c * 50 + 60;
+                    jLabelTotalD.setText("Total:  " + valorTotal);
+                    valorData = valorTotal;
+                    double valorTudo;
+                    valorTudo = valorTotal + totalServ + totalProd;
+                    jLabelTotal.setText("Valor Total:  " + Double.toString(valorTudo));
+                    return (valorTotal);
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+        return 0;
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBotaoTelaProdutos;
@@ -485,6 +610,7 @@ public class CrudAlterConta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -492,9 +618,11 @@ public class CrudAlterConta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelProduto;
     private javax.swing.JLabel jLabelServico;
     private javax.swing.JLabel jLabelTotal;
+    private javax.swing.JLabel jLabelTotalD;
     private javax.swing.JTextField jTextAtributo3;
     private javax.swing.JTextField jTextAtributo6;
     private javax.swing.JTextField jTextFieldAno1;
@@ -507,6 +635,6 @@ public class CrudAlterConta extends javax.swing.JDialog {
 
     void showDialog() {
         this.setVisible(true);
-        
+
     }
 }

@@ -6,6 +6,7 @@ package model;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -171,17 +172,18 @@ public class Fatura {
         double valor;
         double juros = 0;
         int i = 0;
-        int j =0;
+        int j = 0;
         for (Parcela parcela : parcelas) {
-
-            Period period;
             atraso = 0;
             juros = 0;
             if (parcela.getDataPagamento() != null) {
                 if (parcela.getDataPagamento().isAfter(parcela.getDataVencimento())) {
-                    period = Period.between(parcela.getDataPagamento(), parcela.getDataVencimento());
-                    atraso = period.getDays();
+                    LocalDate date = parcela.getDataPagamento();
+                    LocalDate date2 = parcela.getDataVencimento();
+                    long a = ChronoUnit.DAYS.between(date2, date);
                     valor = parcela.getValor();
+                    atraso = (int) a;
+                    System.out.println("Atraso= "+atraso);
                     if (atraso < 16) {
                         parcela.setJurosMoraAplicado(valor * 0.03);
                     }
@@ -189,11 +191,11 @@ public class Fatura {
                         parcela.setJurosMoraAplicado(valor * 0.09);
                     }
                     if (atraso > 30) {
-                        for ( j = 0; j < atraso; j++) {
+                        for (j = 0; j < atraso; j++) {
                             juros += 0.0003;
 
                         }
-                        System.out.println("UwU");
+  
                         parcela.setJurosMoraAplicado(valor * juros);
 
                     }

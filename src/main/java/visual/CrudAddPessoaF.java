@@ -348,6 +348,9 @@ public class CrudAddPessoaF extends javax.swing.JFrame {
                     j.setText("");
                 }
             }
+            arrayVeiculo= new ArrayList<>();
+            jLabel3.setText("Quantidade de veículos: 0");
+            indexMunicipio=-1;
 
             JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
                     JOptionPane.DEFAULT_OPTION);

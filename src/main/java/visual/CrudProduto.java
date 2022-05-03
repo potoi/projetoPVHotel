@@ -19,13 +19,13 @@ import dados.Data;
 public class CrudProduto extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
-    private ArrayList<Municipio> arrayAtual;
-    private MunicipioFichario ficharioAtual;
+    private ArrayList<Produto> arrayAtual;
+    private ProdutoFichario ficharioAtual;
     private Data dados;
 
     public CrudProduto(Data dados) {
-        ficharioAtual = new MunicipioFichario();
-        this.arrayAtual = dados.arrayMuni;
+        ficharioAtual = new ProdutoFichario();
+        this.arrayAtual = dados.arrayProd;
         this.dados = dados;
 
         dtm = new DefaultTableModel(0, 0) {
@@ -36,7 +36,7 @@ public class CrudProduto extends javax.swing.JFrame {
         };
         initComponents();
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.setTitle("Tabela: Município");
+        this.setTitle("Tabela: Produto");
         preencheTabela(ficharioAtual.getDataString(arrayAtual), ficharioAtual.getColumnName());
     }
 

@@ -91,6 +91,11 @@ public class CrudConta extends javax.swing.JFrame {
         getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 40, 40));
 
         jButtonAdd.setText("Adicionar");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, -1, -1));
 
         jButtonRemove.setText("Remover");
@@ -488,6 +493,12 @@ public class CrudConta extends javax.swing.JFrame {
         crud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuAddFuncionarioActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        CrudAddConta crud = new CrudAddConta(dados);
+        crud.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void preencheTabela(String a[][], String b[]) {
         dtm.setRowCount(0);

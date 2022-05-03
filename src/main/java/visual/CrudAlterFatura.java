@@ -32,68 +32,19 @@ public class CrudAlterFatura extends javax.swing.JDialog {
     int quantParcelas;
     Conta conta;
     int index;
-    int jaPago=0;
+    int jaPago = 0;
     Fatura fatura;
 
     public CrudAlterFatura(java.awt.Frame parent, boolean modal, Data dados, Fatura fatura, int index) {
         super(parent, modal);
+        initComponents();
         this.setTitle("Tela Alterar Fatura");
         this.dados = dados;
-        quantParcelas=fatura.getQtdParcelas();
+        quantParcelas = fatura.getQtdParcelas();
         this.index = index;
-        this.fatura = fatura;      
-        initComponents();
-        jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        String a = Integer.toString(fatura.getParcelas()[0].getDataVencimento().getDayOfMonth());
-        String b = Integer.toString(fatura.getParcelas()[0].getDataVencimento().getMonthValue());
-        String c = Integer.toString(fatura.getParcelas()[0].getDataVencimento().getYear());
-        String d =  numberFormat.format(fatura.getParcelas()[0].getValor());
-        jLabelDias1.setText("Data de vencimento: " + a + "." + b + "." + c + ": Valor = " + d);
-        if (fatura.getParcelas()[0].getDataPagamento() != null) {
-            jLabelParcela1.setText("Parcela paga.");
-            jaPago++;
-        }
-        jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
+        this.fatura = fatura;
+        atualiza();
 
-        jLabelParcela2.setEnabled(false);
-        jLabelDias2.setEnabled(false);
-        jLabelParcela3.setEnabled(false);
-        jLabelDias3.setEnabled(false);
-
-        if (quantParcelas > 1) {
-            jLabelParcela2.setEnabled(true);
-            jLabelDias2.setEnabled(true);
-            String a2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getDayOfMonth());
-            String b2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getMonthValue());
-            String c2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getYear());
-            String d2 =  numberFormat.format(fatura.getParcelas()[1].getValor());
-            jLabelDias2.setText("Data de vencimento: " + a2 + "." + b2 + "." + c2 + ": Valor = " + d2);
-            if (fatura.getParcelas()[1].getDataPagamento() != null) {
-                jLabelParcela2.setText("Parcela paga.");
-                jaPago++;
-            }
-
-            jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
-        }
-        if (quantParcelas > 2) {
-            jLabelParcela3.setEnabled(true);
-            jLabelDias3.setEnabled(true);
-            String a3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getDayOfMonth());
-            String b3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getMonthValue());
-            String c3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getYear());
-            String d3 =  numberFormat.format(fatura.getParcelas()[2].getValor());
-            jLabelDias3.setText("Data de vencimento: " + a3 + "." + b3 + "." + c3 + ": Valor = " + d3);
-            if (fatura.getParcelas()[2].getDataPagamento() != null) {
-                jLabelParcela3.setText("Parcela paga.");
-                jaPago++;
-            }
-        }
-        if (fatura.getQtdParcelas() == jaPago) {
-            jButtonPagar1.setText("Todas Parcelas pagas");
-        }
-
-        this.jaPago = jaPago;
     }
 
     @SuppressWarnings("unchecked")
@@ -119,6 +70,7 @@ public class CrudAlterFatura extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonVoltar.setText("<<<");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -126,12 +78,16 @@ public class CrudAlterFatura extends javax.swing.JDialog {
                 jButtonVoltarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, -1));
 
         jLabel1.setText("Alterar Fatura");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jLabel5.setText("Cliente");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
         jLabelParcela1.setText("Parcela 1 ");
+        getContentPane().add(jLabelParcela1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jButtonPagar1.setText("Pagar Parcela");
         jButtonPagar1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,114 +95,44 @@ public class CrudAlterFatura extends javax.swing.JDialog {
                 jButtonPagar1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonPagar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
 
         jLabelDias1.setText("Data de vencimento: 12 12 2004 : Valor = 1546");
+        getContentPane().add(jLabelDias1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, 20));
 
         jLabel19.setText("Dia");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
 
         jLabelParcela2.setText("Parcela 2 ");
+        getContentPane().add(jLabelParcela2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         jLabelParcela3.setText("Parcela 3 ");
+        getContentPane().add(jLabelParcela3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
-        jLabelDias2.setText("jLabel16");
+        jLabelDias2.setText("Não Existe");
+        getContentPane().add(jLabelDias2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
-        jLabelDias3.setText("jLabel16");
+        jLabelDias3.setText("Não Existe");
+        getContentPane().add(jLabelDias3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 30, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 30, -1));
 
+        jTextField3.setPreferredSize(new java.awt.Dimension(64, 42));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 97, 20));
 
         jLabel3.setText("Mês");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
 
         jLabel4.setText("Ano");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
 
         jLabel6.setText("Data do Pagamento");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jButtonVoltar)
-                .addGap(128, 128, 128)
-                .addComponent(jLabel5))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(178, 178, 178)
-                .addComponent(jLabel19)
-                .addGap(70, 70, 70)
-                .addComponent(jLabel3)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel4))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jLabel6)
-                .addGap(15, 15, 15)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabelParcela1)
-                .addGap(30, 30, 30)
-                .addComponent(jLabelDias1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabelParcela2)
-                .addGap(30, 30, 30)
-                .addComponent(jLabelDias2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabelParcela3)
-                .addGap(30, 30, 30)
-                .addComponent(jLabelDias3))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButtonPagar1))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButtonVoltar))
-                    .addComponent(jLabel5))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelParcela1)
-                    .addComponent(jLabelDias1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelParcela2)
-                    .addComponent(jLabelDias2))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelParcela3)
-                    .addComponent(jLabelDias3))
-                .addGap(84, 84, 84)
-                .addComponent(jButtonPagar1))
-        );
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -274,6 +160,9 @@ public class CrudAlterFatura extends javax.swing.JDialog {
             input = JOptionPane.showConfirmDialog(null, "O preço final é " + h + " ", "Pagar", JOptionPane.OK_CANCEL_OPTION);
             if (input == JOptionPane.OK_OPTION) {
                 fatura.getParcelas()[jaPago].setDataPagamento(date);
+                if (jaPago+1 == quantParcelas) {
+                    fatura.setDataLiquidacao(fatura.getParcelas()[quantParcelas - 1].getDataPagamento());
+                }
                 atualiza();
 
                 JOptionPane.showConfirmDialog(null, "Gravou corretamente", "Sucesso",
@@ -317,24 +206,29 @@ public class CrudAlterFatura extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     void showDialog() {
-  
+
         this.setVisible(true);
     }
 
     void atualiza() {
-        jaPago = 0;
-        jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
-        String a = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getDayOfMonth());
-        String b = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getMonthValue());
-        String c = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getYear());
-        String d = Double.toString(fatura.getParcelas()[2].getValor());
-        jLabelParcela1.setText("Data de vencimento: " + a + "." + b + "." + c + ": Valor = " + d);
+        atualizaPago();
+        int quantPago = jaPago + 1;
+        jButtonPagar1.setText("Pagar Parcela  " + quantPago);
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        String a = Integer.toString(fatura.getParcelas()[0].getDataVencimento().getDayOfMonth());
+        String b = Integer.toString(fatura.getParcelas()[0].getDataVencimento().getMonthValue());
+        String c = Integer.toString(fatura.getParcelas()[0].getDataVencimento().getYear());
+        String d = numberFormat.format(fatura.getParcelas()[0].getValor());
+        jLabelDias1.setText("Data de vencimento: " + a + "." + b + "." + c + ": Valor = " + d);
         if (fatura.getParcelas()[0].getDataPagamento() != null) {
+            a = Integer.toString(fatura.getParcelas()[0].getDataPagamento().getDayOfMonth());
+            b = Integer.toString(fatura.getParcelas()[0].getDataPagamento().getMonthValue());
+            c = Integer.toString(fatura.getParcelas()[0].getDataPagamento().getYear());
+            d = numberFormat.format(fatura.getParcelas()[0].getValorfinal());
             jLabelParcela1.setText("Parcela paga.");
-            jaPago++;
-        }
-        jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
+            jLabelDias1.setText("Data de Pagamento: " + a + "." + b + "." + c + ": Valor = " + d);
 
+        }
         jLabelParcela2.setEnabled(false);
         jLabelDias2.setEnabled(false);
         jLabelParcela3.setEnabled(false);
@@ -346,14 +240,18 @@ public class CrudAlterFatura extends javax.swing.JDialog {
             String a2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getDayOfMonth());
             String b2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getMonthValue());
             String c2 = Integer.toString(fatura.getParcelas()[1].getDataVencimento().getYear());
-            String d2 = Double.toString(fatura.getParcelas()[1].getValor());
-            jLabelParcela2.setText("Data de vencimento: " + a2 + "." + b2 + "." + c2 + ": Valor = " + d2);
+            String d2 = numberFormat.format(fatura.getParcelas()[1].getValor());
+            jLabelDias2.setText("Data de vencimento: " + a2 + "." + b2 + "." + c2 + ": Valor = " + d2);
             if (fatura.getParcelas()[1].getDataPagamento() != null) {
+                a = Integer.toString(fatura.getParcelas()[1].getDataPagamento().getDayOfMonth());
+                b = Integer.toString(fatura.getParcelas()[1].getDataPagamento().getMonthValue());
+                c = Integer.toString(fatura.getParcelas()[1].getDataPagamento().getYear());
+                d = numberFormat.format(fatura.getParcelas()[1].getValorfinal());
                 jLabelParcela2.setText("Parcela paga.");
-                jaPago++;
+                jLabelDias2.setText("Data de Pagamento: " + a + "." + b + "." + c + ": Valor = " + d);
+
             }
 
-            jButtonPagar1.setText("Pagar Parcela  " + jaPago + 1);
         }
         if (quantParcelas > 2) {
             jLabelParcela3.setEnabled(true);
@@ -361,11 +259,16 @@ public class CrudAlterFatura extends javax.swing.JDialog {
             String a3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getDayOfMonth());
             String b3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getMonthValue());
             String c3 = Integer.toString(fatura.getParcelas()[2].getDataVencimento().getYear());
-            String d3 = Double.toString(fatura.getParcelas()[2].getValor());
-            jLabelParcela3.setText("Data de vencimento: " + a3 + "." + b3 + "." + c3 + ": Valor = " + d3);
+            String d3 = numberFormat.format(fatura.getParcelas()[2].getValor());
+            jLabelDias3.setText("Data de vencimento: " + a3 + "." + b3 + "." + c3 + ": Valor = " + d3);
             if (fatura.getParcelas()[2].getDataPagamento() != null) {
+                a = Integer.toString(fatura.getParcelas()[2].getDataPagamento().getDayOfMonth());
+                b = Integer.toString(fatura.getParcelas()[2].getDataPagamento().getMonthValue());
+                c = Integer.toString(fatura.getParcelas()[2].getDataPagamento().getYear());
+                d = numberFormat.format(fatura.getParcelas()[2].getValorfinal());
                 jLabelParcela3.setText("Parcela paga.");
-                jaPago++;
+                jLabelDias3.setText("Data de Pagamento: " + a + "." + b + "." + c + ": Valor = " + d);
+
             }
         }
         if (fatura.getQtdParcelas() == jaPago) {
@@ -373,4 +276,18 @@ public class CrudAlterFatura extends javax.swing.JDialog {
         }
 
     }
+
+    public void atualizaPago() {
+        int j = 0;
+        for (int i = 0; i < quantParcelas; i++) {
+
+            if (fatura.getParcelas()[i].getDataPagamento() != null) {
+                j++;
+
+            }
+        }
+
+        jaPago = j;
+    }
+
 }
